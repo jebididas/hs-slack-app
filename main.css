@@ -1,0 +1,42 @@
+.slack-message{
+	margin:20px;
+	padding:10px;
+	border:1px solid grey;
+	border-radius:10px;
+	font:14px Lato,arial,sans-serif;
+	width:700px;
+}
+.left{
+	width:50px;
+	float:left;
+	margin-left:10px;
+	display:inline;
+}
+.center{
+	width:500px;
+	float:left;
+	margin-left:10px;
+	display:inline;
+}
+.right{
+	width:50px;
+	float:left;
+	display:inline;
+}
+.img{
+	width:30px;
+	height:30px;
+}
+.message-title{
+	margin:2px;
+}
+.message-details{
+	margin:2px;
+}
+.message-time{
+	color:grey;
+}
+.clear{
+	clear:both;
+}
+

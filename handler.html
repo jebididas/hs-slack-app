@@ -1,11 +1,17 @@
 <html>
   <head>
+  <link rel="stylesheet" href="main.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,700,900,400italic,700italic,900italic" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>  
   </head>
   <body>
     <script>
+    function postToSlack() {
+      curl -X POST --data-urlencode https://slack.com/api/chat.postMessage?token=xoxp-10392449395-10392282678-10582097568-98ee1cbe14&channel=C0ABJFJLX&text=Test%20Message%20from%20Tester&pretty=1
+    }
+
       function getQuerystring (key) {
         key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
         var regex = new RegExp("[\\?&]"+key+"=([^]*)");
@@ -17,5 +23,7 @@
       document.write('Date & Time: ' + decodeURIComponent(getQuerystring('datetime')) + '<br /><br />');
       document.write('Message: ' + decodeURIComponent(getQuerystring('message')));
     </script>
+
+    <button href="postToSlack()" id="postToSlack" class="btn">Post to Channel</button>
   </body>
 </html>
