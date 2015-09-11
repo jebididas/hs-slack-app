@@ -7,6 +7,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>  
   </head>
   <body>
+  <input id="clickMe" type="button" value="clickme" onclick="postToSlack();" />
     <script>
     function postToSlack() {
       curl -X POST --data-urlencode https://slack.com/api/chat.postMessage?token=xoxp-10392449395-10392282678-10582097568-98ee1cbe14&channel=C0ABJFJLX&text=Test%20Message%20from%20Tester&pretty=1
@@ -24,6 +25,6 @@
       document.write('Message: ' + decodeURIComponent(getQuerystring('message')));
     </script>
 
-    <a href="postToSlack()" id="postToSlack" class="btn"><button class="btn">Post to Channel</button></a>
+    
   </body>
 </html>
