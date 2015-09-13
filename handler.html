@@ -8,6 +8,19 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>  
   </head>
   <body>
+  <div class="slack-message">
+    <div class="left">
+      <img class="message-img" src="slack-30.png">
+    </div>
+    <div class="center">
+      <h3 class="message-title">HootBot</h3>
+      <p clas="message-details"></p>
+    </div>
+    <div class="right">
+      <p class="message-time"></p>
+    </div>
+    <div class="clear"></div>
+  </div>
   <input id="clickMe" type="button" value="clickme" onclick="postToSlack();" />
     <script>
       function getQuerystring (key) {
@@ -16,24 +29,10 @@
         var qs = regex.exec(location.search);
         return qs[1];
       }
+      $formattedTime = date(decodeURIComponent(getQuerystring('datetime')),"H:M A");
+      $('.message-details').text(decodeURIComponent(getQuerystring('message')));
+      $('.message-details').text($formattedTime);    
 
-      // document.write('
-      //   <div class="slack-message">
-      //     <div class="left">
-      //       <img class="message-img" src="slack-30.png">
-      //     </div>
-      //     <div class="center">
-      //       <h3 class=message-title>incoming-webhook-bot</h3>
-      //       <p clas="message-details">' + decodeURIComponent(getQuerystring('message')) + '</p>
-      //     </div>
-      //     <div class="right">
-      //       <p class="message-time">'+ decodeURIComponent(getQuerystring('datetime')) + '</p>
-      //     </div>
-      //     <div class="clear"></div>
-      //   </div>
-      //   ');
-      document.write('Date & Time: ' + decodeURIComponent(getQuerystring('datetime')) + '<br /><br />');
-      document.write('Message: ' + decodeURIComponent(getQuerystring('message')));
 
       function postToSlack() {
         $.ajax({
