@@ -15,7 +15,7 @@
     </div>
     <div class="center">
       <h3 class="message-title">HootBot</h3>
-      <p clas="message-details"></p>
+      <p class="message-details"></p>
     </div>
     <div class="right">
       <p class="message-time"></p>
@@ -41,8 +41,9 @@
       //   return hours + ':' + minutes + ' ' + ampm;
       // }     
 
-      $formattedTime = moment(decodeURIComponent(getQuerystring('datetime')),"H:M A");
+      
       $('.message-details').text(decodeURIComponent(getQuerystring('message')));
+      $formattedTime = moment(decodeURIComponent(getQuerystring('datetime')),"H:M A");
       $('.message-details').text($formattedTime);    
 
 
