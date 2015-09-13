@@ -36,7 +36,10 @@
 	clear:both;
 }
 .message-sent{
-	margin:0 auto;
+	font-size:16px;
+	font-weight:bold;
+	color:royalblue;
+	text-align:center;
 
 }
 

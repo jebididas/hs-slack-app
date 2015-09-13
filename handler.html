@@ -22,7 +22,7 @@
     </div>
     <div class="clear"></div>
   </div>
-  <input id="postToSlack" type="button" value="Post to Channel" onclick="postToSlack();" />
+  <button id="postToSlack" class="btn btn-default">Post to Channel</button>
     <script>
       function getQuerystring (key) {
         key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
@@ -45,16 +45,17 @@
         event.preventDefault(); // To prevent following the link
         $.ajax({
           method: "POST",
-          url: "https://slack.com/api/chat.postMessage?token=xoxp-10392449395-10392282678-10582097568-98ee1cbe14&channel=C0ABJFJLX&text=T" + decodeURIComponent(getQuerystring('message')) + "&pretty=1",
+          url: "https://slack.com/api/chat.postMessage?token=xoxp-10392449395-10392282678-10582097568-98ee1cbe14&channel=C0ABJFJLX&text=" + decodeURIComponent(getQuerystring('message')) + "&pretty=1",
         })
           .done(function( msg ) {
+            $('#postToSlack').remove();
             $('.slack-message').empty();
             $('.slack-message').append('div').addClass('message-sent').text('Message sent!');
           });        
       });
       
       $('.message-details').text(decodeURIComponent(getQuerystring('message')));
-      $formattedTime = moment(decodeURIComponent(getQuerystring('datetime')),"H:M A");
+      $formattedTime = moment(decodeURIComponent(getQuerystring('datetime')),"h:mm A");
       $('.message-time').text($formattedTime);    
 
     </script>
