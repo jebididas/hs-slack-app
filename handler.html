@@ -43,16 +43,9 @@
 
       $channel = "C0ABJFJLX";
       $message = decodeURIComponent(getQuerystring('message'));
-      $attachmentPreText = "Pre-Text"
-      $attachmentText = "Text World"
-      $attachementImageURL = "https://app-directory.s3.amazonaws.com/portal/images/slack-256.png"
       $url = "https://slack.com/api/chat.postMessage?token=xoxp-10392449395-10392282678-10582097568-98ee1cbe14&channel=" + $channel 
             + "&text=" + $message 
             + "&as_user=true"
-            + "&attachments=%5B%7B%22pretext%22%3A%20%22" + $attachmentPreText
-            + "%22%2C%20%22text%22%3A%20%22" + $attachmentText
-            + "%22%2C%22image_url%22%3A%20%22" + $attachementImageURL
-            + "%22%7D%5D"
             + "&pretty=1";
 
       $('#postToSlack').on('click', function(event) {
