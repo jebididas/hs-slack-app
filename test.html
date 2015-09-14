@@ -25,6 +25,20 @@
 
 
 <script>
+
+        $.ajax({
+          method: "GET",
+          url: "https://slack.com/api/channels.list?token=xoxp-10392449395-10392282678-10582097568-98ee1cbe14",
+          success: function(response) {
+            console.log(response);
+            response.channels.forEach(function(channel) {
+            	console.log(channel.id);
+            })
+          }
+        })
+        .done(function() {
+
+        });  
       function postToSlack() {
         $.ajax({
           method: "POST",

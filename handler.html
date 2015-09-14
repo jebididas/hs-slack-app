@@ -39,7 +39,20 @@
       //   hours = hours ? hours : 12; // the hour '0' should be '12'
       //   minutes = minutes < 10 ? '0' + minutes : minutes;
       //   return hours + ':' + minutes + ' ' + ampm;
-      // }     
+      // }   
+
+
+        $.ajax({
+          method: "GET",
+          url: "https://slack.com/api/groups.list?token=xoxp-10392449395-10392282678-10582097568-98ee1cbe14",
+          success: function(response) {
+            console.log(response);
+          }
+        })
+        .done(function() {
+
+        });       
+       
 
       $channel = "C0ABJFJLX";
       $message = decodeURIComponent(getQuerystring('message'));
@@ -54,19 +67,16 @@
           method: "POST",
           url: $url,
         })
-          .done(function( msg ) {
+          .done(function() {
             $('#postToSlack').remove();
             $('.slack-message').empty();
             $('.slack-message').append('div').addClass('message-sent').text('Message sent!');
           });        
       });
-
-      https://slack.com/api/chat.postMessage?token=xoxp-10392449395-10392282678-10582097568-98ee1cbe14&channel=C0ABJFJLX&text=Attachments&icon_emoji=%3Achart_with_upwards_trend%3A&pretty=1
       
       $('.message-details').text(decodeURIComponent(getQuerystring('message')));
       $formattedTime = moment(decodeURIComponent(getQuerystring('datetime')),"h:mm A");
-      $('.message-time').text($formattedTime);    
-      alert(decodeURIComponent(getQuerystring('attachments')));
+      $('.message-time').text($formattedTime);
 
     </script>
 
