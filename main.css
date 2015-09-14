@@ -1,7 +1,7 @@
 .slack-message{
 	margin:20px;
 	padding:10px;
-	border:1px solid grey;
+	border:1px solid lightgrey;
 	border-radius:10px;
 	font:14px Lato,arial,sans-serif;
 }
@@ -38,7 +38,7 @@
 .message-sent{
 	font-size:16px;
 	font-weight:bold;
-	color:royalblue;
+	color:black;
 	text-align:center;
 
 }
