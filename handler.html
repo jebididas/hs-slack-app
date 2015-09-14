@@ -50,7 +50,6 @@
           }
         })
         .done(function() {
-
         });       
        
 
@@ -68,6 +67,8 @@
           url: $url,
         })
           .done(function() {
+            console.log($url);
+            console.log($message);
             $('#postToSlack').remove();
             $('.slack-message').empty();
             $('.slack-message').append('div').addClass('message-sent').text('Message sent!');
