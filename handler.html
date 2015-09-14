@@ -66,6 +66,7 @@
       $('.message-details').text(decodeURIComponent(getQuerystring('message')));
       $formattedTime = moment(decodeURIComponent(getQuerystring('datetime')),"h:mm A");
       $('.message-time').text($formattedTime);    
+      alert(decodeURIComponent(getQuerystring('attachments')));
 
     </script>
 
