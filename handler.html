@@ -60,11 +60,11 @@
           success: function(response) {
             console.log(response);
             $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
+            $('#dropdown-channel-menu').empty();
             response.channels.forEach(function(channel) {
               console.log(channel.id);
               $listItem = $('<li>');
               $listItem.append('<a id="' + channel.id + '" class="channelSelector" href="#">' + channel.name + '</a>');
-              $('#dropdown-channel-menu').empty();
               $($listItem).appendTo('#dropdown-channel-menu');
             });
             $('.channelSelector').on('click', function() {
