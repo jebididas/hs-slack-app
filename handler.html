@@ -78,7 +78,7 @@
         .done(function() {
         });       
        
-
+      console.log($channel);
       $message = decodeURIComponent(getQuerystring('message'));
       $url = "https://slack.com/api/chat.postMessage?token=xoxp-10392449395-10392282678-10582097568-98ee1cbe14&channel=" + $channel 
             + "&text=" + $message 
@@ -96,6 +96,7 @@
             console.log($message);
             $('#postToSlack').remove();
             $('.slack-message').empty();
+            $('.channel-cont').empty();
             $('.slack-message').append('div').addClass('message-sent').text('Message sent!');
           });        
       });
