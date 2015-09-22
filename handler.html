@@ -72,6 +72,7 @@
               $('#channelDropdown').append(' <span class="caret"></span>');
               $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
               $channel = $(this).attr('id');
+              console.log('ON CLICK, CHANNEL:' + $channel);
             });
 
             console.log('CHANNEL: ' + $channel);
