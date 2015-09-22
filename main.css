@@ -2,7 +2,7 @@
 	margin:20px;
 	padding:10px;
 	border:1px solid lightgrey;
-	border-radius:10px;
+	border-radius:5px;
 	font:14px Lato,arial,sans-serif;
 }
 .left{
@@ -13,6 +13,7 @@
 	margin:0 10px;
 	float:left;
 	display:inline;
+	width:75%;
 }
 .right{
 	float:right;
@@ -41,5 +42,20 @@
 	color:black;
 	text-align:center;
 
+}
+.post-btn{
+	margin-left:20px;
+}
+.channel-cont{
+	margin:20px;
+}
+.channel-dropdown{
+	display:inline;
+}
+.channel-desc{
+	display:inline;
+	margin:2px;
+	font:bold 12px Lato,arial,sans-serif;
+	color:#ec971f;
 }
 
