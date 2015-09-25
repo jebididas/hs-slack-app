@@ -13,13 +13,12 @@
     return qs[1];
   }	
   $code = decodeURIComponent(getQuerystring('code'));
-  $redirect_uri = "https://hootsuite.com/dashboard"
+  console.log($code);
 
   $.ajax({
     method: "POST",
     url: "https://slack.com/api/oauth.access?client_id=10392449395.10392827204&client_secret=1a081084c53d5acd8737c8e1427bb958&code="
     		+ $code 
-    		+ "&redirect_uri=" + $redirect_uri
     		+ "&pretty=1",
     success: function(response) {  	
     	localStorage.access_token = response.access_token;
