@@ -34,42 +34,45 @@
 		<div class="clear"></div>
 	</div>
 <button id="postToSlack" class="btn btn-default post-btn">Post to general channel</button>
+<button id="oAuthButton" class="btn btn-default post-btn">Login</button>
+<button class="btn btn-default"><a target="_blank" href="https://slack.com/oauth/authorize?client_id=10392449395.10392827204?state=1a081084c53d5acd8737c8e1427bb958?redirect_uri=https://hs-slack.herokuapp.com/auth.html">Login</a></button>
 
 
 <script>
-        $channel = "C0ABJFJLX"; 
-        $.ajax({
-          method: "GET",
-          url: "https://slack.com/api/channels.list?token=xoxp-10392449395-10392282678-10582097568-98ee1cbe14",
-          success: function(response) {
-            $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
-            $('#dropdown-channel-menu').empty();
-            response.channels.forEach(function(channel) {
-            	console.log(channel.id);
-              $listItem = $('<li>');
-              $listItem.append('<a id="' + channel.id + '" class="channelSelector" href="#">' + channel.name + '</a>');
-              $($listItem).appendTo('#dropdown-channel-menu');
-            });
-            $('.channelSelector').on('click', function() {
-              $('#channelDropdown').text($(this).text());
-              $('#channelDropdown').append(' <span class="caret"></span>');
-              $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
-              $channel = $(this).attr('id');
-            });
-          }
-        })
-        .done(function() {
-        });  
-      function postToSlack() {
-        $.ajax({
-          method: "POST",
-          url: "https://slack.com/api/chat.postMessage?token=xoxp-10392449395-10392282678-10582097568-98ee1cbe14&channel=C0ABJFJLX&text=Test%20Message%20from%20Tester&pretty=1",
-        })
-          .done(function( msg ) {
-            alert( "Data Saved: " + msg );
-          });
+  
+  $channel = "C0ABJFJLX"; 
+  $.ajax({
+    method: "GET",
+    url: "https://slack.com/api/channels.list?token=xoxp-10392449395-10392282678-10582097568-98ee1cbe14",
+    success: function(response) {
+      $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
+      $('#dropdown-channel-menu').empty();
+      response.channels.forEach(function(channel) {
+      	console.log(channel.id);
+        $listItem = $('<li>');
+        $listItem.append('<a id="' + channel.id + '" class="channelSelector" href="#">' + channel.name + '</a>');
+        $($listItem).appendTo('#dropdown-channel-menu');
+      });
+      $('.channelSelector').on('click', function() {
+        $('#channelDropdown').text($(this).text());
+        $('#channelDropdown').append(' <span class="caret"></span>');
+        $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
+        $channel = $(this).attr('id');
+      });
+    }
+  })
+  .done(function() {
+  });  
+  function postToSlack() {
+    $.ajax({
+      method: "POST",
+      url: "https://slack.com/api/chat.postMessage?token=xoxp-10392449395-10392282678-10582097568-98ee1cbe14&channel=C0ABJFJLX&text=Test%20Message%20from%20Tester&pretty=1",
+    })
+      .done(function( msg ) {
+        alert( "Data Saved: " + msg );
+      });
 
-      }
+  }
 </script>
 </body>
 </html>
