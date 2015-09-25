@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Auth</title>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
 <script type="text/javascript">
@@ -13,17 +13,22 @@
     return qs[1];
   }	
   $code = decodeURIComponent(getQuerystring('code'));
+  $redirect_uri = "https://hootsuite.com/dashboard"
 
   $.ajax({
     method: "POST",
-    url: "https://slack.com/api/oauth.access?client_id=10392449395.10392827204&client_secret=1a081084c53d5acd8737c8e1427bb958&code=" +
-				$code + 
-				"&pretty=1",
-    success: function(response) {
+    url: "https://slack.com/api/oauth.access?client_id=10392449395.10392827204&client_secret=1a081084c53d5acd8737c8e1427bb958&code="
+    		+ $code 
+    		+ "&redirect_uri=" + $redirect_uri
+    		+ "&pretty=1",
+    success: function(response) {  	
+    	localStorage.access_token = response.access_token;
+    	localStorage.team_name = response.team_name;
+    	console.log(response.access_token);
+    	console.log(response.team_name);
     	console.log(response);
     }
   });	
 </script>
-
 </body>
 </html>
