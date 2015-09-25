@@ -45,12 +45,15 @@
         return qs[1];
       } 
 
-        $access_token = localStorage.access_token; 
-        if($access_token != undefined){
-          $('#oAuthLogin').text(localStorage.team_name);
-        }
+
 
         $.ajax({
+
+          $access_token = localStorage.access_token; 
+          if($access_token != undefined){
+            $('#oAuthLogin').text(localStorage.team_name);
+          }
+
           method: "GET",
           url: "https://slack.com/api/channels.list?token=" + $token,
           success: function(response) {
