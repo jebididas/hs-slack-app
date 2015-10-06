@@ -34,9 +34,9 @@
     <div class="clear"></div>
   </div>
   <button id="postToSlack" class="btn btn-default post-btn">Post to Channel</button>
-    <button id="oAuthLogin" class="btn btn-default">
-      <a target="_blank" href="https://slack.com/oauth/authorize?client_id=10392449395.10392827204?state=1a081084c53d5acd8737c8e1427bb958?redirect_uri=https://hs-slack.herokuapp.com/auth.html">Login</a>
-    </button>
+  <button id="oAuthLogin" class="btn btn-default">
+    <a target="_blank" href="https://slack.com/oauth/authorize?client_id=10392449395.10392827204?state=1a081084c53d5acd8737c8e1427bb958?redirect_uri=https://hs-slack.herokuapp.com/auth.html">Login</a>
+  </button>
     <script>
       function getQuerystring (key) {
         key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
@@ -100,8 +100,7 @@
             });
             
             $('.message-details').text(decodeURIComponent(getQuerystring('message')));
-            $formattedTime = moment(decodeURIComponent(getQuerystring('datetime')),"h:mm A");
-            $('.message-time').text($formattedTime);            
+            $('.message-time').text(decodeURIComponent(getQuerystring('datetime'));            
           }
         })
         .done(function() {
