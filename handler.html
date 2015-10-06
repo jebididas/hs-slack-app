@@ -22,7 +22,7 @@
   </div> 
   <div class="slack-message">
     <div class="left">
-      <img class="message-img" src="slack-30.png">
+      <img id="messageAvatar" class="message-img" src="slack-30.png">
     </div>
     <div class="center">
       <h3 class="message-title">HootBot</h3>
@@ -100,6 +100,8 @@
             });
             
             $('.message-details').text(decodeURIComponent(getQuerystring('message')));
+            console.log(decodeURIComponent(getQuerystring('datetime')));
+            console.log(decodeURIComponent(getQuerystring('message')));
             $('.message-time').text(decodeURIComponent(getQuerystring('datetime')));            
           }
         })
