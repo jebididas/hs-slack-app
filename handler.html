@@ -19,6 +19,9 @@
       </ul>
     </div>
     <div class="channel-desc">Channel</div>
+    <button id="oAuthLogin" class="btn btn-default btn-xs">
+      <a target="_blank" href="https://slack.com/oauth/authorize?client_id=10392449395.10392827204?state=1a081084c53d5acd8737c8e1427bb958?redirect_uri=https://hs-slack.herokuapp.com/auth.html">Login</a>
+    </button>
   </div> 
   <div class="slack-message">
     <div class="left">
@@ -34,9 +37,7 @@
     <div class="clear"></div>
   </div>
   <button id="postToSlack" class="btn btn-default post-btn">Post to Channel</button>
-  <button id="oAuthLogin" class="btn btn-default">
-    <a target="_blank" href="https://slack.com/oauth/authorize?client_id=10392449395.10392827204?state=1a081084c53d5acd8737c8e1427bb958?redirect_uri=https://hs-slack.herokuapp.com/auth.html">Login</a>
-  </button>
+
     <script>
       function getQuerystring (key) {
         key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
@@ -102,6 +103,7 @@
             $('.message-details').text(decodeURIComponent(getQuerystring('message')));
             console.log(decodeURIComponent(getQuerystring('datetime')));
             console.log(decodeURIComponent(getQuerystring('message')));
+            console.log(decodeURIComponent(getQuerystring('messageID')));
             $('.message-time').text(decodeURIComponent(getQuerystring('datetime')));            
           }
         })
