@@ -48,8 +48,8 @@
 
 
         $.ajax({
-
-          if(localStorage.getItem('slack_access_token') != undefined){
+          $access_token = localStorage.getItem('slack_access_token');
+          if($access_token != undefined){
             $('#oAuthLogin').text(localStorage.getItem('slack_team_name'));
           }
 
