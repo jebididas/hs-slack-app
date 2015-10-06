@@ -46,8 +46,8 @@
       } 
       var slack_access_token = localStorage.getItem('slack_access_token');
       var slack_team_name = localStorage.getItem('slack_team_name');
-      console.log('ACCESS TOKEN: ' + access_token);
-      console.log('SLACK ACCESS TOKEN: ' + localStorage.getItem('slack_access_token'));
+      console.log('ACCESS TOKEN: ' + slack_access_token);
+      console.log('SLACK ACCESS TOKEN: ' + localStorage.getItem('slack_team_name'));
       if(slack_access_token != undefined){
         $('#oAuthLogin').text(slack_team_name);
       }
