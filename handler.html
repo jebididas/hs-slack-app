@@ -44,17 +44,16 @@
         var qs = regex.exec(location.search);
         return qs[1];
       } 
-
+      var slack_access_token = localStorage.getItem('slack_access_token');
+      var slack_team_name = localStorage.getItem('slack_team_name');
+      console.log('ACCESS TOKEN: ' + access_token);
+      console.log('SLACK ACCESS TOKEN: ' + localStorage.getItem('slack_access_token'));
+      if($access_token != undefined){
+        $('#oAuthLogin').text(slack_team_name);
+      }
 
 
         $.ajax({
-          var slack_access_token = localStorage.getItem('slack_access_token');
-          var slack_team_name = localStorage.getItem('slack_team_name');
-          console.log('ACCESS TOKEN: ' + access_token);
-          console.log('SLACK ACCESS TOKEN: ' + localStorage.getItem('slack_access_token'));
-          if($access_token != undefined){
-            $('#oAuthLogin').text(slack_team_name);
-          }
 
           method: "GET",
           url: "https://slack.com/api/channels.list?token=" + slack_access_token,
