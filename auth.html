@@ -21,10 +21,10 @@
     		+ $code 
     		+ "&pretty=1",
     success: function(response) {  	
-    	localStorage.setItem('slack_oauth_team_token', response.access_token);
-    	localStorage.setItem('slack_oauth_team_name', response.team_name);
-    	console.log(localStorage.getItem('slack_oauth_team_token'));
-    	console.log(localStorage.getItem('slack_oauth_team_name'));
+    	$slack_access_token = localStorage.setItem('slack_oauth_team_token', response.access_token);
+    	$slack_team_name = localStorage.setItem('slack_oauth_team_name', response.team_name);
+    	console.log(localStorage.getItem('slack_access_token'));
+    	console.log(localStorage.getItem('slack_team_name'));
     	console.log(response);
     }
   });	
