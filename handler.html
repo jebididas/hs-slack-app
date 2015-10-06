@@ -48,7 +48,7 @@
       var slack_team_name = localStorage.getItem('slack_team_name');
       console.log('ACCESS TOKEN: ' + access_token);
       console.log('SLACK ACCESS TOKEN: ' + localStorage.getItem('slack_access_token'));
-      if($access_token != undefined){
+      if(slack_access_token != undefined){
         $('#oAuthLogin').text(slack_team_name);
       }
 
@@ -56,7 +56,7 @@
         $.ajax({
 
           method: "GET",
-          url: "https://slack.com/api/channels.list?token=" + slack_access_token,
+          url: "https://slack.com/api/channels.list?token=" + localStorage.getItem('slack_access_token'),
           success: function(response) {
             console.log(response);
             $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
@@ -79,7 +79,7 @@
               console.log('NEW CHANNEL: ' + $('.selectedChannel').attr('id'));
               $channel = $('.selectedChannel').attr('id');
               $message = decodeURIComponent(getQuerystring('message'));
-              $url = "https://slack.com/api/chat.postMessage?token=" + slack_access_token 
+              $url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                     + "&channel=" + $channel 
                     + "&text=" + $message 
                     + "&as_user=true"
