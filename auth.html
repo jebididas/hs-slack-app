@@ -19,7 +19,6 @@
     method: "POST",
     url: "https://slack.com/api/oauth.access?client_id=10392449395.10392827204&client_secret=1a081084c53d5acd8737c8e1427bb958&code="
     		+ $code 
-        + $redirect_URI
     		+ "&pretty=1",
     success: function(response) {  	
     	localStorage.setItem('slack_oauth_team_token', response.access_token);
