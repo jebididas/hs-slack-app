@@ -73,7 +73,7 @@
               $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
               $(this).addClass('selectedChannel');
             });
-            console.log('OLD CHANNEL: ' + $channel);
+            
 
             $('#postToSlack').on('click', function(event) {
               console.log('NEW CHANNEL: ' + $('.selectedChannel').attr('id'));
