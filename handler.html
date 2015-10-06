@@ -49,9 +49,9 @@
 
         $.ajax({
 
-          $access_token = localStorage.access_token; 
+          $access_token = localStorage.getItem('slack_oauth_team_token'); 
           if($access_token != undefined){
-            $('#oAuthLogin').text(localStorage.team_name);
+            $('#oAuthLogin').text(localStorage.getItem('slack_oauth_team_name'));
           }
 
           method: "GET",
