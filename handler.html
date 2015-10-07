@@ -39,12 +39,19 @@
   <button id="postToSlack" class="btn btn-default post-btn">Post to Channel</button>
 
     <script>
-      function getQuerystring (key) {
-        key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-        var regex = new RegExp("[\\?&]"+key+"=([^]*)");
-        var qs = regex.exec(location.search);
-        return qs[1];
-      } 
+      // function getQuerystring (key) {
+      //   key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");      Old code
+      //   var regex = new RegExp("[\\?&]"+key+"=([^]*)");
+      //   var qs = regex.exec(location.search);
+      //   return qs[1];
+      // } 
+
+      function getParameterByName(name) {
+          name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+              results = regex.exec(location.search);
+          return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
 
       var slack_access_token = localStorage.getItem('slack_access_token');
       var slack_team_name = localStorage.getItem('slack_team_name');
@@ -54,9 +61,9 @@
         $('#oAuthLogin').text(slack_team_name);
       }
 
-      console.log('MESSAGE: ' + decodeURIComponent(getQuerystring('message')));
-      console.log('DATE: ' + decodeURIComponent(getQuerystring('datetime')));
-      console.log('MESSAGE ID: ' + decodeURIComponent(getQuerystring('messageID')));
+      console.log('MESSAGE: ' + getParameterByName('message'));
+      console.log('DATE: ' + getParameterByName('datetime'));
+      console.log('MESSAGE ID: ' + getParameterByName('messageID'));
 
 
         $.ajax({
@@ -107,8 +114,8 @@
               });        
             });
             
-            $('.message-details').text(decodeURIComponent(getQuerystring('message')));
-            $('.message-time').text(decodeURIComponent(getQuerystring('datetime')));            
+            $('.message-details').text(getParameterByName('message'));
+            $('.message-time').text(getParameterByName('datetime'));            
           }
         })
         .done(function() {
