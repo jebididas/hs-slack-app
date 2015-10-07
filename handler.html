@@ -91,7 +91,7 @@
 
               console.log('NEW CHANNEL: ' + $('.selectedChannel').attr('id'));
               $channel = $('.selectedChannel').attr('id');
-              $message = getQuerystring('message');
+              $message = encodeURIComponent(getParameterByName('message'));
               $url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                     + "&channel=" + $channel 
                     + "&text=" + $message 
