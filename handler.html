@@ -56,7 +56,6 @@
 
 
         $.ajax({
-
           method: "GET",
           url: "https://slack.com/api/channels.list?token=" + localStorage.getItem('slack_access_token'),
           success: function(response) {
@@ -100,7 +99,8 @@
                   $('.slack-message').empty();
                   $('.channel-cont').empty();
                   $('.slack-message').append('div').addClass('message-sent').text('Message sent!');
-                });        
+                }
+              });        
             });
             
             $('.message-details').text(decodeURIComponent(getQuerystring('message')));
