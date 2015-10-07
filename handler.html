@@ -45,6 +45,7 @@
         var qs = regex.exec(location.search);
         return qs[1];
       } 
+
       var slack_access_token = localStorage.getItem('slack_access_token');
       var slack_team_name = localStorage.getItem('slack_team_name');
       console.log('ACCESS TOKEN: ' + slack_access_token);
@@ -87,11 +88,12 @@
                     + "&as_user=true"
                     + "&pretty=1";              
               event.preventDefault(); // To prevent following the link
+             
               $.ajax({
                 method: "POST",
                 url: $url,
-              })
-                .done(function() {
+                success: function(response) {
+                  console.log(response);
                   console.log($url);
                   console.log($message);
                   $('#postToSlack').remove();
