@@ -13,7 +13,6 @@
     return qs[1];
   }	
   $code = decodeURIComponent(getQuerystring('code'));
-  console.log($code);
 
   $.ajax({
     method: "POST",
@@ -23,9 +22,6 @@
     success: function(response) {  	
     	localStorage.setItem('slack_access_token', response.access_token);
     	localStorage.setItem('slack_team_name', response.team_name);
-    	console.log(localStorage.getItem('slack_access_token'));
-    	console.log(localStorage.getItem('slack_team_name'));
-    	console.log(response);
       close();
     }
   });	

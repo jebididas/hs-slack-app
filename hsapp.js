@@ -1,5 +1,5 @@
 function sendToAppHandler(message) {
-  var messageId = "messageId=" + encodeURIComponent(message.post.id);
+  var messageId = "messageId=" + encodeURIComponent(message.post.id);            // Check to see if this is ID or Id
   var datetime  = "&datetime=" + encodeURIComponent(message.post.datetime);
   var message   = "&message=" + encodeURIComponent(message.post.content.body);
   var handler = 'https://hs-slack.herokuapp.com/handler.html?' + messageId + message + datetime;
