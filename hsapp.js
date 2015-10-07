@@ -2,7 +2,7 @@ function sendToAppHandler(message) {
   var messageId = "messageId=" + encodeURIComponent(message.post.id);
   var datetime  = "&datetime=" + encodeURIComponent(message.post.datetime);
   var message   = "&message=" + encodeURIComponent(message.post.content.body);
-  var handler = 'https://hs-slack.herokuapp.com/handler.html?' + messageId + datetime + message;
+  var handler = 'https://hs-slack.herokuapp.com/handler.html?' + messageId + message + datetime;
 
   hsp.showCustomPopup(handler, 'Send to Slack Channel');
 }
