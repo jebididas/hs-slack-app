@@ -54,6 +54,10 @@
         $('#oAuthLogin').text(slack_team_name);
       }
 
+      console.log('MESSAGE: ' + decodeURIComponent('message'));
+      console.log('DATE: ' + decodeURIComponent('datetime'));
+      console.log('MESSAGE ID: ' + decodeURIComponent('messageID'));
+
 
         $.ajax({
           method: "GET",
