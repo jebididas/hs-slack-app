@@ -77,9 +77,10 @@
             
 
             $('#postToSlack').on('click', function(event) {
+
               console.log('NEW CHANNEL: ' + $('.selectedChannel').attr('id'));
               $channel = $('.selectedChannel').attr('id');
-              $message = decodeURIComponent(getQuerystring('message'));
+              $message = getQuerystring('message');
               $url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                     + "&channel=" + $channel 
                     + "&text=" + $message 
@@ -101,9 +102,6 @@
             });
             
             $('.message-details').text(decodeURIComponent(getQuerystring('message')));
-            console.log(decodeURIComponent(getQuerystring('datetime')));
-            console.log(decodeURIComponent(getQuerystring('message')));
-            console.log(decodeURIComponent(getQuerystring('messageID')));
             $('.message-time').text(decodeURIComponent(getQuerystring('datetime')));            
           }
         })
