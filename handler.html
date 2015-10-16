@@ -64,7 +64,8 @@
         $('#login-cont').empty();
         $logoutBtn = $('button').attr('id', 'logout-btn').addClass('btn btn-default btn-xs');
         $slackTeamName = $('button').addClass('btn btn-xs btn-default').text(slack_team_name);
-        $('#login-cont').append($logoutBtn).append($slackTeamName);
+        $('#login-cont').append($logoutBtn);
+        $('#login-cont').append($slackTeamName);
       }
 
       $('#logout-btn').on('click', function() {
