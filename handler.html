@@ -61,6 +61,8 @@
       if(slack_access_token != undefined){
         $('#oAuthLogin').text(slack_team_name);
       }
+      var channel = 'No Channel';
+      console.log('CHANNEL PRE GET: ' + channel);
 
 
       $.ajax({
@@ -68,10 +70,11 @@
         url: "https://slack.com/api/channels.list?token=" + localStorage.getItem('slack_access_token'),
         success: function(response) {
           console.log(response);
+          console.log('CHANNEL POST GET: ' + channel);
+          channel = response.channels[0].id;
           $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
           $('#dropdown-channel-menu').empty();
           response.channels.forEach(function(channel) {
-            console.log(channel.id);
             $listItem = $('<li>');
             $listItem.append('<a id="' + channel.id + '" class="channelSelector" href="#">' + channel.name + '</a>');
             $($listItem).appendTo('#dropdown-channel-menu');
@@ -81,13 +84,13 @@
             $('#channelDropdown').append(' <span class="caret"></span>');
             $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
             $(this).addClass('selectedChannel');
+            channel = $('.selectedChannel').attr('id');
           });
           
 
           $('#postToSlack').on('click', function(event) {
 
-            console.log('NEW CHANNEL: ' + $('.selectedChannel').attr('id'));
-            var channel = $('.selectedChannel').attr('id');
+            console.log('NEW CHANNEL: ' + channel);
             var message = encodeURIComponent(getParameterByName('message'));
             var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                   + "&channel=" + channel 
@@ -95,9 +98,6 @@
                   + "&as_user=true"
                   + "&pretty=1";              
             event.preventDefault(); // To prevent following the link
-            console.log("CHANNEL: " + channel);
-            console.log("MESSAGE: " + message);
-            console.log("URL: " + url);
            
             $.ajax({
               method: "POST",
@@ -112,9 +112,6 @@
                 $('.channel-cont').empty();
                 $('.slack-message').append('div').addClass('message-sent').text('Message sent!');
 
-                hsp.bind('closepopup', function(){
-                    log('closepopup', 'refresh triggered');
-                });
               }
             });        
           });

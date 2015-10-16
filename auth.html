@@ -26,7 +26,6 @@
       console.log(response);	
     	localStorage.setItem('slack_access_token', response.access_token);
     	localStorage.setItem('slack_team_name', response.team_name);
-      localStorage.setItem('slack_auth_code', code);
       close();
     }
   });	
