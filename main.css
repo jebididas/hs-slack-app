@@ -58,4 +58,12 @@
 	font:bold 12px Lato,arial,sans-serif;
 	color:#ec971f;
 }
+#logout-btn{
+	display:inline;
+	margin:2px;
+}
 
+#slack-team-name{
+	display:inline;
+	margin:2px;
+}

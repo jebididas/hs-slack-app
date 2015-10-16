@@ -19,12 +19,12 @@
         <li><a href="#">No Channels</a></li>
       </ul>
     </div>
-    <div class="channel-desc">Channel</div>
-    <div id="login-cont">
-      <button id="oAuthLogin" class="btn btn-default btn-xs">
-        <a target="_blank" href="https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=client&redirect_uri=https://hs-slack.herokuapp.com/auth.html">Login</a>
-      </button>
-    </div>  
+    <div class="channel-desc">Channel</div> 
+  </div> 
+  <div id="login-cont">
+    <button id="oAuthLogin" class="btn btn-default btn-xs">
+      <a target="_blank" href="https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=client&redirect_uri=https://hs-slack.herokuapp.com/auth.html">Login</a>
+    </button>
   </div> 
   <div class="slack-message">
     <div class="left">
@@ -61,9 +61,9 @@
       var channel = 'No Channel'; // Set channel before GET
 
       if(slack_access_token != undefined){
-        $('#login-cont').empty();
+        $('#oAuthLogin').remove();
         $logoutBtn = $('button').attr('id', 'logout-btn').addClass('btn btn-default btn-xs');
-        $slackTeamName = $('button').addClass('btn btn-xs btn-default').text(slack_team_name);
+        $slackTeamName = $('button').attr('id','slack-team-name').addClass('btn btn-xs btn-default').text(slack_team_name);
         $('#login-cont').append($logoutBtn);
         $('#login-cont').append($slackTeamName);
       }
