@@ -6,14 +6,14 @@
 </head>
 <body>
 <script type="text/javascript">
-  function getQuerystring (key) {
-    key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-    var regex = new RegExp("[\\?&]"+key+"=([^]*)");
-    var qs = regex.exec(location.search);
-    return qs[1];
-  }	
+  function getParameterByName(name) {  // This decodes and separates the URI into pieces
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
 
-  $code = decodeURIComponent(getQuerystring('code'));
+  $code = getParameterByName('code');
 
   $.ajax({
     method: "POST",
