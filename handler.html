@@ -20,9 +20,11 @@
       </ul>
     </div>
     <div class="channel-desc">Channel</div>
-    <button id="oAuthLogin" class="btn btn-default btn-xs">
-      <a target="_blank" href="https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=client&redirect_uri=https://hs-slack.herokuapp.com/auth.html">Login</a>
-    </button>
+    <div id="login-cont">
+      <button id="oAuthLogin" class="btn btn-default btn-xs">
+        <a target="_blank" href="https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=client&redirect_uri=https://hs-slack.herokuapp.com/auth.html">Login</a>
+      </button>
+    </div>  
   </div> 
   <div class="slack-message">
     <div class="left">
@@ -54,64 +56,76 @@
           return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
       }
 
-      var apiKey = "2mrz5a2rqf0g8ks04gkkwowos3icn258498";
-
       var slack_access_token = localStorage.getItem('slack_access_token');
       var slack_team_name = localStorage.getItem('slack_team_name');
+      var channel = 'No Channel'; // Set channel before GET
+
       if(slack_access_token != undefined){
-        $('#oAuthLogin').text(slack_team_name);
+        $('#login-cont').empty();
+        $logoutBtn = $('button').attr('id', 'logout-btn').addClass('btn btn-default btn-xs');
+        $slackTeamName = $('button').addClass('btn btn-xs btn-default').text(slack_team_name);
+        $('#login-cont').append($logoutBtn).append($slackTeamName);
       }
-      var channel = 'No Channel';
-      console.log('CHANNEL PRE GET: ' + channel);
+
+      $('#logout-btn').on('click', function() {
+        localStorage.removeItem('slack_access_token');
+        localStorage.removeItem('slack_team_name');
+
+        $('#login-cont').empty();
+        $loginBtn = $('button').attr('id','oAuthLogin').addClass('btn btn-default btn-xs');
+        $loginBtnLink = $('a').attr({
+          target: '_blank',
+          href: 'https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=client&redirect_uri=https://hs-slack.herokuapp.com/auth.html'
+        })
+        .text('Login')
+        .appendTo($loginBtn);
+        $('#login-cont').append($loginBtn);
+
+
+      });
 
 
       $.ajax({
         method: "GET",
         url: "https://slack.com/api/channels.list?token=" + localStorage.getItem('slack_access_token'),
         success: function(response) {
-          console.log(response);
-          console.log('CHANNEL POST GET: ' + channel);
-          channel = response.channels[0].id;
+          channel = response.channels[0].id; // Set channel to General
           $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
           $('#dropdown-channel-menu').empty();
+          
           response.channels.forEach(function(channel) {
             $listItem = $('<li>');
             $listItem.append('<a id="' + channel.id + '" class="channelSelector" href="#">' + channel.name + '</a>');
             $($listItem).appendTo('#dropdown-channel-menu');
           });
+          
           $('.channelSelector').on('click', function() {
             $('#channelDropdown').text($(this).text());
             $('#channelDropdown').append(' <span class="caret"></span>');
             $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
             $(this).addClass('selectedChannel');
-            channel = $('.selectedChannel').attr('id');
+            channel = $('.selectedChannel').attr('id'); // Update channel
           });
           
 
           $('#postToSlack').on('click', function(event) {
 
-            console.log('NEW CHANNEL: ' + channel);
             var message = encodeURIComponent(getParameterByName('message'));
             var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                   + "&channel=" + channel 
                   + "&text=" + message 
                   + "&as_user=true"
                   + "&pretty=1";              
-            event.preventDefault(); // To prevent following the link
+            event.preventDefault();
            
             $.ajax({
               method: "POST",
               url: url,
               success: function(response) {
-                console.log("RESPONSE: ")
-                console.log(response);
-                console.log("URL: " + url);
-                console.log("MESSAGE: " + message);
                 $('#postToSlack').remove();
                 $('.slack-message').empty();
                 $('.channel-cont').empty();
                 $('.slack-message').append('div').addClass('message-sent').text('Message sent!');
-
               }
             });        
           });
@@ -122,8 +136,6 @@
       })
       .done(function() {
       });       
-       
-
 
     </script>
 
