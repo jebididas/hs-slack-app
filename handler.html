@@ -53,6 +53,8 @@
           return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
       }
 
+      var apiKey = "2mrz5a2rqf0g8ks04gkkwowos3icn258498";
+
       var slack_access_token = localStorage.getItem('slack_access_token');
       var slack_team_name = localStorage.getItem('slack_team_name');
       if(slack_access_token != undefined){
@@ -60,60 +62,68 @@
       }
 
 
-        $.ajax({
-          method: "GET",
-          url: "https://slack.com/api/channels.list?token=" + localStorage.getItem('slack_access_token'),
-          success: function(response) {
-            console.log(response);
-            $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
-            $('#dropdown-channel-menu').empty();
-            response.channels.forEach(function(channel) {
-              console.log(channel.id);
-              $listItem = $('<li>');
-              $listItem.append('<a id="' + channel.id + '" class="channelSelector" href="#">' + channel.name + '</a>');
-              $($listItem).appendTo('#dropdown-channel-menu');
-            });
-            $('.channelSelector').on('click', function() {
-              $('#channelDropdown').text($(this).text());
-              $('#channelDropdown').append(' <span class="caret"></span>');
-              $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
-              $(this).addClass('selectedChannel');
-            });
-            
+      $.ajax({
+        method: "GET",
+        url: "https://slack.com/api/channels.list?token=" + localStorage.getItem('slack_access_token'),
+        success: function(response) {
+          console.log(response);
+          $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
+          $('#dropdown-channel-menu').empty();
+          response.channels.forEach(function(channel) {
+            console.log(channel.id);
+            $listItem = $('<li>');
+            $listItem.append('<a id="' + channel.id + '" class="channelSelector" href="#">' + channel.name + '</a>');
+            $($listItem).appendTo('#dropdown-channel-menu');
+          });
+          $('.channelSelector').on('click', function() {
+            $('#channelDropdown').text($(this).text());
+            $('#channelDropdown').append(' <span class="caret"></span>');
+            $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
+            $(this).addClass('selectedChannel');
+          });
+          
 
-            $('#postToSlack').on('click', function(event) {
+          $('#postToSlack').on('click', function(event) {
 
-              console.log('NEW CHANNEL: ' + $('.selectedChannel').attr('id'));
-              $channel = $('.selectedChannel').attr('id');
-              $message = encodeURIComponent(getParameterByName('message'));
-              $url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
-                    + "&channel=" + $channel 
-                    + "&text=" + $message 
-                    + "&as_user=true"
-                    + "&pretty=1";              
-              event.preventDefault(); // To prevent following the link
-             
-              $.ajax({
-                method: "POST",
-                url: $url,
-                success: function(response) {
-                  console.log(response);
-                  console.log($url);
-                  console.log($message);
-                  $('#postToSlack').remove();
-                  $('.slack-message').empty();
-                  $('.channel-cont').empty();
-                  $('.slack-message').append('div').addClass('message-sent').text('Message sent!');
-                }
-              });        
-            });
-            
-            $('.message-details').text(getParameterByName('message'));
-            $('.message-time').text(getParameterByName('datetime'));            
-          }
-        })
-        .done(function() {
-        });       
+            console.log('NEW CHANNEL: ' + $('.selectedChannel').attr('id'));
+            var channel = $('.selectedChannel').attr('id');
+            var message = encodeURIComponent(getParameterByName('message'));
+            var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
+                  + "&channel=" + channel 
+                  + "&text=" + message 
+                  + "&as_user=true"
+                  + "&pretty=1";              
+            event.preventDefault(); // To prevent following the link
+            console.log("CHANNEL: " + channel);
+            console.log("MESSAGE: " + message);
+            console.log("URL: " + url);
+           
+            $.ajax({
+              console.log("In AJAX POST");
+              method: "POST",
+              url: url,
+              success: function(response) {
+                console.log("RESPONSE: " + response);
+                console.log("URL: " + url);
+                console.log("MESSAGE: " + message);
+                $('#postToSlack').remove();
+                $('.slack-message').empty();
+                $('.channel-cont').empty();
+                $('.slack-message').append('div').addClass('message-sent').text('Message sent!');
+
+                hsp.bind('closepopup', function(){
+                    log('closepopup', 'refresh triggered');
+                }).delay(3000);
+              }
+            });        
+          });
+          
+          $('.message-details').text(getParameterByName('message'));
+          $('.message-time').text(getParameterByName('datetime'));            
+        }
+      })
+      .done(function() {
+      });       
        
 
 
