@@ -20,7 +20,9 @@
     url: "https://slack.com/api/oauth.access?client_id=10392449395.10392827204&client_secret=1a081084c53d5acd8737c8e1427bb958&code="
     		+ $code 
     		+ "&pretty=1",
-    success: function(response) {  	
+    success: function(response) {  
+      console.log("Auth Response: ");
+      console.log(response);	
     	localStorage.setItem('slack_access_token', response.access_token);
     	localStorage.setItem('slack_team_name', response.team_name);
       localStorage.setItem('slack_auth_code', $code);
