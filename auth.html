@@ -13,13 +13,14 @@
       return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
 
-  $code = getParameterByName('code');
+  var code = getParameterByName('code');
 
   $.ajax({
     method: "POST",
     url: "https://slack.com/api/oauth.access?client_id=10392449395.10392827204&client_secret=1a081084c53d5acd8737c8e1427bb958&code="
-    		+ $code 
+    		+ code 
     		+ "&pretty=1",
+    error: function(response, err){ console.log('Auth Post Request: ' + err), 
     success: function(response) {  
       console.log("Auth Response: ");
       console.log(response);	
