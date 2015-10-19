@@ -92,6 +92,7 @@
       $.ajax({
         method: "GET",
         url: "https://slack.com/api/channels.list?token=" + localStorage.getItem('slack_access_token'),
+        error: function(response, err){ console.log('GET Channels list: ' + err) }, 
         success: function(response) {
           channel = response.channels[0].id; // Set channel to General
           $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
@@ -125,6 +126,7 @@
             $.ajax({
               method: "POST",
               url: url,
+              error: function(response, err){ console.log('POST To slack error: ' + err) }, 
               success: function(response) {
                 $('#postToSlack').remove();
                 $('.slack-message').empty();
