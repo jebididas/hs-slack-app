@@ -66,26 +66,26 @@
       var channel = 'No Channel'; // Set channel before GET
 
       if(slack_access_token != undefined){
-        $('#oAuthLogin').remove();
-        $logoutBtn = $('button').attr('id', 'logout-btn').addClass('btn btn-default btn-xs');
-        $slackTeamName = $('button').attr('id','slack-team-name').addClass('btn btn-xs btn-default').text(slack_team_name);
-        $('#login-cont').append($logoutBtn);
-        $('#login-cont').append($slackTeamName);
-      }
+      //   $('#oAuthLogin').remove();
+      //   $logoutBtn = $('button').attr('id', 'logout-btn').addClass('btn btn-default btn-xs');
+      //   $slackTeamName = $('button').attr('id','slack-team-name').addClass('btn btn-xs btn-default').text(slack_team_name);
+      //   $('#login-cont').append($logoutBtn);
+      //   $('#login-cont').append($slackTeamName);
+      // }
 
-      $('#logout-btn').on('click', function() {
-        localStorage.removeItem('slack_access_token');
-        localStorage.removeItem('slack_team_name');
+      // $('#logout-btn').on('click', function() {
+      //   localStorage.removeItem('slack_access_token');
+      //   localStorage.removeItem('slack_team_name');
 
-        $('#login-cont').empty();
-        $loginBtn = $('button').attr('id','oAuthLogin').addClass('btn btn-default btn-xs');
-        $loginBtnLink = $('a').attr({
-          target: '_blank',
-          href: 'https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=client&redirect_uri=https://hs-slack.herokuapp.com/auth.html'
-        })
-        .text('Login')
-        .appendTo($loginBtn);
-        $('#login-cont').append($loginBtn);
+      //   $('#login-cont').empty();
+      //   $loginBtn = $('button').attr('id','oAuthLogin').addClass('btn btn-default btn-xs');
+      //   $loginBtnLink = $('a').attr({
+      //     target: '_blank',
+      //     href: 'https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=client&redirect_uri=https://hs-slack.herokuapp.com/auth.html'
+      //   })
+      //   .text('Login')
+      //   .appendTo($loginBtn);
+      //   $('#login-cont').append($loginBtn);
 
 
       });
