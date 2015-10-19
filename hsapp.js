@@ -12,9 +12,11 @@ $(document).ready(function() {
         useTheme: true
     });
 
+
     hsp.bind('sendtoapp', function(message){
         sendToAppHandler(message);
     });
+
 
     // hsp.bind('sendtoapp', function(message){
     //     var userid = message.post.user.userid;
