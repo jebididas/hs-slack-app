@@ -12,12 +12,12 @@
 
     <div id="profile-cont">
       <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button id="profile-team-name" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           No Team <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
           <li><a href="#">Action</a></li>
-          <li class="disabled"><a href="#">No User</a></li>
+          <li class="disabled"><a id="profile-username" href="#">No User</a></li>
           <li role="separator" class="divider"></li>
           <li><a href="#">Logout</a></li>
         </ul>
@@ -96,6 +96,8 @@
         success: function(response) {
           console.log(response);
           username = response.user;
+          $('#profile-username').text(username);
+          $('#profile-team-name').text(slack_team_name);
         }
       });
 
@@ -106,6 +108,7 @@
         error: function(response, err){ console.log('GET Channels list: ' + err) }, 
         success: function(response) {
           channel = response.channels[0].id; // Set channel to General
+          $('#channelDropdown').text(channel); // Sets the channel dropdown to General
           $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
           $('#dropdown-channel-menu').empty();
           
