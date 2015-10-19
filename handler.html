@@ -64,6 +64,7 @@
       var slack_access_token = localStorage.getItem('slack_access_token');
       var slack_team_name = localStorage.getItem('slack_team_name');
       var channel = 'No Channel'; // Set channel before GET
+      var username = 'No Username'; // Initialize username
 
       // if(slack_access_token != undefined){
       //   $('#oAuthLogin').remove();
@@ -87,6 +88,16 @@
       //   .appendTo($loginBtn);
       //   $('#login-cont').append($loginBtn);
       // });
+      
+      $.ajax({
+        method: "GET",
+        url: "https://slack.com/api/auth.test?token=" + localStorage.getItem('slack_access_token'),
+        error: function(response, err){ console.log('GET User info error: ' + err) }, 
+        success: function(response) {
+          console.log(response);
+          username = response.user;
+        }
+      });
 
 
       $.ajax({
@@ -119,8 +130,7 @@
             var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                   + "&channel=" + channel 
                   + "&text=" + message 
-                  + "&as_user=true"
-                  + "&pretty=1";              
+                  + "&as_user=true";              
             event.preventDefault();
            
             $.ajax({
