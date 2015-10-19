@@ -110,6 +110,7 @@
           + "&user=" + user_id,
         error: function(response, err){ console.log('GET User info error: ' + err) }, 
         success: function(response) {
+          console.log(response);
           $('.messageAvatar').attr('src', response.user.profile.image_32);
         }
       });
