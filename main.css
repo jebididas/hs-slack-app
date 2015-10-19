@@ -1,3 +1,7 @@
+#profile-cont{
+	margin:10px 10px 10px 20px;
+}
+
 .slack-message{
 	margin:20px;
 	padding:10px;
@@ -66,4 +70,32 @@
 #slack-team-name{
 	display:inline;
 	margin:2px;
+}
+
+#login-cont{
+	margin-top:20%;
+	text-align:center;
+}
+
+#login-btn-img{
+	width:30px;
+	height:30px;
+	border:none;
+	margin-right:5px;
+}
+
+#login-btn-link{
+	text-decoration:none;
+	font-size:20px;
+}
+
+#register-text{
+	margin-top:10px;
+	font-size:16px;
+	color:grey;
+}
+
+#register-link{
+	text-decoration:none;
+	color:#3aa3e3;
 }

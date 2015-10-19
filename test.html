@@ -8,9 +8,24 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+  <div id="profile-cont">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        No Team <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li class="disabled"><a href="#">No User</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+  
   <div class="channel-cont">
     <div class="channel-dropdown dropdown">
-      <button class="btn btn-warning btn-xs dropdown-toggle" type="button" id="channelDropdown" data-toggle="dropdown">
+      <button class="btn btn-xs btn-warning dropdown-toggle" type="button" id="channelDropdown" data-toggle="dropdown">
         general 
         <span class="caret"></span>
       </button>
@@ -18,65 +33,27 @@
         <li><a href="#">No Channels</a></li>
       </ul>
     </div>
-    <div class="channel-desc">Channel</div>
+    <div class="channel-desc">Channel</div> 
+  </div> 
+
+  <div class="slack-message">
+    <div class="left">
+      <img id="messageAvatar" class="message-img" src="slack-30.png">
+    </div>
+    <div class="center">
+      <h3 class="message-title">HootBot</h3>
+      <p class="message-details"></p>
+    </div>
+    <div class="right">
+      <p class="message-time"></p>
+    </div>
+    <div class="clear"></div>
   </div>
-	<div class="slack-message">
-		<div class="left">
-			<img class="message-img" src="slack-30.png">
-		</div>
-		<div class="center">
-			<h3 class=message-title>incoming-webhook-bot</h3>
-			<p clas="message-details">Click here for details!</p>
-		</div>
-		<div class="right">
-			<p class="message-time">3:04 PM</p>
-		</div>
-		<div class="clear"></div>
-	</div>
-<button id="postToSlack" class="btn btn-default post-btn">Post to general channel</button>
-<button id="oAuthLogin" class="btn btn-default"><a target="_blank" href="https://slack.com/oauth/authorize?client_id=10392449395.10392827204?state=1a081084c53d5acd8737c8e1427bb958?redirect_uri=https://hs-slack.herokuapp.com/auth.html">Login</a></button>
+  <button id="postToSlack" class="btn btn-default post-btn">Post to Channel</button>
 
 
 <script>
-  
 
-  $access_token = localStorage.access_token; 
-  if($access_token != undefined){
-    $('#oAuthLogin').text(localStorage.team_name);
-  }
-  $.ajax({
-    method: "GET",
-    url: "https://slack.com/api/channels.list?token=" + $access_token,
-    success: function(response) {
-      $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
-      $('#dropdown-channel-menu').empty();
-      response.channels.forEach(function(channel) {
-      	console.log(channel.id);
-        $listItem = $('<li>');
-        $listItem.append('<a id="' + channel.id + '" class="channelSelector" href="#">' + channel.name + '</a>');
-        $($listItem).appendTo('#dropdown-channel-menu');
-      });
-      $('.channelSelector').on('click', function() {
-        $('#channelDropdown').text($(this).text());
-        $('#channelDropdown').append(' <span class="caret"></span>');
-        $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
-        $channel = $(this).attr('id');
-      });
-    }
-  })
-  .done(function() {
-  });  
-  function postToSlack() {
-    $.ajax({
-      method: "POST",
-      url: "https://slack.com/api/chat.postMessage?token=" + $access_token + 
-          "&channel=C0ABJFJLX&text=Test%20Message%20from%20Tester&pretty=1",
-    })
-      .done(function( msg ) {
-        alert( "Data Saved: " + msg );
-      });
-
-  }
 </script>
 </body>
 </html>
