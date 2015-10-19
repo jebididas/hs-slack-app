@@ -97,7 +97,7 @@
           console.log(response);
           username = response.user;
           $('#profile-username').text(username);
-          $('#profile-team-name').text(slack_team_name);
+          $('#profile-team-name').text(slack_team_name + '<span class="caret">');
         }
       });
 
@@ -108,7 +108,7 @@
         error: function(response, err){ console.log('GET Channels list: ' + err) }, 
         success: function(response) {
           channel = response.channels[0].id; // Set channel to General
-          $('#channelDropdown').text(channel); // Sets the channel dropdown to General
+          $('#channelDropdown').text(response.channels[0].name); // Sets the channel dropdown to General
           $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
           $('#dropdown-channel-menu').empty();
           
