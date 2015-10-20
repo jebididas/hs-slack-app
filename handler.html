@@ -104,11 +104,12 @@
           $('.message-title').text(username);
         }
       });
-
+      $someURL = "https://slack.com/api/users.info?token=" + localStorage.getItem('slack_access_token')
+          + "&user=" + user_id;
+      console.log($someURL);
       $.ajax({
         method: "GET",
-        url: "https://slack.com/api/users.info?token=" + localStorage.getItem('slack_access_token')
-          + "&user=" + user_id,
+        url: $someURL,
         error: function(response, err){ console.log('GET User info error: ' + err) }, 
         success: function(response) {
           console.log(response);
