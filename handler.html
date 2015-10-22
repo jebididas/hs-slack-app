@@ -72,6 +72,10 @@
       var channel = 'No Channel'; // Set channel before GET
       var user_id = 'No User ID';
       var username = 'No Username'; // Initialize username
+      var fullDate = getParameterByName('datetime');
+      var month = fullDate.getMonth();
+      var day = fullDate.getDay();
+      var styledDate = month + ', ' + day;
 
       // if(slack_access_token != undefined){
       //   $('#oAuthLogin').remove();
@@ -177,7 +181,7 @@
           });
           
           $('.message-details').text(getParameterByName('message'));
-          $('.message-time').text(getParameterByName('datetime'));            
+          $('.message-time').text(styledDate);            
         }
       })
       .done(function() {
