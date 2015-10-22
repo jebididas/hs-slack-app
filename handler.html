@@ -266,6 +266,7 @@
             url: url,
             error: function(response, err){ console.log('POST To slack error: ' + err) }, 
             success: function(response) {
+              console.log("CHANNEL: " + channel);
               $('#postToSlack').remove();
               $('.slack-message').empty();
               $('#top-menu-cont').remove();
