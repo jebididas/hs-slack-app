@@ -9,47 +9,55 @@
 </head>
 <body>
 
-  <div id="profile-cont">
-    <div class="btn-group">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        No Team <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a href="#">Action</a></li>
-        <li class="disabled"><a href="#">No User</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">Logout</a></li>
-      </ul>
-    </div>
-  </div>
-  
-  <div class="channel-cont">
-    <div class="channel-dropdown dropdown">
-      <button class="btn btn-xs btn-warning dropdown-toggle" type="button" id="channelDropdown" data-toggle="dropdown">
-        general 
-        <span class="caret"></span>
-      </button>
-      <ul id="dropdown-channel-menu" class="dropdown-menu" aria-labelledby="channelDropdown">
-        <li><a href="#">No Channels</a></li>
-      </ul>
-    </div>
-    <div class="channel-desc">Channel</div> 
-  </div> 
+   <div id="top-menu-cont">
 
-  <div class="slack-message">
-    <div class="left">
-      <img id="messageAvatar" class="message-img" src="slack-30.png">
-    </div>
-    <div class="center">
-      <h3 class="message-title">HootBot</h3>
-      <p class="message-details"></p>
-    </div>
-    <div class="right">
-      <p class="message-time"></p>
-    </div>
-    <div class="clear"></div>
-  </div>
-  <button id="postToSlack" class="btn btn-default post-btn">Post to Channel</button>
+     <div class="channel-cont">
+       <div id="channel-dropdown" class="dropdown">
+         <button class="btn btn-xs btn-warning dropdown-toggle" type="button" id="channelDropdown" data-toggle="dropdown">
+           No Channel
+           <span class="caret"></span>
+         </button>
+         <ul id="dropdown-channel-menu" class="dropdown-menu" aria-labelledby="channelDropdown">
+           <li><a href="#">No Channels</a></li>
+         </ul>
+       </div>
+       <div class="channel-desc">Channel</div> 
+     </div> 
+
+     <div id="profile-cont">
+       <div id="profile-dropdown-btn" class="btn-group">
+         <button id="profile-team-name" type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           No Team <span class="caret"></span>
+         </button>
+         <ul class="dropdown-menu">
+           <li><a href="#">Action</a></li>
+           <li class="disabled"><a id="profile-username" href="#">No User</a></li>
+           <li role="separator" class="divider"></li>
+           <li><a href="#">Logout</a></li>
+         </ul>
+       </div>
+     </div>
+     
+     <div class="clear"></div>
+
+   </div>
+
+ <div class="slack-message">
+   <div class="left">
+     <img id="messageAvatar" class="message-img" src="slack-30.png">
+   </div>
+   <div class="center">
+     <h3 class="message-title">HootBot</h3>
+     <p class="message-details">
+       Break out the fancy umbrella drinks - @WestJet is increasing its service from YVR to Orlando to 2x weekly in 2016! https://t.co/NYvDmGFPqJ
+     </p>
+   </div>
+   <div class="right">
+     <p class="message-time">Dec 12 5:12PM</p>
+   </div>
+   <div class="clear"></div>
+ </div>
+ <button id="postToSlack" class="btn btn-default post-btn">Post to Channel</button>
 
 
 <script>
