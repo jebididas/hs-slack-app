@@ -135,11 +135,8 @@
         url: "https://slack.com/api/auth.test?token=" + localStorage.getItem('slack_access_token'),
         error: function(response, err){ console.log('GET Current user info error: ' + err) }, 
         success: function(response) {
-          console.log(response);
           username = response.user;
           user_id = response.user_id;
-          console.log("STEP 1 - RESPONSE USER_ID: " + response.user_id);
-          console.log("STEP 2 - RESPONSE USER: " + response.user)
           $('#profile-username').text(username);
           $('#profile-team-name').html(slack_team_name +  ' <span class="caret"></span>');
           $('.message-title').text(username);
@@ -153,8 +150,6 @@
             + "&user=" + user_id,
           error: function(response, err){ console.log('GET User info error: ' + err) }, 
           success: function(response) {
-            console.log(response);
-            console.log("STEP 4: USER_ID: " + user_id);
             $('#messageAvatar').attr('src', response.user.profile.image_32);
           }
         });
@@ -238,7 +233,6 @@
           $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
           $(this).addClass('selectedChannel');
           channel = $('.selectedChannel').attr('id'); // Update channel
-          console.log("NEW CHANNEL CLICKED: " + channel);
         });
 
         // $('.memberSelector').on('click', function() {
