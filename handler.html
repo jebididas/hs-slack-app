@@ -13,6 +13,7 @@
     <div id="top-menu-cont">
 
       <div class="channel-cont">
+        <div id="channel-desc">Channel</div>
         <div id="channel-dropdown" class="dropdown">
           <button class="btn btn-xs btn-warning dropdown-toggle" type="button" id="channelDropdown" data-toggle="dropdown">
             No Channel
@@ -22,8 +23,20 @@
             <li><a href="#">No Channels</a></li>
           </ul>
         </div>
-        <div class="channel-desc">Channel</div> 
       </div> 
+
+      <div id="post-to-user-cont">
+        <div id="post-to-user-desc">User</div>
+        <div id="post-to-user-dropdown" class="dropdown">
+          <button class="btn btn-xs btn-success dropdown-toggle" type="button" id="post-to-user-dropdown" data-toggle="dropdown">
+            No User
+            <span class="caret"></span>
+          </button>
+          <ul id="dropdown-post-to-user-menu" class="dropdown-menu" aria-labelledby="post-to-user-dropdown">
+            <li><a href="#">No Users</a></li>
+          </ul>
+        </div>
+      </div>
 
       <div id="profile-cont">
         <div id="profile-dropdown-btn" class="btn-group">
@@ -69,7 +82,8 @@
 
       var slack_access_token = localStorage.getItem('slack_access_token');
       var slack_team_name = localStorage.getItem('slack_team_name');
-      var channel = 'No Channel'; // Set channel before GET
+      var channel = 'No Channel'; // Initialize Channel
+      var postToUser = 'No postToUser'; // Initialize postToUser
       var user_id = 'No User ID';
       var username = 'No Username'; // Initialize username
       
@@ -117,7 +131,9 @@
           $('#profile-team-name').html(slack_team_name +  ' <span class="caret"></span>');
           $('.message-title').text(username);
         }
-      }).done(function(){
+      })
+
+      .done(function(){
         $someURL = "https://slack.com/api/users.info?token=" + localStorage.getItem('slack_access_token')
             + "&user=" + user_id;
         console.log("STEP 3 - URL: " + $someURL);
@@ -138,7 +154,7 @@
       $.ajax({
         method: "GET",
         url: "https://slack.com/api/channels.list?token=" + localStorage.getItem('slack_access_token'),
-        error: function(response, err){ console.log('GET Channels list: ' + err) }, 
+        error: function(response, err){ console.log('GET Channels list error: ' + err) }, 
         success: function(response) {
           channel = response.channels[0].id; // Set channel to General
           $('#channelDropdown').html(response.channels[0].name +  ' <span class="caret"></span>'); // Sets the channel dropdown to General
@@ -150,44 +166,71 @@
             $listItem.append('<a id="' + channel.id + '" class="channelSelector" href="#">' + channel.name + '</a>');
             $($listItem).appendTo('#dropdown-channel-menu');
           });
-          
-          $('.channelSelector').on('click', function() {
-            $('#channelDropdown').text($(this).text());
-            $('#channelDropdown').append(' <span class="caret"></span>');
-            $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
-            $(this).addClass('selectedChannel');
-            channel = $('.selectedChannel').attr('id'); // Update channel
-          });
-          
 
-          $('#postToSlack').on('click', function(event) {
-
-            var message = encodeURIComponent(getParameterByName('message'));
-            var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
-                  + "&channel=" + channel 
-                  + "&text=" + message 
-                  + "&as_user=true";              
-            event.preventDefault();
-           
-            $.ajax({
-              method: "POST",
-              url: url,
-              error: function(response, err){ console.log('POST To slack error: ' + err) }, 
-              success: function(response) {
-                $('#postToSlack').remove();
-                $('.slack-message').empty();
-                $('.channel-cont').empty();
-                $('#profile-cont').empty();
-                $('.slack-message').append('div').addClass('message-sent').text('Message sent!').fadeIn();
-              }
-            });        
-          });
-          
-          $('.message-details').text(getParameterByName('message'));          
         }
-      })
-      .done(function() {
-      });       
+      }) // End of GET Channel list
+
+      .done(function(){
+
+        $.ajax({
+          method: "GET",
+          url: "https://slack.com/api/users.list?token=" + localStorage.getItem('slack_access_token')
+            + "&presence=1",
+          error: function(response, err){ console.log('GET Users list error: ' + err) }, 
+          success: function(response) {
+            console.log(response);
+            postToUser = response.members[0].id; // Set postToUser to First User
+            $('#post-to-user-dropdown').html(response.members[0].name +  ' <span class="caret"></span>'); // Sets the post-to-user-dropdown to first user
+            $('#dropdown-post-to-user-menu').empty();
+            
+            response.members.forEach(function(member) {
+              $memberlistItem = $('<li>');
+              $memberlistItem.append('<a id="' + member.id + '" class="memberSelector" href="#">' + member.name + '</a>');
+              $($memberlistItem).appendTo('#dropdown-post-to-user-menu');
+            });
+
+          }
+        });
+        
+      }) // End of GET User list
+
+      .done(function(){
+          
+        $('.channelSelector').on('click', function() {
+          $('#channelDropdown').text($(this).text());
+          $('#channelDropdown').append(' <span class="caret"></span>');
+          $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
+          $(this).addClass('selectedChannel');
+          channel = $('.selectedChannel').attr('id'); // Update channel
+        });
+        
+
+        $('#postToSlack').on('click', function(event) {
+
+          var message = encodeURIComponent(getParameterByName('message'));
+          var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
+                + "&channel=" + channel 
+                + "&text=" + message 
+                + "&as_user=true";              
+          event.preventDefault();
+         
+          $.ajax({
+            method: "POST",
+            url: url,
+            error: function(response, err){ console.log('POST To slack error: ' + err) }, 
+            success: function(response) {
+              $('#postToSlack').remove();
+              $('.slack-message').empty();
+              $('.channel-cont').empty();
+              $('#profile-cont').empty();
+              $('.slack-message').append('div').addClass('message-sent').text('Message sent!').fadeIn();
+            }
+          });        
+        });
+        
+        $('.message-details').text(getParameterByName('message'));          
+        
+      });      
 
     </script>
 

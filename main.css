@@ -5,23 +5,38 @@
 .channel-cont{
 	display:inline;
 	float:left;
-	width:50%;
+	width:20%;
 }
 #channel-dropdown{
 	display:inline;
 	margin-left:20px;
 }
-.channel-desc{
-	display:inline;
-	margin:2px;
+#channel-desc{
+	margin:0 20px;
 	font:bold 12px Lato,arial,sans-serif;
 	color:#ec971f;
 }
 
+#post-to-user-cont{
+	display:inline;
+	float:left;
+	width:20%;
+}
+#post-to-user-dropdown{
+	display:inline;
+	margin-left:20px;
+}
+#post-to-user-desc{
+	margin:0 40px;
+	font:bold 12px Lato,arial,sans-serif;
+	color:limegreen;
+}
+
+
 #profile-cont{
 	display:inline;
 	float:right;
-	width:50%;
+	width:60%;
 }
 
 #profile-dropdown-btn{
