@@ -75,7 +75,8 @@
     </div>
     <div class="center">
       <h3 class="message-title">HootBot</h3>
-      <p class="message-details"></p>
+      <textarea class="form-control" id="message-details">Insert message here...</textarea>
+      <!-- <p id="message-details"></p> -->
     </div>
     <div class="right">
       <p class="message-time"></p>
@@ -221,7 +222,7 @@
           }
         }); // End of ajax
 
-        $('.message-details').text(getParameterByName('message')); // Now load the message
+        $('#message-details').text(getParameterByName('message')); // Now load the message
         
       }) // End of GET User list
 
@@ -246,6 +247,7 @@
         // });
 
         $('.groupSelector').on('click', function() {
+          console.log("groupSelector");
           $('#post-to-group-dropdown').text($(this).text());
           $('#post-to-group-dropdown').append(' <span class="caret"></span>');
           $('#postToSlack').text('Post to ' + $(this).text() + ' group');
@@ -257,7 +259,8 @@
 
         $('#postToSlack').on('click', function(event) {
 
-          var message = encodeURIComponent(getParameterByName('message'));
+          var message = $('textarea#mytextarea').val();
+          // var message = $('#message-details').text();
           var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                 + "&channel=" + channel 
                 + "&text=" + message 
