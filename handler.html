@@ -90,7 +90,7 @@
       //   $('#login-cont').append($loginBtn);
       // });
       
-      $.ajax({
+      $.ajax({  // GET current user info
         method: "GET",
         url: "https://slack.com/api/auth.test?token=" + localStorage.getItem('slack_access_token'),
         error: function(response, err){ console.log('GET User info error: ' + err) }, 
@@ -98,24 +98,27 @@
           console.log(response);
           username = response.user;
           user_id = response.user_id;
-          console.log("RESPONSE USER_ID: " + response.user_id);
+          console.log("STEP 1 - RESPONSE USER_ID: " + response.user_id);
+          console.log("STEP 2 - RESPONSE USER: " + response.user)
           $('#profile-username').text(username);
           $('#profile-team-name').text(slack_team_name);
           $('.message-title').text(username);
         }
-      });
-      $someURL = "https://slack.com/api/users.info?token=" + localStorage.getItem('slack_access_token')
-          + "&user=" + user_id;
-      console.log($someURL);
-      $.ajax({
-        method: "GET",
-        url: $someURL,
-        error: function(response, err){ console.log('GET User info error: ' + err) }, 
-        success: function(response) {
-          console.log(response);
-          console.log("USER_ID: " + user_id);
-          $('.messageAvatar').attr('src', response.user.profile.image_32);
-        }
+      }).done(function(){
+        $someURL = "https://slack.com/api/users.info?token=" + localStorage.getItem('slack_access_token')
+            + "&user=" + user_id;
+        console.log("STEP 3 - URL: " + $someURL);
+
+        $.ajax({
+          method: "GET",
+          url: $someURL,
+          error: function(response, err){ console.log('GET User info error: ' + err) }, 
+          success: function(response) {
+            console.log(response);
+            console.log("STEP 4: USER_ID: " + user_id);
+            $('.messageAvatar').attr('src', response.user.profile.image_32);
+          }
+        });
       });
 
 
