@@ -72,15 +72,13 @@
       var channel = 'No Channel'; // Set channel before GET
       var user_id = 'No User ID';
       var username = 'No Username'; // Initialize username
-      var fullDate = getParameterByName('datetime');
-      var fullDate2 = Date.parse(fullDate);
+      var fullDate = new Date(getParameterByName('datetime'));
 
       console.log(typeof fullDate);
-      console.log(typeof fullDate2);
 
-      // var month = fullDate.getMonth();
-      // var day = fullDate.getDay();
-      // var styledDate = month + ', ' + day;
+      var month = fullDate.getMonth();
+      var day = fullDate.getDay();
+      var styledDate = month + ', ' + day;
 
       // if(slack_access_token != undefined){
       //   $('#oAuthLogin').remove();
@@ -186,7 +184,7 @@
           });
           
           $('.message-details').text(getParameterByName('message'));
-          $('.message-time').text(fullDate);            
+          $('.message-time').text(styledDate);            
         }
       })
       .done(function() {
