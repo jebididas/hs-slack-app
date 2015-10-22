@@ -259,7 +259,9 @@
 
         $('#postToSlack').on('click', function(event) {
 
-          var message = $('textarea#mytextarea').val();
+          var message = $('#message-details').val();
+
+          console.log(message);
           // var message = $('#message-details').text();
           var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                 + "&channel=" + channel 
