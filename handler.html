@@ -10,32 +10,38 @@
   </head>
   <body>
 
-    <div id="profile-cont">
-      <div class="btn-group">
-        <button id="profile-team-name" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          No Team <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li class="disabled"><a id="profile-username" href="#">No User</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a href="#">Logout</a></li>
-        </ul>
-      </div>
-    </div>
+    <div id="top-menu-cont">
 
-    <div class="channel-cont">
-      <div class="channel-dropdown dropdown">
-        <button class="btn btn-xs btn-warning dropdown-toggle" type="button" id="channelDropdown" data-toggle="dropdown">
-          No Channel
-          <span class="caret"></span>
-        </button>
-        <ul id="dropdown-channel-menu" class="dropdown-menu" aria-labelledby="channelDropdown">
-          <li><a href="#">No Channels</a></li>
-        </ul>
+      <div class="channel-cont">
+        <div id="channel-dropdown" class="dropdown">
+          <button class="btn btn-xs btn-warning dropdown-toggle" type="button" id="channelDropdown" data-toggle="dropdown">
+            No Channel
+            <span class="caret"></span>
+          </button>
+          <ul id="dropdown-channel-menu" class="dropdown-menu" aria-labelledby="channelDropdown">
+            <li><a href="#">No Channels</a></li>
+          </ul>
+        </div>
+        <div class="channel-desc">Channel</div> 
+      </div> 
+
+      <div id="profile-cont">
+        <div id="profile-dropdown-btn" class="btn-group">
+          <button id="profile-team-name" type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            No Team <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li class="disabled"><a id="profile-username" href="#">No User</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="channel-desc">Channel</div> 
-    </div> 
+      
+      <div class="clear"></div>
+
+    </div>
 
   <div class="slack-message">
     <div class="left">
@@ -101,7 +107,7 @@
           console.log("STEP 1 - RESPONSE USER_ID: " + response.user_id);
           console.log("STEP 2 - RESPONSE USER: " + response.user)
           $('#profile-username').text(username);
-          $('#profile-team-name').text(slack_team_name);
+          $('#profile-team-name').html(slack_team_name +  ' <span class="caret"></span>');
           $('.message-title').text(username);
         }
       }).done(function(){
@@ -128,7 +134,7 @@
         error: function(response, err){ console.log('GET Channels list: ' + err) }, 
         success: function(response) {
           channel = response.channels[0].id; // Set channel to General
-          $('#channelDropdown').text(response.channels[0].name); // Sets the channel dropdown to General
+          $('#channelDropdown').html(response.channels[0].name +  ' <span class="caret"></span>'); // Sets the channel dropdown to General
           $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
           $('#dropdown-channel-menu').empty();
           

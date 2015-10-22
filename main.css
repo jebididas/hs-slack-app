@@ -1,5 +1,33 @@
+#top-menu-cont{
+
+}
+
+.channel-cont{
+	display:inline;
+	float:left;
+	width:50%;
+}
+#channel-dropdown{
+	display:inline;
+	margin-left:20px;
+}
+.channel-desc{
+	display:inline;
+	margin:2px;
+	font:bold 12px Lato,arial,sans-serif;
+	color:#ec971f;
+}
+
 #profile-cont{
-	margin:10px 10px 10px 20px;
+	display:inline;
+	float:right;
+	width:50%;
+}
+
+#profile-dropdown-btn{
+	display:inline;
+	float:right;
+	margin-right:20px;
 }
 
 .slack-message{
@@ -50,18 +78,7 @@
 .post-btn{
 	margin-left:20px;
 }
-.channel-cont{
-	margin:20px;
-}
-.channel-dropdown{
-	display:inline;
-}
-.channel-desc{
-	display:inline;
-	margin:2px;
-	font:bold 12px Lato,arial,sans-serif;
-	color:#ec971f;
-}
+
 #logout-btn{
 	display:inline;
 	margin:2px;
