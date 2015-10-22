@@ -167,6 +167,7 @@
         error: function(response, err){ console.log('GET Channels list error: ' + err) }, 
         success: function(response) {
           channel = response.channels[0].id; // Set channel to General
+          console.log("initial channel set: " + channel);
           $('#channel-item').html(response.channels[0].name +  ' <span class="caret"></span>'); // Sets the channel dropdown to General
           $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
           $('#dropdown-channel-menu').empty();
@@ -213,11 +214,8 @@
             + "&exclude_archived=1",
           error: function(response, err){ console.log('GET Users list error: ' + err) }, 
           success: function(response) {
-            console.log(response);
-            channel = response.groups[0].id; // Set channel to first group
             $('#dropdown-post-to-group-menu').empty();
             // $('#post-to-group-item').text(response.members[0].name +  ' <span class="caret"></span>'); // Sets the post-to-group-dropdown to first group
-            
             
             response.groups.forEach(function(group) {
               $grouplistItem = $('<li>');
@@ -276,8 +274,7 @@
             success: function(response) {
               $('#postToSlack').remove();
               $('.slack-message').empty();
-              $('.channel-cont').empty();
-              $('#profile-cont').empty();
+              $('#top-menu-cont').remove();
               $('.slack-message').append('div').addClass('message-sent').text('Message sent!').fadeIn();
             }
           });  
