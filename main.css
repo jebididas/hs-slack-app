@@ -5,7 +5,7 @@
 .channel-cont{
 	display:inline;
 	float:left;
-	width:20%;
+	width:15%;
 }
 #channel-dropdown{
 	display:inline;
@@ -20,7 +20,7 @@
 #post-to-user-cont{
 	display:inline;
 	float:left;
-	width:20%;
+	width:15%;
 }
 #post-to-user-dropdown{
 	display:inline;
@@ -29,14 +29,28 @@
 #post-to-user-desc{
 	margin:0 40px;
 	font:bold 12px Lato,arial,sans-serif;
-	color:limegreen;
+	color:#5cb85c;
 }
 
+#post-to-group-cont{
+	display:inline;
+	float:left;
+	width:15%;
+}
+#post-to-group-dropdown{
+	display:inline;
+	margin-left:20px;
+}
+#post-to-group-desc{
+	margin:0 20px;
+	font:bold 12px Lato,arial,sans-serif;
+	color:#337ab7;
+}
 
 #profile-cont{
 	display:inline;
 	float:right;
-	width:60%;
+	width:55%;
 }
 
 #profile-dropdown-btn{
