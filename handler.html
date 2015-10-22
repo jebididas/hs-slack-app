@@ -93,7 +93,7 @@
       $.ajax({  // GET current user info
         method: "GET",
         url: "https://slack.com/api/auth.test?token=" + localStorage.getItem('slack_access_token'),
-        error: function(response, err){ console.log('GET User info error: ' + err) }, 
+        error: function(response, err){ console.log('GET Current user info error: ' + err) }, 
         success: function(response) {
           console.log(response);
           username = response.user;
@@ -116,7 +116,7 @@
           success: function(response) {
             console.log(response);
             console.log("STEP 4: USER_ID: " + user_id);
-            $('.messageAvatar').attr('src', response.user.profile.image_32);
+            $('#messageAvatar').attr('src', response.user.profile.image_32);
           }
         });
       });
