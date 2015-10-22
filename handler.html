@@ -73,6 +73,11 @@
       var user_id = 'No User ID';
       var username = 'No Username'; // Initialize username
       var fullDate = getParameterByName('datetime');
+      var fullDate2 = Date.parse(fullDate);
+
+      console.log(typeof fullDate);
+      console.log(typeof fullDate2);
+
       // var month = fullDate.getMonth();
       // var day = fullDate.getDay();
       // var styledDate = month + ', ' + day;
