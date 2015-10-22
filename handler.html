@@ -231,6 +231,7 @@
           $('#channel-item').text($(this).text());
           $('#channel-item').append(' <span class="caret"></span>');
           $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
+          $('.selectedChannel').removeClass('selectedChannel');
           $(this).addClass('selectedChannel');
           channel = $('.selectedChannel').attr('id'); // Update channel
         });
@@ -239,6 +240,7 @@
         //   $('#post-to-user-dropdown').text($(this).text());
         //   $('#post-to-user-dropdown').append(' <span class="caret"></span>');
         //   $('#postToSlack').text('Post to ' + $(this).text() + ' user');
+        //   $('.selectedChannel').removeClass('selectedChannel');
         //   $(this).addClass('selectedChannel');
         //   channel = $('.selectedChannel').attr('id'); // Update channel
         // });
@@ -247,6 +249,7 @@
           $('#post-to-group-dropdown').text($(this).text());
           $('#post-to-group-dropdown').append(' <span class="caret"></span>');
           $('#postToSlack').text('Post to ' + $(this).text() + ' group');
+          $('.selectedChannel').removeClass('selectedChannel');
           $(this).addClass('selectedChannel');
           channel = $('.selectedChannel').attr('id'); // Update channel
           console.log("NEW CHANNEL CLICKED: " + channel);
