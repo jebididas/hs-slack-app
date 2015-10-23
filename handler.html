@@ -25,7 +25,7 @@
         </div>
       </div> 
 
-<!--       <div id="post-to-user-cont">
+      <div id="post-to-user-cont">
         <div id="post-to-user-desc">User</div>
         <div id="post-to-user-dropdown" class="dropdown">
           <button class="btn btn-xs btn-success dropdown-toggle" type="button" id="post-to-user-dropdown" data-toggle="dropdown">
@@ -36,7 +36,7 @@
             <li><a href="#">No Users</a></li>
           </ul>
         </div>
-      </div> -->
+      </div>
 
       <div id="post-to-group-cont">
         <div id="post-to-group-desc">Group</div>
@@ -165,8 +165,8 @@
           console.log("initial channel set: " + channel);
           $('#channel-item').html(response.channels[0].name +  ' <span class="caret"></span>'); // Sets the channel dropdown to General
           $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
-          $('.postToSlack').removeClass('btn-default');
-          $('.postToSlack').addClass('btn-warning');
+          $('#postToSlack').removeClass('btn-default');
+          $('#postToSlack').addClass('btn-warning');
           $('#dropdown-channel-menu').empty();
           
           response.channels.forEach(function(channel) {
@@ -178,30 +178,28 @@
         }
       }) // End of GET Channel list
 
-      // .done(function(){
+      .done(function(){
 
-      //   $.ajax({
-      //     method: "GET",
-      //     url: "https://slack.com/api/users.list?token=" + localStorage.getItem('slack_access_token')
-      //       + "&presence=1",
-      //     error: function(response, err){ console.log('GET Users list error: ' + err) }, 
-      //     success: function(response) {
-      //       console.log(response);
-      //       channel = response.members[0].id; // Set channel to First User
-      //       $('#dropdown-post-to-user-menu').empty();
-      //       // $('#post-to-user-dropdown').text(response.members[0].name +  ' <span class="caret"></span>'); // Sets the post-to-user-dropdown to first user
+        $.ajax({
+          method: "GET",
+          url: "https://slack.com/api/im.list?token=" + localStorage.getItem('slack_access_token'),
+          error: function(response, err){ console.log('GET IM list error: ' + err) }, 
+          success: function(response) {
+            console.log(response);
+            $('#dropdown-post-to-user-menu').empty();
+            // $('#post-to-user-dropdown').text(response.members[0].name +  ' <span class="caret"></span>'); // Sets the post-to-user-dropdown to first user
             
             
-      //       response.members.forEach(function(member) {
-      //         $memberlistItem = $('<li>');
-      //         $memberlistItem.append('<a id="' + member.id + '" class="memberSelector" href="#">' + member.name + '</a>');
-      //         $($memberlistItem).appendTo('#dropdown-post-to-user-menu');
-      //       });
+            response.ims.forEach(function(im) {
+              $imlistItem = $('<li>');
+              $imlistItem.append('<a id="' + im.id + '" class="imSelector" href="#">' + im.user + '</a>');
+              $($imlistItem).appendTo('#dropdown-post-to-user-menu');
+            });
 
-      //     }
-      //   });
+          }
+        });
         
-      // }) // End of GET User list
+      }) // End of GET User list
 
       .done(function(){
 
@@ -212,7 +210,7 @@
           error: function(response, err){ console.log('GET Users list error: ' + err) }, 
           success: function(response) {
             $('#dropdown-post-to-group-menu').empty();
-            // $('#post-to-group-item').text(response.members[0].name +  ' <span class="caret"></span>'); // Sets the post-to-group-dropdown to first group
+            // $('#post-to-group-item').text(response.im[0].name +  ' <span class="caret"></span>'); // Sets the post-to-group-dropdown to first group
             
             response.groups.forEach(function(group) {
               $grouplistItem = $('<li>');
@@ -235,19 +233,21 @@
           $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
           $('.selectedChannel').removeClass('selectedChannel');
           $(this).addClass('selectedChannel');
-          $('.postToSlack').removeClass('btn-default');
-          $('.postToSlack').addClass('btn-warning');
+          $('#postToSlack').removeClass('btn-default');
+          $('#postToSlack').addClass('btn-warning');
           channel = $('.selectedChannel').attr('id'); // Update channel
         });
 
-        // $('.memberSelector').on('click', function() {
-        //   $('#post-to-user-dropdown').text($(this).text());
-        //   $('#post-to-user-dropdown').append(' <span class="caret"></span>');
-        //   $('#postToSlack').text('Post to ' + $(this).text() + ' user');
-        //   $('.selectedChannel').removeClass('selectedChannel');
-        //   $(this).addClass('selectedChannel');
-        //   channel = $('.selectedChannel').attr('id'); // Update channel
-        // });
+        $('.imSelector').on('click', function() {
+          $('#post-to-user-dropdown').text($(this).text());
+          $('#post-to-user-dropdown').append(' <span class="caret"></span>');
+          $('#postToSlack').text('Post to ' + $(this).text() + ' user');
+          $('#postToSlack').removeClass('btn-default');
+          $('#postToSlack').addClass('btn-success');
+          $('.selectedChannel').removeClass('selectedChannel');
+          $(this).addClass('selectedChannel');
+          channel = $('.selectedChannel').attr('id'); // Update channel
+        });
 
         $('.groupSelector').on('click', function() {
           console.log("groupSelector");
@@ -256,8 +256,8 @@
           $('#postToSlack').text('Post to ' + $(this).text() + ' group');
           $('.selectedChannel').removeClass('selectedChannel');
           $(this).addClass('selectedChannel');
-          $('.postToSlack').removeClass('btn-default');
-          $('.postToSlack').addClass('btn-primary');
+          $('#postToSlack').removeClass('btn-default');
+          $('#postToSlack').addClass('btn-primary');
           channel = $('.selectedChannel').attr('id'); // Update channel
           console.log("NEW CHANNEL CLICKED: " + channel);
         });
