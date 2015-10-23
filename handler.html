@@ -165,6 +165,8 @@
           console.log("initial channel set: " + channel);
           $('#channel-item').html(response.channels[0].name +  ' <span class="caret"></span>'); // Sets the channel dropdown to General
           $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
+          $('.postToSlack').removeClass('btn-default');
+          $('.postToSlack').addClass('btn-warning');
           $('#dropdown-channel-menu').empty();
           
           response.channels.forEach(function(channel) {
@@ -233,6 +235,8 @@
           $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
           $('.selectedChannel').removeClass('selectedChannel');
           $(this).addClass('selectedChannel');
+          $('.postToSlack').removeClass('btn-default');
+          $('.postToSlack').addClass('btn-warning');
           channel = $('.selectedChannel').attr('id'); // Update channel
         });
 
@@ -252,6 +256,8 @@
           $('#postToSlack').text('Post to ' + $(this).text() + ' group');
           $('.selectedChannel').removeClass('selectedChannel');
           $(this).addClass('selectedChannel');
+          $('.postToSlack').removeClass('btn-default');
+          $('.postToSlack').addClass('btn-primary');
           channel = $('.selectedChannel').attr('id'); // Update channel
           console.log("NEW CHANNEL CLICKED: " + channel);
         });
