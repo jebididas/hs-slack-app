@@ -90,6 +90,9 @@
 }
 #message-details{
 	margin:2px;
+	border:1px solid lightgrey;
+	border-radius:5px;
+	outline:none;
 }
 .message-time{
 	color:grey;
