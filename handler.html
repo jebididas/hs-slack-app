@@ -75,8 +75,7 @@
     </div>
     <div class="center">
       <h3 class="message-title">HootBot</h3>
-      <textarea class="form-control" id="message-details">Insert message here...</textarea>
-      <!-- <p id="message-details"></p> -->
+      <p id="message-details" contenteditable="true">Message should be here....hmmm</p>
     </div>
     <div class="right">
       <p class="message-time"></p>
@@ -259,10 +258,7 @@
 
         $('#postToSlack').on('click', function(event) {
 
-          var message = $('#message-details').val();
-
-          console.log(message);
-          // var message = $('#message-details').text();
+          var message = $('#message-details').text();
           var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                 + "&channel=" + channel 
                 + "&text=" + message 
