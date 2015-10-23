@@ -89,8 +89,8 @@
 	margin:2px;
 }
 #message-details{
-	margin:2px;
-	border:1px solid lightgrey;
+	margin:5px 10px;
+	border:1px dashed lightgrey;
 	border-radius:5px;
 	outline:none;
 }
