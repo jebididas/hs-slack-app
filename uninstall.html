@@ -14,6 +14,9 @@
 	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 	}
 
+	alert("HERE");
+	console.log(getParameterByName('user_id'));
+	console.log("HERE");
 	var slack_uninstall_user = localStorage.setItem('slack_uninstall_user',getParameterByName('user_id'));
 	var slack_uninstall_token = localStorage.setItem('slack_uninstall_token',getParameterByName('token'));
 	var slack_uninstall_time_stamp = localStorage.setItem('slack_uninstall_time_stamp',getParameterByName('time_stamp'));
