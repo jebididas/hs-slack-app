@@ -1,8 +1,8 @@
 
 		<?php
 
-		$memberId = $_REQUEST['member_id'];
-		$userId = $_REQUEST['user_id'];
+		$memberId = $_POST['member_id'];
+		$userId = $_POST['user_id'];
 
 		$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
 		$txt = $userId + " - USER \n";
