@@ -9,6 +9,8 @@
 		fwrite($myfile, $txt);
 		$txt = $memberId + " - MEMBER \n";
 		fwrite($myfile, $txt);
+		$txt = "TEST";
+		fwrite($myfile, $txt);
 		fclose($myfile);
 
 
