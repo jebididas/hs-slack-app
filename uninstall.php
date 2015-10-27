@@ -1,7 +1,7 @@
 
 		<?php
 
-		$memberId = $_POST['member_id'];
+		$memberId = $_POST;
 		$userId = $_POST['user_id'];
 
 		$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
@@ -9,7 +9,7 @@
 		fwrite($myfile, $txt);
 		$txt = $memberId + " - MEMBER \n";
 		fwrite($myfile, $txt);
-		$txt = "TEST";
+		$txt = "TEST2";
 		fwrite($myfile, $txt);
 		fclose($myfile);
 
