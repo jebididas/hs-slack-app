@@ -21,11 +21,15 @@
 		    echo $output;
 		}
 
-		debug_to_console( "Member ID: " + $memberId );
+		debug_to_console( );
 		debug_to_console( "User ID: " + $userId );
+
+
 
 		?>
 
+		console.log(<?php echo "Member ID: " + $memberId; ?>);
+		console.log(<?php echo "TEST"; ?>);
 
 	</script>
 </head>
