@@ -25,17 +25,40 @@
         </div>
       </div> 
 
+      <div id="post-to-user-cont">
+        <div id="post-to-user-desc">User</div>
+        <div id="post-to-user-dropdown" class="dropdown">
+          <button class="btn btn-xs btn-success dropdown-toggle" type="button" id="post-to-user-dropdown" data-toggle="dropdown">
+            No User
+            <span class="caret"></span>
+          </button>
+          <ul id="dropdown-post-to-user-menu" class="dropdown-menu" aria-labelledby="post-to-user-dropdown">
+            <li><a href="#">No Users</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="post-to-group-cont">
+        <div id="post-to-group-desc">Group</div>
+        <div id="post-to-group-dropdown" class="dropdown">
+          <button class="btn btn-xs btn-primary dropdown-toggle" type="button" id="post-to-group-dropdown-btn" data-toggle="dropdown">
+            No Group
+            <span class="caret"></span>
+          </button>
+          <ul id="dropdown-post-to-group-menu" class="dropdown-menu" aria-labelledby="post-to-group-dropdown-btn">
+            <li><a href="#">No Groups</a></li>
+          </ul>
+        </div>
+      </div>
+
       <div id="profile-cont">
         <div id="profile-dropdown-btn" class="btn-group">
           <button id="profile-team-name" type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             No Team <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
-            <li class="disabled">
-              <img id="profile-dropdown-avatar" src="slack-30.png">
-              <div id="profile-username"><a href="#">No User</a></div>
-              <div class="clear"></div>
-            </li>
+            <li><a href="#">Action</a></li>
+            <li class="disabled"><a id="profile-username" href="#">No User</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Logout</a></li>
           </ul>
@@ -128,7 +151,6 @@
           error: function(response, err){ console.log('GET User info error: ' + err) }, 
           success: function(response) {
             $('#messageAvatar').attr('src', response.user.profile.image_32);
-            $('#profile-dropdown-avatar').attr('src', response.user.profile.image_32);
           }
         });
       });
@@ -158,6 +180,53 @@
 
       .done(function(){
 
+        $.ajax({
+          method: "GET",
+          url: "https://slack.com/api/im.list?token=" + localStorage.getItem('slack_access_token'),
+          error: function(response, err){ console.log('GET IM list error: ' + err) }, 
+          success: function(response) {
+            console.log(response);
+            $('#dropdown-post-to-user-menu').empty();
+            // $('#post-to-user-dropdown').text(response.members[0].name +  ' <span class="caret"></span>'); // Sets the post-to-user-dropdown to first user
+            
+            
+            response.ims.forEach(function(im) {
+              $imlistItem = $('<li>');
+              $imlistItem.append('<a id="' + im.id + '" class="imSelector" href="#">' + im.user + '</a>');
+              $($imlistItem).appendTo('#dropdown-post-to-user-menu');
+            });
+
+          }
+        });
+        
+      }) // End of GET User list
+
+      .done(function(){
+
+        $.ajax({
+          method: "GET",
+          url: "https://slack.com/api/groups.list?token=" + localStorage.getItem('slack_access_token')
+            + "&exclude_archived=1",
+          error: function(response, err){ console.log('GET Users list error: ' + err) }, 
+          success: function(response) {
+            $('#dropdown-post-to-group-menu').empty();
+            // $('#post-to-group-item').text(response.im[0].name +  ' <span class="caret"></span>'); // Sets the post-to-group-dropdown to first group
+            
+            response.groups.forEach(function(group) {
+              $grouplistItem = $('<li>');
+              $grouplistItem.append('<a id="' + group.id + '" class="groupSelector" href="#">' + group.name + '</a>');
+              $($grouplistItem).appendTo('#dropdown-post-to-group-menu');
+            });
+
+          }
+        }); // End of ajax
+
+        $('#message-details').text(getParameterByName('message')); // Now load the message
+        
+      }) // End of GET User list
+
+      .done(function(){
+
         $('.channelSelector').on('click', function() {
           $('#channel-item').text($(this).text());
           $('#channel-item').append(' <span class="caret"></span>');
@@ -167,6 +236,30 @@
           $('#postToSlack').removeClass('btn-default');
           $('#postToSlack').addClass('btn-warning');
           channel = $('.selectedChannel').attr('id'); // Update channel
+        });
+
+        $('.imSelector').on('click', function() {
+          $('#post-to-user-dropdown').text($(this).text());
+          $('#post-to-user-dropdown').append(' <span class="caret"></span>');
+          $('#postToSlack').text('Post to ' + $(this).text() + ' user');
+          $('#postToSlack').removeClass('btn-default');
+          $('#postToSlack').addClass('btn-success');
+          $('.selectedChannel').removeClass('selectedChannel');
+          $(this).addClass('selectedChannel');
+          channel = $('.selectedChannel').attr('id'); // Update channel
+        });
+
+        $('.groupSelector').on('click', function() {
+          console.log("groupSelector");
+          $('#post-to-group-dropdown').text($(this).text());
+          $('#post-to-group-dropdown').append(' <span class="caret"></span>');
+          $('#postToSlack').text('Post to ' + $(this).text() + ' group');
+          $('.selectedChannel').removeClass('selectedChannel');
+          $(this).addClass('selectedChannel');
+          $('#postToSlack').removeClass('btn-default');
+          $('#postToSlack').addClass('btn-primary');
+          channel = $('.selectedChannel').attr('id'); // Update channel
+          console.log("NEW CHANNEL CLICKED: " + channel);
         });
 
         $('#postToSlack').on('click', function(event) {

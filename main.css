@@ -56,7 +56,21 @@
 #profile-dropdown-btn{
 	display:inline;
 	float:right;
-	margin-right:20px;
+	margin-right:100px;
+}
+
+#profile-dropdown-avatar{
+	display:inline;
+	float:left;
+	width:20px;
+	height:20px;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+#profile-username{
+	display:inline;
+	float:left;
 }
 
 .slack-message{
