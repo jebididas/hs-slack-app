@@ -13,9 +13,6 @@ $(document).ready(function() {
     });
 
 
-
-
-
     hsp.bind('sendtoapp', function(message){
         sendToAppHandler(message);
     });

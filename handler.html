@@ -131,30 +131,35 @@
             $('#profile-dropdown-avatar').attr('src', response.user.profile.image_32);
           }
         });
-      });
+      })
 
+      .done(function(){
 
-      $.ajax({
-        method: "GET",
-        url: "https://slack.com/api/channels.list?token=" + localStorage.getItem('slack_access_token'),
-        error: function(response, err){ console.log('GET Channels list error: ' + err) }, 
-        success: function(response) {
-          channel = response.channels[0].id; // Set channel to General
-          console.log("initial channel set: " + channel);
-          $('#channel-item').html(response.channels[0].name +  ' <span class="caret"></span>'); // Sets the channel dropdown to General
-          $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
-          $('#postToSlack').removeClass('btn-default');
-          $('#postToSlack').addClass('btn-warning');
-          $('#dropdown-channel-menu').empty();
-          
-          response.channels.forEach(function(channel) {
-            $listItem = $('<li>');
-            $listItem.append('<a id="' + channel.id + '" class="channelSelector" href="#">' + channel.name + '</a>');
-            $($listItem).appendTo('#dropdown-channel-menu');
-          });
+        $.ajax({
+          method: "GET",
+          url: "https://slack.com/api/channels.list?token=" + localStorage.getItem('slack_access_token'),
+          error: function(response, err){ console.log('GET Channels list error: ' + err) }, 
+          success: function(response) {
+            channel = response.channels[0].id; // Set channel to General
+            console.log("initial channel set: " + channel);
+            $('#channel-item').html(response.channels[0].name +  ' <span class="caret"></span>'); // Sets the channel dropdown to General
+            $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
+            $('#postToSlack').removeClass('btn-default');
+            $('#postToSlack').addClass('btn-warning');
+            $('#dropdown-channel-menu').empty();
+            
+            response.channels.forEach(function(channel) {
+              $listItem = $('<li>');
+              $listItem.append('<a id="' + channel.id + '" class="channelSelector" href="#">' + channel.name + '</a>');
+              $($listItem).appendTo('#dropdown-channel-menu');
+            });
 
-        }
-      }) // End of GET Channel list
+          }
+        }); // End of GET Channel list
+
+        $('#message-details').text(getParameterByName('message')); // Now load the message
+
+      }) // End of Done
 
       .done(function(){
 
