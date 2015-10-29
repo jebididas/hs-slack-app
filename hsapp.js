@@ -1,8 +1,7 @@
-var messageId = "messageId=" + encodeURIComponent(message.post.id);           
-var datetime  = "&datetime=" + encodeURIComponent(message.post.datetime);
-var message   = "&message=" + encodeURIComponent(message.post.content.body);
-
 function sendToAppHandler(message) {
+  var messageId = "messageId=" + encodeURIComponent(message.post.id);            // Check to see if this is ID or Id
+  var datetime  = "&datetime=" + encodeURIComponent(message.post.datetime);
+  var message   = "&message=" + encodeURIComponent(message.post.content.body);
   var handler = 'https://hs-slack.herokuapp.com/handler.html?' + messageId + message + datetime;
 
   hsp.showCustomPopup(handler, 'Send to Slack Channel');
@@ -13,13 +12,6 @@ $(document).ready(function() {
         useTheme: true
     });
 
-
-    // Save message in storage
-    localStorage.setItem('hs_message_id', messageId);
-    localStorage.setItem('hs_message_datetime', datetime);
-    localStorage.setItem('hs_message', message);
-
-    // Check if user has been authed
 
 
 
