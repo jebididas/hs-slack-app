@@ -1,4 +1,7 @@
 function sendToAppHandler(message) {
+    var hs_message_id = message.post.id;
+    var hs_datetime = message.post.datetime;
+    var hs_message = message.post.content.body; // Not sure if we need the other variables below to be sent to handler
     var messageId = "messageId=" + encodeURIComponent(message.post.id);         
     var datetime  = "&datetime=" + encodeURIComponent(message.post.datetime);
     var message   = "&message=" + encodeURIComponent(message.post.content.body);
@@ -8,14 +11,14 @@ function sendToAppHandler(message) {
     if (localStorage.getItem('hs_message_id') == undefined){
         console.log('Message has not been stored in localStorage yet');
         // Store message details in storage before auth check
-        localStorage.setItem('hs_message_id', messageId);
-        localStorage.setItem('hs_datetime', datetime);
-        localStorage.setItem('hs_message', message);
+        localStorage.setItem('hs_message_id', hs_message_id);
+        localStorage.setItem('hs_datetime', hs_datetime);
+        localStorage.setItem('hs_message', hs_message);
     }else{
         console.log('Message has been stored in localStorage');
-        messageId = localStorage.getItem('hs_message_id');
-        datetime = localStorage.getItem('hs_datetime');
-        message = localStorage.getItem('hs_message');
+        hs_message_id = localStorage.getItem('hs_message_id');
+        hs_datetime = localStorage.getItem('hs_datetime');
+        hs_message = localStorage.getItem('hs_message');
     }
 
     hsp.showCustomPopup(handler, 'Send to Slack Channel'); 

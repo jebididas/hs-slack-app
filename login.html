@@ -8,7 +8,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
  </head>
  <body>
-
+ 	<script type="text/javascript">
+ 		// Check if authed
+ 		if(localStorage.getItem('slack_access_token') != undefined){
+ 			window.location.replace('handler.html');
+ 		}
+ 	</script>
 
  	<div id="login-cont">
  	  <button id="oAuthLogin" class="btn btn-default btn-xs">
