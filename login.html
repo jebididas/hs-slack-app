@@ -13,11 +13,15 @@
  		if(localStorage.getItem('slack_access_token') != undefined){
  			window.location.replace('handler.html');
  		}
+ 	</script>
 
+ 	<script type="text/javascript">
+ 	$(document).ready(function(){
  		$('#login-btn-link').on('click', function(event){
  			window.open('https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=client&redirect_uri=https://hs-slack.herokuapp.com/auth.html', '_blank');
  			close();
  		});
+ 	});
  	</script>
 
  	<div id="login-cont">
