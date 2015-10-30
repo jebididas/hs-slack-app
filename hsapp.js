@@ -10,28 +10,15 @@ function sendToAppHandler(message) {
         // Store message details in storage before auth check
         localStorage.setItem('hs_message_id', messageId);
         localStorage.setItem('hs_datetime', datetime);
-        localStorage.setItem('message', message);
+        localStorage.setItem('hs_message', message);
     }else{
         console.log('Message has been stored in localStorage');
         messageId = localStorage.getItem('hs_message_id');
-        datetime = localStorage.getItem('datetime');
-        message = localStorage.getItem('message');
+        datetime = localStorage.getItem('hs_datetime');
+        message = localStorage.getItem('hs_message');
     }
 
-    // Check if user has been authed
-    if (localStorage.getItem('slack_access_token') != undefined){
-        console.log('Slack token found - user has authed');
-        // Clear message from storage
-        localStorage.removeItem('hs_message_id');
-        localStorage.removeItem('hs_datetime');
-        localStorage.removeItem('message');
-
-        hsp.showCustomPopup(handler, 'Send to Slack Channel');
-    }else{
-        console.log('Slack token NOT found - user has NOT authed yet');
-        window.location.reload('login.html');
-    }
-    
+    hsp.showCustomPopup(handler, 'Send to Slack Channel'); 
 }
 
 $(document).ready(function() {
