@@ -15,6 +15,7 @@
  		}
 
  		$('#oAuthLogin').on('click', function(event){
+ 			console.log('oAuthLogin button clicked');
  			window.open('https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=client&redirect_uri=https://hs-slack.herokuapp.com/auth.html', '_blank');
  			close();
  		});
