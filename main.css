@@ -136,6 +136,11 @@
 	margin:2px;
 }
 
+#oAuthLogin{
+	font:bold 15px Lato,arial,sans-serif;
+	color:#ec971f;
+}
+
 #login-cont{
 	margin-top:20%;
 	text-align:center;

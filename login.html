@@ -14,15 +14,15 @@
  			window.location.replace('handler.html');
  		}
 
- 		$('#login-btn-link').on('click', function(event){
+ 		$('#oAuthLogin').on('click', function(event){
+ 			window.open('https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=client&redirect_uri=https://hs-slack.herokuapp.com/auth.html', '_blank');
  			close();
  		});
  	</script>
 
  	<div id="login-cont">
  	  <button id="oAuthLogin" class="btn btn-default btn-xs">
- 	  	<img id="login-btn-img" src="slack-30.png">
- 	    <a id="login-btn-link" target="_blank" href="https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=client&redirect_uri=https://hs-slack.herokuapp.com/auth.html">Login</a>
+ 	  	<img id="login-btn-img" src="slack-30.png">Login
  	  </button>
  	  <p id="register-text">Trying to create a team? <a id="register-link" target="_blank" href="https://slack.com/">Sign up on Slack</a> to get started.</p>
  	</div> 
