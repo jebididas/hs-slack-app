@@ -5,26 +5,26 @@ function sendToAppHandler(message) {
     var handler = 'https://hs-slack.herokuapp.com/handler.html?' + messageId + message + datetime;
 
     // Check if message has been stored already
-    if (localstorage.getItem('hs_message_id') == undefined){
-        console.log('Message has not been stored in localstorage yet');
+    if (localStorage.getItem('hs_message_id') == undefined){
+        console.log('Message has not been stored in localStorage yet');
         // Store message details in storage before auth check
-        localstorage.setItem('hs_message_id', messageId);
-        localstorage.setItem('hs_datetime', datetime);
-        localstorage.setItem('message', message);
+        localStorage.setItem('hs_message_id', messageId);
+        localStorage.setItem('hs_datetime', datetime);
+        localStorage.setItem('message', message);
     }else{
-        console.log('Message has been stored in localstorage');
-        messageId = localstorage.getItem('hs_message_id');
-        datetime = localstorage.getItem('datetime');
-        message = localstorage.getItem('message');
+        console.log('Message has been stored in localStorage');
+        messageId = localStorage.getItem('hs_message_id');
+        datetime = localStorage.getItem('datetime');
+        message = localStorage.getItem('message');
     }
 
     // Check if user has been authed
-    if (localstorage.getItem('slack_access_token') != undefined){
+    if (localStorage.getItem('slack_access_token') != undefined){
         console.log('Slack token found - user has authed');
         // Clear message from storage
-        localstorage.removeItem('hs_message_id');
-        localstorage.removeItem('hs_datetime');
-        localstorage.removeItem('message');
+        localStorage.removeItem('hs_message_id');
+        localStorage.removeItem('hs_datetime');
+        localStorage.removeItem('message');
 
         hsp.showCustomPopup(handler, 'Send to Slack Channel');
     }else{
