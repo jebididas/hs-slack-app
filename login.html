@@ -13,6 +13,10 @@
  		if(localStorage.getItem('slack_access_token') != undefined){
  			window.location.replace('handler.html');
  		}
+
+ 		$('#login-btn-link').on('click', function(event){
+ 			close();
+ 		});
  	</script>
 
  	<div id="login-cont">
