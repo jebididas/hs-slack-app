@@ -9,7 +9,13 @@
   <script src="https://d2l6uygi1pgnys.cloudfront.net/jsapi/2-0/hsp.js"></script>  
   </head>
   <body>
-
+    <script type="text/javascript">
+      // Check if user has been authed
+      if (localStorage.getItem('slack_access_token') == undefined){
+          console.log('Slack token NOT found - user has NOT authed yet');
+          window.location.replace('login.html');
+      }
+    </script>
     <div id="top-menu-cont">
 
       <div class="channel-cont">
@@ -62,12 +68,6 @@
   <button id="postToSlack" class="btn btn-default post-btn">Post to Channel</button>
 
     <script>
-
-      // Check if user has been authed
-      if (localStorage.getItem('slack_access_token') == undefined){
-          console.log('Slack token NOT found - user has NOT authed yet');
-          window.location.replace('login.html');
-      }
 
       function getParameterByName(name) {  // This decodes and separates the URI into pieces
           name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
