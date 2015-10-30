@@ -1,19 +1,8 @@
-$(document).ready(function() {
-
+function sendToAppHandler(message) {
     var messageId = "messageId=" + encodeURIComponent(message.post.id);         
     var datetime  = "&datetime=" + encodeURIComponent(message.post.datetime);
     var message   = "&message=" + encodeURIComponent(message.post.content.body);
-
-    function sendToAppHandler(message) {
-      var handler = 'https://hs-slack.herokuapp.com/handler.html?' + messageId + message + datetime;
-
-      hsp.showCustomPopup(handler, 'Send to Slack Channel');
-    }
-
-    
-    hsp.init({
-        useTheme: true
-    });
+    var handler = 'https://hs-slack.herokuapp.com/handler.html?' + messageId + message + datetime;
 
     // Check if message has been stored already
     if (localstorage.getItem('hs_message_id') == undefined){
@@ -30,21 +19,30 @@ $(document).ready(function() {
     }
 
     // Check if user has been authed
-    if (localstorage.getItem('slack_team_token') != undefined){
+    if (localstorage.getItem('slack_access_token') != undefined){
         console.log('Slack token found - user has authed');
         // Clear message from storage
         localstorage.removeItem('hs_message_id');
         localstorage.removeItem('hs_datetime');
         localstorage.removeItem('message');
 
-        // Send message to plugin modal window
-        hsp.bind('sendtoapp', function(message){
-            sendToAppHandler(message);
-        });
+        hsp.showCustomPopup(handler, 'Send to Slack Channel');
     }else{
         console.log('Slack token NOT found - user has NOT authed yet');
         window.location.reload('login.html');
     }
+    
+}
+
+$(document).ready(function() {
+    hsp.init({
+        useTheme: true
+    });
+
+    // Send message to plugin modal window
+    hsp.bind('sendtoapp', function(message){
+        sendToAppHandler(message);
+    });
 
 
 
