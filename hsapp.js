@@ -32,14 +32,14 @@ function sendToAppHandler(message) {
 }
 
 $(document).ready(function() {
-    console.log('PID:');
-    console.log(getParameterByName('pid'));
     hsp.init({
         useTheme: true
     });
 
     // Send message to plugin modal window
     hsp.bind('sendtoapp', function(message){
+        console.log('PID:');
+        console.log(getParameterByName('pid'));
         console.log(message);
         sendToAppHandler(message);
     });
