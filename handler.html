@@ -101,8 +101,8 @@
       // var hour = fullDate.getHour();
       // var styledDate = hour + ' ' + day;
 
+
       
-      $('#message-details').text(hs_message); // Now load the message
       
       $.ajax({  // GET current user info
         method: "GET",
@@ -151,6 +151,12 @@
         }
 
       }) // End of GET Channel list
+      
+      .done(function(){
+
+        $('#message-details').text(hs_message); // Now load the message
+        
+      })
 
       .done(function(){
 
