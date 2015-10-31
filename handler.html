@@ -102,6 +102,8 @@
       // var styledDate = hour + ' ' + day;
 
       
+      $('#message-details').text(hs_message); // Now load the message
+      
       $.ajax({  // GET current user info
         method: "GET",
         url: "https://slack.com/api/auth.test?token=" + localStorage.getItem('slack_access_token'),
@@ -152,7 +154,6 @@
 
       .done(function(){
 
-        $('#message-details').text(hs_message); // Now load the message
 
         $('.channelSelector').on('click', function() {
           $('#channel-item').text($(this).text());
