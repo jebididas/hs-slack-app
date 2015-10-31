@@ -10,6 +10,18 @@
  </head>
  <body>
  	<script type="text/javascript">
+ 		function getParameterByName(name) {  // This decodes and separates the URI into pieces
+ 		    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+ 		    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+ 		        results = regex.exec(location.search);
+ 		    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+ 		}
+
+ 		var apiKey = '2mrz5a2rqf0g8ks04gkkwowos3icn258498';
+ 		var pid = getParameterByName('pid');
+ 		console.log('Login pid: ' + pid);
+ 		console.log('Login apiKey: ' + apiKey);
+ 		
  		// Check if authed
  		if(localStorage.getItem('slack_access_token') != undefined){
  			window.location.replace('handler.html');
