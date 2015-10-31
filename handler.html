@@ -76,6 +76,10 @@
           return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
       }
 
+      // Grab pid of customPopup
+      var apiKey = '2mrz5a2rqf0g8ks04gkkwowos3icn258498'; 
+      var pid = getParameterByName('pid');
+
       // Retrieve and set message components 
       var hs_message_id = localStorage.getItem('hs_message_id');
       var hs_datetime = localStorage.getItem('hs_datetime');
@@ -226,7 +230,8 @@
               $('#postToSlack').remove();
               $('.slack-message').empty();
               $('#top-menu-cont').remove();
-              $('.slack-message').append('div').addClass('message-sent').text('Message sent!').fadeIn();
+              $('.slack-message').append('div').addClass('message-sent').text('Message sent!');
+              hsp.closeCustomPopup(apiKey,pid);
             }
           });  
         });

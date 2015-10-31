@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://d2l6uygi1pgnys.cloudfront.net/jsapi/2-0/hsp.js"></script>
  </head>
  <body>
  	<script type="text/javascript">
@@ -17,9 +18,18 @@
 
  	<script type="text/javascript">
  	$(document).ready(function(){
+ 		function getParameterByName(name) {  // This decodes and separates the URI into pieces
+ 		    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+ 		    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+ 		        results = regex.exec(location.search);
+ 		    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+ 		}
+ 		
+ 		var apiKey = '2mrz5a2rqf0g8ks04gkkwowos3icn258498';
+ 		var pid = ;
  		$('#login-btn-link').on('click', function(event){
  			window.open('https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=client&redirect_uri=https://hs-slack.herokuapp.com/auth.html', '_blank');
- 			close();
+ 			hsp.closeCustomPopup(apiKey, pid);
  		});
  	});
  	</script>
