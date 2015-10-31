@@ -148,11 +148,11 @@
 
         }
 
-        $('#message-details').text(hs_message); // Now load the message
-
       }) // End of GET Channel list
 
       .done(function(){
+
+        $('#message-details').text(hs_message); // Now load the message
 
         $('.channelSelector').on('click', function() {
           $('#channel-item').text($(this).text());
