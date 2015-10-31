@@ -10,6 +10,13 @@
   </head>
   <body>
     <script type="text/javascript">
+    function getParameterByName(name) {  // This decodes and separates the URI into pieces
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    
       // Grab pid of customPopup
       var apiKey = '2mrz5a2rqf0g8ks04gkkwowos3icn258498'; 
       var pid = getParameterByName('pid');
