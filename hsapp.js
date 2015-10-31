@@ -26,7 +26,7 @@ function sendToAppHandler(message) {
         hs_message = localStorage.getItem('hs_message');
     }
 
-    hsp.showCustomPopup(handler, 'Send to Slack Channel'); 
+    hsp.showCustomPopup(handler, 'Send to Slack'); 
 }
 
 $(document).ready(function() {
