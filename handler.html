@@ -11,8 +11,7 @@
   <body>
     <script type="text/javascript">
       // Check if user has been authed
-      if (localStorage.getItem('slack_access_token') == undefined){
-          console.log('Slack token NOT found - user has NOT authed yet');
+      if (localStorage.getItem('slack_access_token') != undefined){
           window.location.replace('login.html');
       }
     </script>
@@ -102,28 +101,6 @@
       // var hour = fullDate.getHour();
       // var styledDate = hour + ' ' + day;
 
-      // if(slack_access_token != undefined){
-      //   $('#oAuthLogin').remove();
-      //   $logoutBtn = $('button').attr('id', 'logout-btn').addClass('btn btn-default btn-xs');
-      //   $slackTeamName = $('button').attr('id','slack-team-name').addClass('btn btn-xs btn-default').text(slack_team_name);
-      //   $('#login-cont').append($logoutBtn);
-      //   $('#login-cont').append($slackTeamName);
-      // }
-
-      // $('#logout-btn').on('click', function() {
-      //   localStorage.removeItem('slack_access_token');
-      //   localStorage.removeItem('slack_team_name');
-
-      //   $('#login-cont').empty();
-      //   $loginBtn = $('button').attr('id','oAuthLogin').addClass('btn btn-default btn-xs');
-      //   $loginBtnLink = $('a').attr({
-      //     target: '_blank',
-      //     href: 'https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=client&redirect_uri=https://hs-slack.herokuapp.com/auth.html'
-      //   })
-      //   .text('Login')
-      //   .appendTo($loginBtn);
-      //   $('#login-cont').append($loginBtn);
-      // });
       
       $.ajax({  // GET current user info
         method: "GET",
@@ -157,7 +134,6 @@
         error: function(response, err){ console.log('GET Channels list error: ' + err) }, 
         success: function(response) {
           channel = response.channels[0].id; // Set channel to General
-          console.log("initial channel set: " + channel);
           $('#channel-item').html(response.channels[0].name +  ' <span class="caret"></span>'); // Sets the channel dropdown to General
           $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
           $('#postToSlack').removeClass('btn-default');
@@ -171,32 +147,10 @@
           });
 
         }
-      }) // End of GET Channel list
-
-      .done(function(){
-
-        $.ajax({
-          method: "GET",
-          url: "https://slack.com/api/im.list?token=" + localStorage.getItem('slack_access_token'),
-          error: function(response, err){ console.log('GET IM list error: ' + err) }, 
-          success: function(response) {
-            console.log(response);
-            $('#dropdown-post-to-user-menu').empty();
-            // $('#post-to-user-dropdown').text(response.members[0].name +  ' <span class="caret"></span>'); // Sets the post-to-user-dropdown to first user
-            
-            
-            response.ims.forEach(function(im) {
-              $imlistItem = $('<li>');
-              $imlistItem.append('<a id="' + im.id + '" class="imSelector" href="#">' + im.user + '</a>');
-              $($imlistItem).appendTo('#dropdown-post-to-user-menu');
-            });
-
-          }
-        });
 
         $('#message-details').text(hs_message); // Now load the message
-        
-      }) // End of GET User list
+
+      }) // End of GET Channel list
 
       .done(function(){
 
@@ -225,11 +179,11 @@
             url: url,
             error: function(response, err){ console.log('POST To slack error: ' + err) }, 
             success: function(response) {
-              console.log("CHANNEL: " + channel);
               $('#postToSlack').remove();
               $('.slack-message').empty();
               $('#top-menu-cont').remove();
               $('.slack-message').append('div').addClass('message-sent').text('Message sent!');
+              localStorage.removeItem('pid');
               setTimeout(function(){ hsp.closeCustomPopup(apiKey,pid); }, 3000);
             }
           });  

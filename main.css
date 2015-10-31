@@ -59,18 +59,19 @@
 	margin-right:20px;
 }
 
+
 #profile-dropdown-avatar{
 	display:inline;
 	float:left;
 	width:20px;
 	height:20px;
-	margin-left:10px;
-	margin-right:10px;
+	margin:3px 10px;
 }
 
 #profile-username{
 	display:inline;
 	float:left;
+	margin:3px 0;
 }
 
 .slack-message{
@@ -127,8 +128,7 @@
 }
 
 #logout-btn{
-	display:inline;
-	margin:2px;
+
 }
 
 #slack-team-name{
