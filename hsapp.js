@@ -1,3 +1,10 @@
+function getParameterByName(name) {  // This decodes and separates the URI into pieces
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 function sendToAppHandler(message) {
     var hs_message_id = message.post.id;
     var hs_datetime = message.post.datetime;
@@ -25,6 +32,8 @@ function sendToAppHandler(message) {
 }
 
 $(document).ready(function() {
+    console.log('PID:');
+    console.log(getParameterByName('pid'));
     hsp.init({
         useTheme: true
     });
