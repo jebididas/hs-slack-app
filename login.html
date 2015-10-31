@@ -11,7 +11,7 @@
  <body>
  	<script type="text/javascript">
  		// Check if authed
- 		if(localStorage.getItem('slack_access_token') == undefined){
+ 		if(localStorage.getItem('slack_access_token') != undefined){
  			window.location.replace('handler.html');
  		}
  	</script>
