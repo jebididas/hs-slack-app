@@ -24,9 +24,9 @@
  		        results = regex.exec(location.search);
  		    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
  		}
- 		
+
  		var apiKey = '2mrz5a2rqf0g8ks04gkkwowos3icn258498';
- 		var pid = ;
+ 		var pid = getParameterByName('pid');
  		$('#login-btn-link').on('click', function(event){
  			window.open('https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=client&redirect_uri=https://hs-slack.herokuapp.com/auth.html', '_blank');
  			hsp.closeCustomPopup(apiKey, pid);
