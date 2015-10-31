@@ -31,6 +31,7 @@ $(document).ready(function() {
 
     // Send message to plugin modal window
     hsp.bind('sendtoapp', function(message){
+        console.log(message);
         sendToAppHandler(message);
     });
 
