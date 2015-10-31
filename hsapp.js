@@ -37,7 +37,7 @@ $(document).ready(function() {
 
     // Send message to plugin modal window
     hsp.bind('sendtoapp', function(message){
-        localStorage.setItem('pid',getParameterByName('pid');
+        localStorage.setItem('pid', getParameterByName('pid'));
         console.log(message);
         sendToAppHandler(message);
     });
