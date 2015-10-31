@@ -36,10 +36,13 @@ $(document).ready(function() {
         useTheme: true
     });
 
+    var pid = getParameterByName('pid');
+    console.log('PID:');
+    console.log(pid);
+    localStorage.setItem('pid',pid);
+
     // Send message to plugin modal window
     hsp.bind('sendtoapp', function(message){
-        console.log('PID:');
-        console.log(getParameterByName('pid'));
         console.log(message);
         sendToAppHandler(message);
     });

@@ -10,18 +10,6 @@
   </head>
   <body>
     <script type="text/javascript">
-    function getParameterByName(name) {  // This decodes and separates the URI into pieces
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
-
-      // Grab pid of customPopup
-      var apiKey = '2mrz5a2rqf0g8ks04gkkwowos3icn258498'; 
-      var pid = getParameterByName('pid');
-      console.log('Handler pid: ' + pid);
-      console.log('Handler apiKey: ' + apiKey);
       // Check if user has been authed
       if (localStorage.getItem('slack_access_token') == undefined){
           console.log('Slack token NOT found - user has NOT authed yet');
@@ -87,6 +75,9 @@
               results = regex.exec(location.search);
           return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
       }
+
+      var apiKey = '2mrz5a2rqf0g8ks04gkkwowos3icn258498';
+      var pid = localStorage.getItem('pid');
 
       // Retrieve and set message components 
       var hs_message_id = localStorage.getItem('hs_message_id');
