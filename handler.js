@@ -112,10 +112,12 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
 
         $('#postToSlack').on('click', function(event) {
 
-          var message = $('#message-details').text();
+          var pretext = $('#message-pretext').text();
+          var message_pretext = [{"pretext": pretext}];
           var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                 + "&channel=" + channel 
-                + "&text=" + encodeURIComponent(message)
+                + "&text=" + encodeURIComponent(hs_message)
+                + "&attachments=" + encodeURIComponent(message_pretext)
                 + "&as_user=true";              
           event.preventDefault();
          
