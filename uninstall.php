@@ -5,9 +5,9 @@
 	$dbuser = "xeudqrbivxcdbf";
 	$dbpassword = "NnYwWvM2sHJlvZTOexjZajBIK6";
 
-	// $i = $_POST['i'];
-	// $ts = $_POST['ts'];
-	// $token = $_POST['token'];
+	$i = $_POST['i'];
+	$ts = $_POST['ts'];
+	$token = $_POST['token'];
 	
 
 
@@ -28,15 +28,15 @@
 	}
 
 	// Write to db
-	// $sql = "SELECT * FROM Countries";
-	// $result = pg_query($dbc, $sql);
+	$sql = 'INSERT INTO "public"."uninstalls"("hs_user_id", "timestamp", "token") VALUES($i, $ts, $token);';
+	$result = pg_query($dbc, $sql);
 
-	// if (!$result) {
-	//   die("Error in SQL query: " . pg_last_error());
-	// }
+	if (!$result) {
+	  die("Error in SQL query: " . pg_last_error());
+	}
 
-	// // free memory
-	// pg_free_result($result);
+	// free memory
+	pg_free_result($result);
 
 	// close connection
 	pg_close($dbc);
