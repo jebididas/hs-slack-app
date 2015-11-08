@@ -9,12 +9,12 @@ function sendToAppHandler(message) {
     var hs_message_id = message.post.id;
     var hs_datetime = message.post.datetime;
     var hs_message = message.post.content.body; // Not sure if we need the other variables below to be sent to handler
-    var hs_username = message.post.user.username;
+    var hs_username = message.post.user[1];
     var messageId = "messageId=" + encodeURIComponent(message.post.id);         
     var datetime = "&datetime=" + encodeURIComponent(message.post.datetime);
     var message = "&message=" + encodeURIComponent(message.post.content.body);
        debugger
-    var username = "&username=" + encodeURIComponent(message.post.user.username);
+    var username = "&username=" + encodeURIComponent(message.post.user[1]);
 
     var handler = 'https://hs-slack.herokuapp.com/handler.html?' + messageId + message + datetime;
 
