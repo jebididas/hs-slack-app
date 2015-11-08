@@ -1,5 +1,9 @@
 <?php
 	require_once('db-connection-creds.php');
+	$dbhost = "hs-slack-db.herokuapp.com";
+	$dbname = "hs-slack-db";
+	$dbuser = "jody.chambers@hootsuite.com";
+	$dbpassword = "gr8fulowl";
 
 	// $i = $_POST['i'];
 	// $ts = $_POST['ts'];
