@@ -5,6 +5,11 @@
 	$dbuser = "xeudqrbivxcdbf";
 	$dbpassword = "NnYwWvM2sHJlvZTOexjZajBIK6";
 
+
+	$i = 'asdfasdfasd';
+	$ts = 'asdfasdf';
+	$token = 'stuffff';
+
 	$i = $_POST['i'];
 	$ts = $_POST['ts'];
 	$token = $_POST['token'];
