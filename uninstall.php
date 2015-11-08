@@ -14,6 +14,10 @@
 	// fwrite($myfile, $txt);
 	// fclose($myfile);
 
+	echo "HOST: " . $dbhost;
+	echo "DBNAME: " . $dbname;
+	echo "DBUSER: " . $dbuser;
+	echo "PASSWORD: " . $dbpassword;
 	// Connect to db
 	$dbc = pg_connect("host=" . $dbhost . " dbname=" . $dbname . " user=" . $dbuser . " password=" . $dbpassword);
 
