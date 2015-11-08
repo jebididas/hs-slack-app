@@ -1,3 +1,5 @@
+$(document).ready(function(){
+
 function getParameterByName(name) {  // This decodes and separates the URI into pieces
           name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
           var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -141,5 +143,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
           localStorage.removeItem('slack_team_name');
           window.location.replace('login.html');
         });
-      }); // End of Listeners     
+      }); // End of Listeners    
+
+}); 
  
