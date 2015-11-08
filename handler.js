@@ -88,10 +88,9 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       
       .done(function(){
 
-        // $hsPost = $('#hs-post');
-        // $hsPostUsername = $('p').attr('id','hs-post-username').text(hs_username).appendTo($hsPost);
-        // $hsPostTimestamp = $('p').attr('id','hs-post-timestamp').text(hs_message_time).appendTo($hsPost);
-        // $hsPostMessage = $('p').attr('id','hs-post-message').text(hs_message).appendTo($hsPost);
+        $('#hs-post-username').text(hs_username);
+        $('#hs-post-timestamp').text(hs_message_time);
+        $('#hs-post-message').text(hs_message);
 
         $('#message-time').text(now_message_date);
 
