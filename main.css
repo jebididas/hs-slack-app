@@ -91,16 +91,25 @@
 	display:inline;
 	width:75%;
 }
-.right{
-	float:right;
-	display:inline;
-}
 .img{
 	width:30px;
 	height:30px;
 }
-.message-title{
-	font-size:18px;
+#message-username-cont{
+
+}
+#message-username{
+	display:inline;
+	float:left;
+	font:bold 14px Lato,arial;
+	font-size:14px;
+	margin:2px;
+}
+#message-time{
+	display:inline;
+	float:left;
+	font-size:14px;
+	color:grey;
 	margin:2px;
 }
 #message-pretext{
@@ -124,9 +133,7 @@
 #hs-post-message{
 
 }
-#message-time{
-	color:grey;
-}
+
 .clear{
 	clear:both;
 }
