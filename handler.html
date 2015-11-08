@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="https://d2l6uygi1pgnys.cloudfront.net/jsapi/2-0/hsp.js"></script>  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
   </head>
   <body>
     <script type="text/javascript">
@@ -94,12 +95,12 @@
       var user_id = 'No User ID';
       var username = 'No Username'; // Initialize username
       
-      var fullDate = new Date(hs_datetime);
+      var fullDate = moment(hs_datetime);
+      console.log(fullDate);
 
-      // var month = fullDate.getMonth();
-      // var day = fullDate.getDate();
-      // var hour = fullDate.getHour();
-      // var styledDate = hour + ' ' + day;
+      var month = fullDate.format("MMM");
+      var day = fullDate.format("D");
+      var hour = fullDate.format(h);
 
 
       

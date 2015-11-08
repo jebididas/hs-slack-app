@@ -1,7 +1,7 @@
 <?php
 	require('db-connection-creds.php');
 
-
+	// Grab HS creds from uninstall callback url within Dev Portal
 	$i = $_POST['i'];
 	$ts = $_POST['ts'];
 	$token = $_POST['token'];
