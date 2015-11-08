@@ -160,13 +160,8 @@
 
       .done(function(){
 
-        console.log("Message: " + hs_message);
-        console.log("Message encoded: " + encodeURIComponent(hs_message));
-
-
         $('.channelSelector').on('click', function() {
 
-          console.log("Message on click: " + hs_message);
           $('#channel-item').text($(this).text());
           $('#channel-item').append(' <span class="caret"></span>');
           $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
