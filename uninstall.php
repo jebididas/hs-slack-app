@@ -1,9 +1,9 @@
 <?php
-	require_once('db-connection-creds.php');
-	$dbhost = "hs-slack-db.herokuapp.com";
-	$dbname = "hs-slack-db";
-	$dbuser = "jody.chambers@hootsuite.com";
-	$dbpassword = "gr8fulowl";
+	require('db-connection-creds.php');
+	$dbhost = "ec2-54-225-197-30.compute-1.amazonaws.com";
+	$dbname = "d3md9j90sliij1";
+	$dbuser = "xeudqrbivxcdbf";
+	$dbpassword = "NnYwWvM2sHJlvZTOexjZajBIK6";
 
 	// $i = $_POST['i'];
 	// $ts = $_POST['ts'];
@@ -18,10 +18,6 @@
 	// fwrite($myfile, $txt);
 	// fclose($myfile);
 
-	echo "HOST: " . $dbhost;
-	echo "DBNAME: " . $dbname;
-	echo "DBUSER: " . $dbuser;
-	echo "PASSWORD: " . $dbpassword;
 	// Connect to db
 	$dbc = pg_connect("host=" . $dbhost . " dbname=" . $dbname . " user=" . $dbuser . " password=" . $dbpassword);
 
