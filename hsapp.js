@@ -13,8 +13,9 @@ function sendToAppHandler(message) {
     var messageId = "messageId=" + encodeURIComponent(message.post.id);         
     var datetime = "&datetime=" + encodeURIComponent(message.post.datetime);
     var message = "&message=" + encodeURIComponent(message.post.content.body);
+       debugger
     var username = "&username=" + encodeURIComponent(message.post.user.username);
-    debugger
+
     var handler = 'https://hs-slack.herokuapp.com/handler.html?' + messageId + message + datetime;
 
     // Check if message has been stored already
