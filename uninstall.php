@@ -29,10 +29,7 @@
 
 	// Write to db
 	$sql = 'INSERT INTO uninstalls (hs_user_id, timestamp, token) 
-					VALUES("' . $i . '", "' . $ts . '", "' . $token . '")';
-
-	pg_prepare('my_query', $sql);
-	pg_execute('my_query', array($id, $int)) or die("Error while inserting.");				
+					VALUES("' . $i . '", "' . $ts . '", "' . $token . '")';			
 
 	echo $sql;
 	$result = pg_query($dbc, $sql);
