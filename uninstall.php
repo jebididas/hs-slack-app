@@ -1,19 +1,9 @@
 <?php
-	require('db-connection-creds.php');
-
+	require 'db-connection-creds.php';
 
 	$i = $_POST['i'];
 	$ts = $_POST['ts'];
 	$token = $_POST['token'];
-
-
-
-	// $myfile = fopen("uninstall_list.csv", "w") or die("Unable to open file!");
-	// $headers = "hs_member_id,timestamp,token";
-	// fwrite($myfile, $headers);
-	// $txt = $i . "," . $ts . "," . $token;
-	// fwrite($myfile, $txt);
-	// fclose($myfile);
 
 	// Connect to db
 	$dbc = pg_connect("host=" . $dbhost . " dbname=" . $dbname . " user=" . $dbuser . " password=" . $dbpassword);
