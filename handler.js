@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
 function getParameterByName(name) {  // This decodes and separates the URI into pieces
           name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -88,10 +88,10 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       
       .done(function(){
 
-        $hsPost = $('#hs-post');
-        $hsPostUsername = $('p').attr('id','hs-post-username').text(hs_username).appendTo($hsPost);
-        $hsPostTimestamp = $('p').attr('id','hs-post-timestamp').text(hs_message_time).appendTo($hsPost);
-        $hsPostMessage = $('p').attr('id','hs-post-message').text(hs_message).appendTo($hsPost);
+        // $hsPost = $('#hs-post');
+        // $hsPostUsername = $('p').attr('id','hs-post-username').text(hs_username).appendTo($hsPost);
+        // $hsPostTimestamp = $('p').attr('id','hs-post-timestamp').text(hs_message_time).appendTo($hsPost);
+        // $hsPostMessage = $('p').attr('id','hs-post-message').text(hs_message).appendTo($hsPost);
 
         $('#message-time').text(now_message_date);
 
