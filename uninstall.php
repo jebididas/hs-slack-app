@@ -36,7 +36,7 @@
 	}
 
 	// Write to db
-	$sql = 'INSERT INTO uninstalls (hs_user_id, timestamp, token) 
+	$sql = 'INSERT INTO uninstalls (hs_user_id, hs_timestamp, hs_token) 
 					VALUES("' . $i . '", "' . $ts . '", "' . $token . '")';			
 
 	echo $sql;
