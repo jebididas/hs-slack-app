@@ -12,9 +12,9 @@
   <body>
     <script type="text/javascript">
       // Check if user has been authed
-      if (localStorage.getItem('slack_access_token') == undefined){
-          window.location.replace('login.html');
-      }
+      // if (localStorage.getItem('slack_access_token') == undefined){
+      //     window.location.replace('login.html');
+      // }
     </script>
     <div id="top-menu-cont">
 
@@ -94,14 +94,15 @@
       var postToUser = 'No postToUser'; // Initialize postToUser
       var user_id = 'No User ID';
       var username = 'No Username'; // Initialize username
+
+      // var hs_full_date = moment(hs_datetime);
+      var hs_full_date = moment("2015-11-08T21:21:57.000Z");
+      var now_full_date = moment();
+
       
-      var fullDate = moment(hs_datetime);
-      console.log(fullDate);
+      console.log(now_full_date);
 
-      var month = fullDate.format("MMM");
-      var day = fullDate.format("D");
-      var hour = fullDate.format(h);
-
+      var now_mesage_date = now_full_date.format("h:mm A");
 
       
       
@@ -156,6 +157,8 @@
       .done(function(){
 
         $('#message-details').text(hs_message); // Now load the message
+        $('#message-time').text(now_message_date);
+
 
       })
 
