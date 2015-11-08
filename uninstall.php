@@ -1,5 +1,5 @@
 <?php
-	require 'db-connection-creds.php';
+	require("db-connection-creds.php");
 
 	$i = $_POST['i'];
 	$ts = $_POST['ts'];
