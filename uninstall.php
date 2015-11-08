@@ -6,17 +6,9 @@
 	$dbpassword = "NnYwWvM2sHJlvZTOexjZajBIK6";
 
 
-	$i = 'asdfasdfasd';
-	$ts = 'asdfasdf';
-	$token = 'stuffff';
-
-	// $i = $_POST['i'];
-	// $ts = $_POST['ts'];
-	// $token = $_POST['token'];
-	
-	echo $i;
-	echo $ts;
-	echo $token;
+	$i = $_POST['i'];
+	$ts = $_POST['ts'];
+	$token = $_POST['token'];
 
 
 	// $myfile = fopen("uninstall_list.csv", "w") or die("Unable to open file!");
