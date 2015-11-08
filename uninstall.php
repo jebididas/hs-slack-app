@@ -9,6 +9,9 @@
 	$ts = $_POST['ts'];
 	$token = $_POST['token'];
 	
+	echo $i;
+	echo $ts;
+	echo $token;
 
 
 	// $myfile = fopen("uninstall_list.csv", "w") or die("Unable to open file!");
