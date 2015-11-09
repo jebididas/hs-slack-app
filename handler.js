@@ -118,15 +118,15 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
 
         $('#postToSlack').on('click', function(event) {
 
-          var pretext = $('#message-pretext').text();
-          var full_pretext = "@" + hs_username + "\n"
-                           + hs_message_time;
+          var pretext = $('#message-pretext').text(); // Added user comment
+          var full_message = hs_message_time + "\n" // Message as it looks in HS dashboard
+                           + hs_message;
           var author_name = hs_username;
           var author_link = "https://twitter.com/" + hs_username;
           var author_icon = hs_profile_image_url;                
-          var message_attachments = '[{"pretext":"' + full_pretext 
-                                  + '","text":"' + pretext 
-                                  + '","author_name":"' + author_name
+          var message_attachments = '[{"pretext":"' + pretext 
+                                  + '","text":"' + full_message 
+                                  + '","author_name":"@' + author_name
                                   + '","author_icon":"' + author_icon
                                   + '","author_link":"' + author_link + '"}]';
 
