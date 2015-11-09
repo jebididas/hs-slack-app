@@ -133,6 +133,16 @@
 #hs-post-message{
 
 }
+#hs-post-attachment-cont{
+	
+}
+#hs-post-attachment-image{
+	width:30px;
+	border:1px solid lightgrey;
+	border-radius:5px;
+	margin:2px;
+	padding:2px;
+}
 
 .clear{
 	clear:both;

@@ -16,12 +16,14 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       var hs_message = localStorage.getItem('hs_message');
       var hs_username = localStorage.getItem('hs_username');
       var hs_profile_image_url = localStorage.getItem('hs_profile_image_url');
+      var hs_attachment_image_url = localStorage.getItem('hs_attachment_image_url');
       // Clear message from storage
       localStorage.removeItem('hs_message_id');
       localStorage.removeItem('hs_datetime');
       localStorage.removeItem('hs_message');
       localStorage.removeItem('hs_username');
       localStorage.removeItem('hs_profile_image_url');
+      localStorage.removeItem('hs_attachment_image_url');
 
       var slack_access_token = localStorage.getItem('slack_access_token');
       var slack_team_name = localStorage.getItem('slack_team_name');
@@ -33,8 +35,6 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       var hs_full_date = moment(hs_datetime);
       var now_full_date = moment();
 
-      
-      console.log(now_full_date);
       var hs_message_time = hs_full_date.format("h:mm A");
       var now_message_date = now_full_date.format("h:mm A");
 
@@ -96,6 +96,12 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
         $('#hs-post-username').text("@" + hs_username);
         $('#hs-post-timestamp').text(hs_message_time);
         $('#hs-post-message').text(hs_message);
+        if(hs_attachment_image_url != ''){
+          $('img').attr({
+            id: 'hs-post-attachment-image',
+            src: hs_attachment_image_url
+          }).appendTo('#hs-post-attachment-cont');
+        }
 
         $('#message-time').text(now_message_date);
 
@@ -128,12 +134,12 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
                                   + '","text":"' + full_message 
                                   + '","author_name":"@' + author_name
                                   + '","author_icon":"' + author_icon
-                                  + '","author_link":"' + author_link + '"}]';
+                                  + '","author_link":"' + author_link 
+                                  + '","image_url:"' + hs_profile_image_url + '"}]';
 
           console.log(message_attachments);
           var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
-                + "&channel=" + channel 
-                + "&text=" + encodeURIComponent(hs_message)
+                + "&channel=" + channel
                 + "&attachments=" + encodeURIComponent(message_attachments)
                 + "&as_user=true";              
           event.preventDefault();
