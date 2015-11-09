@@ -97,7 +97,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
         $('#hs-post-timestamp').text(hs_message_time);
         $('#hs-post-message').text(hs_message);
         if(hs_attachment_image_url != ''){
-          $('#hs-post-attachment-image').attr('src', hs_attachment_image_url).show();
+          $('#hs-post-attachment-image').attr('src', hs_attachment_image_url).css('display','block');
         }
 
         $('#message-time').text(now_message_date);
