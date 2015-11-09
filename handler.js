@@ -36,10 +36,10 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       var hs_message_time = hs_full_date.format("h:mm A");
       var now_message_date = now_full_date.format("h:mm A");
 
-      // Build message with all components
-      var full_hs_message = "@" + hs_username + "\n"
-                          + hs_message_time + "\n"
-                          + hs_message;
+      // // Build message with all components
+      // var full_hs_message = "@" + hs_username + "\n"
+      //                     + hs_message_time + "\n"
+      //                     + hs_message;
       
       $.ajax({  // GET current user info
         method: "GET",
@@ -117,13 +117,15 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
         $('#postToSlack').on('click', function(event) {
 
           var pretext = $('#message-pretext').text();
-          var message_pretext = [{"pretext": pretext}];
+          var full_pretext = "@" + hs_username + "\n"
+                           + hs_message_time;
+          var message_pretext = [{"pretext": full_pretext, "text": pretext}];
 
           console.log(pretext);
           console.log(message_pretext);
           var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                 + "&channel=" + channel 
-                + "&text=" + encodeURIComponent(full_hs_message)
+                + "&text=" + encodeURIComponent(hs_message)
                 + "&attachments=" + encodeURIComponent(message_pretext)
                 + "&as_user=true";              
           event.preventDefault();
