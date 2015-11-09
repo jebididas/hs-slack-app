@@ -15,11 +15,13 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       var hs_datetime = localStorage.getItem('hs_datetime');
       var hs_message = localStorage.getItem('hs_message');
       var hs_username = localStorage.getItem('hs_username');
+      var hs_profile_image_url = localStorage.getItem('hs_profile_image_url');
       // Clear message from storage
       localStorage.removeItem('hs_message_id');
       localStorage.removeItem('hs_datetime');
       localStorage.removeItem('hs_message');
       localStorage.removeItem('hs_username');
+      localStorage.removeItem('hs_profile_image_url');
 
       var slack_access_token = localStorage.getItem('slack_access_token');
       var slack_team_name = localStorage.getItem('slack_team_name');
@@ -91,7 +93,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       
       .done(function(){
 
-        $('#hs-post-username').text(hs_username);
+        $('#hs-post-username').text("@" + hs_username);
         $('#hs-post-timestamp').text(hs_message_time);
         $('#hs-post-message').text(hs_message);
 
@@ -119,14 +121,17 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
           var pretext = $('#message-pretext').text();
           var full_pretext = "@" + hs_username + "\n"
                            + hs_message_time;
-          var message_pretext = [{"pretext": full_pretext, "text": pretext}];
+          var author_name = hs_username;
+          var author_link = "https://twitter.com/" + hs_username;
+          var author_icon = hs_profile_image_url_https;                
+          var message_attachments = [{"pretext": full_pretext, "text": pretext}];
 
           console.log(pretext);
           console.log(message_pretext);
           var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                 + "&channel=" + channel 
                 + "&text=" + encodeURIComponent(hs_message)
-                + "&attachments=" + encodeURIComponent(message_pretext)
+                + "&attachments=" + encodeURIComponent(message_attachments)
                 + "&as_user=true";              
           event.preventDefault();
          
