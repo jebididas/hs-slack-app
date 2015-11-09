@@ -132,7 +132,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
             "author_link": author_link
           }];
 
-          console.log(message_pretext);
+          console.log(message_attachments);
           var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                 + "&channel=" + channel 
                 + "&text=" + encodeURIComponent(hs_message)
