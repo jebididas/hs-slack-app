@@ -14,6 +14,9 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       var hs_message_id = localStorage.getItem('hs_message_id');
       var hs_datetime = localStorage.getItem('hs_datetime');
       var hs_message = localStorage.getItem('hs_message');
+      var full_hs_message = "@" + hs_username + "\n"
+                          + hs_message_time + "\n"
+                          + hs_message;
       var hs_username = localStorage.getItem('hs_username');
       // Clear message from storage
       localStorage.removeItem('hs_message_id');
@@ -90,9 +93,6 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
 
         $('#hs-post-username').text(hs_username);
         $('#hs-post-timestamp').text(hs_message_time);
-        var full_hs_message = "@" + hs_username + "\n"
-                            + hs_message_time + "\n"
-                            + hs_message;
         $('#hs-post-message').text(hs_message);
 
         $('#message-time').text(now_message_date);
@@ -123,7 +123,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
           console.log(message_pretext);
           var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                 + "&channel=" + channel 
-                + "&text=" + encodeURIComponent(hs_full_message)
+                + "&text=" + encodeURIComponent(full_hs_message)
                 + "&attachments=" + encodeURIComponent(message_pretext)
                 + "&as_user=true";              
           event.preventDefault();
