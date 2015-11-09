@@ -139,6 +139,8 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
                 + "&attachments=" + encodeURIComponent(message_attachments)
                 + "&as_user=true";              
           event.preventDefault();
+
+          console.log(url);
          
           $.ajax({
             method: "POST",
