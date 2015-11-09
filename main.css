@@ -136,9 +136,9 @@
 #hs-post-attachment-cont{
 
 }
-#hs-post-attachment-image{
+#hs-post-attachment-img{
 	display:none;
-	width:30px;
+	width:50px;
 	border:1px solid lightgrey;
 	border-radius:5px;
 	margin:2px;
