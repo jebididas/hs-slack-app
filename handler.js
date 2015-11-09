@@ -14,9 +14,6 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       var hs_message_id = localStorage.getItem('hs_message_id');
       var hs_datetime = localStorage.getItem('hs_datetime');
       var hs_message = localStorage.getItem('hs_message');
-      var full_hs_message = "@" + hs_username + "\n"
-                          + hs_message_time + "\n"
-                          + hs_message;
       var hs_username = localStorage.getItem('hs_username');
       // Clear message from storage
       localStorage.removeItem('hs_message_id');
@@ -39,7 +36,10 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       var hs_message_time = hs_full_date.format("h:mm A");
       var now_message_date = now_full_date.format("h:mm A");
 
-      
+      // Build message with all components
+      var full_hs_message = "@" + hs_username + "\n"
+                          + hs_message_time + "\n"
+                          + hs_message;
       
       $.ajax({  // GET current user info
         method: "GET",
