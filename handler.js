@@ -123,8 +123,14 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
                            + hs_message_time;
           var author_name = hs_username;
           var author_link = "https://twitter.com/" + hs_username;
-          var author_icon = hs_profile_image_url_https;                
-          var message_attachments = [{"pretext": full_pretext, "text": pretext}];
+          var author_icon = hs_profile_image_url;                
+          var message_attachments = [{
+            "pretext": full_pretext, 
+            "text": pretext, 
+            "author_name": author_name, 
+            "author_icon": author_icon,
+            "author_link": author_link
+          }];
 
           console.log(pretext);
           console.log(message_pretext);
