@@ -127,16 +127,20 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
           var author_name = hs_username;
           var author_link = "https://twitter.com/" + hs_username;
           var author_icon = hs_profile_image_url;                
-          var message_attachments = '[{"pretext":"' + pretext 
-                                  + '","text":"' + full_message 
-                                  + '","author_name":"@' + author_name
+          // var message_attachments = '[{"text":"' + full_message 
+          //                         + '","author_name":"@' + author_name
+          //                         + '","author_icon":"' + author_icon
+          //                         + '","author_link":"' + author_link 
+          //                         + '","image_url:"' + hs_attachment_image_url + '"}]';
+
+          var message_attachments = '[{"author_name":"' + author_name
                                   + '","author_icon":"' + author_icon
-                                  + '","author_link":"' + author_link 
-                                  + '","image_url:"' + hs_profile_image_url + '"}]';
+                                  + '","author_link":"' + author_link + '"}]';     
 
           console.log(message_attachments);
           var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                 + "&channel=" + channel
+                + "&text=" + encodeURIComponent(pretext)
                 + "&attachments=" + encodeURIComponent(message_attachments)
                 + "&as_user=true";              
           event.preventDefault();
