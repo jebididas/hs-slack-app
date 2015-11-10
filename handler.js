@@ -17,6 +17,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       var hs_username = localStorage.getItem('hs_username');
       var hs_profile_image_url = localStorage.getItem('hs_profile_image_url');
       var hs_attachment_image_url = localStorage.getItem('hs_attachment_image_url');
+      var hs_sn_source = localStorage.getItem('hs_sn_source');
       // Clear message from storage
       localStorage.removeItem('hs_message_id');
       localStorage.removeItem('hs_datetime');
@@ -24,6 +25,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       localStorage.removeItem('hs_username');
       localStorage.removeItem('hs_profile_image_url');
       localStorage.removeItem('hs_attachment_image_url');
+      localStorage.removeItem('hs_sn_source');
 
       var slack_access_token = localStorage.getItem('slack_access_token');
       var slack_team_name = localStorage.getItem('slack_team_name');
@@ -121,24 +123,27 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
 
         $('#postToSlack').on('click', function(event) {
 
+          var hs_message_source = hs_sn_source + " message sent via Hootsuite"
           var pretext = $('#message-pretext').text(); // Added user comment
           var full_message = hs_message_time + "\n" // Message as it looks in HS dashboard
                            + hs_message;
           var author_name = hs_username;
           var author_link = "https://twitter.com/" + hs_username;
           var author_icon = hs_profile_image_url;                
-          var message_attachments = '[{"author_name":"@' + author_name
+          var message_attachments = '[{"pretext":"' + pretext
+                                  + '","author_name":"@' + author_name
                                   + '","author_icon":"' + author_icon
                                   + '","author_link":"' + author_link 
                                   + '","image_url":"' + hs_attachment_image_url 
                                   + '","text":"' + full_message 
+                                  + '","color":"' + '#2a80b9'
                                   + '","fallback":"' + hs_message + '"}]';
     
 
           console.log(message_attachments);
           var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
                 + "&channel=" + channel
-                + "&text=" + encodeURIComponent(pretext)
+                + "&text=" + encodeURIComponent(hs_message_source)
                 + "&attachments=" + encodeURIComponent(message_attachments)
                 + "&as_user=true";              
           event.preventDefault();

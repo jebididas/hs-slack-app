@@ -17,14 +17,16 @@ function sendToAppHandler(message) {
         hs_attachment_image_url = message.post.attachments[0].thumbnail;
         attachment_image_url = "&attachement_image_url=" + encodeURIComponent(hs_attachment_image_url);
     }
+    var hs_sn_source = message.post.network;
    
     var messageId = "messageId=" + encodeURIComponent(hs_message_id);         
     var datetime = "&datetime=" + encodeURIComponent(hs_datetime);
     var message = "&message=" + encodeURIComponent(hs_message);
     var username = "&username=" + encodeURIComponent(hs_username);
     var profile_image_url = "&profile_image_url" + encodeURIComponent(hs_profile_image_url);
+    var sn_source = "&sn_source" + encodeURIComponent(hs_sn_source);
 
-    var handler = 'https://hs-slack.herokuapp.com/handler.html?' + messageId + message + username + profile_image_url + attachment_image_url + datetime;
+    var handler = 'https://hs-slack.herokuapp.com/handler.html?' + messageId + message + username + profile_image_url + attachment_image_url + sn_source + datetime;
 
     // Check if message has been stored already
     if (localStorage.getItem('hs_message_id') == undefined){
@@ -35,6 +37,7 @@ function sendToAppHandler(message) {
         localStorage.setItem('hs_username', hs_username);
         localStorage.setItem('hs_profile_image_url', hs_profile_image_url);
         localStorage.setItem('hs_attachment_image_url', hs_attachment_image_url);
+        localStorage.setItem('hs_sn_source', hs_sn_source);
     }else{
         hs_message_id = localStorage.getItem('hs_message_id');
         hs_datetime = localStorage.getItem('hs_datetime');
@@ -42,6 +45,7 @@ function sendToAppHandler(message) {
         hs_username = localStorage.getItem('hs_username');
         hs_profile_image_url = localStorage.getItem('hs_profile_image_url');
         hs_attachment_image_url = localStorage.getItem('hs_attachment_image_url');
+        hs_sn_source = localStorage.getItem('hs_sn_source');
     }
 
     hsp.showCustomPopup(handler, 'Send to Slack'); 
