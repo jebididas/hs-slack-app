@@ -130,9 +130,9 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
           var message_attachments = '[{"author_name":"@' + author_name
                                   + '","author_icon":"' + author_icon
                                   + '","author_link":"' + author_link 
-                                  + '","image_url:"' + hs_attachment_image_url 
+                                  + '","image_url":"' + hs_attachment_image_url 
                                   + '","text":"' + full_message 
-                                  + '","fallback:"' + hs_message + '"}]';
+                                  + '","fallback":"' + hs_message + '"}]';
     
 
           console.log(message_attachments);
