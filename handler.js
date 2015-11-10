@@ -127,11 +127,11 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
           var author_name = hs_username;
           var author_link = "https://twitter.com/" + hs_username;
           var author_icon = hs_profile_image_url;                
-          var message_attachments = '[{"text":"' + hs_username 
-                                  + '","author_name":"@' + author_name
+          var message_attachments = '[{"author_name":"@' + author_name
                                   + '","author_icon":"' + author_icon
                                   + '","author_link":"' + author_link 
                                   + '","image_url:"' + hs_attachment_image_url 
+                                  + '","text":"' + full_message 
                                   + '","fallback:"' + hs_message + '"}]';
     
 
