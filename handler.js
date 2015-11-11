@@ -33,6 +33,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       var postToUser = 'No postToUser'; // Initialize postToUser
       var user_id = 'No User ID';
       var username = 'No Username'; // Initialize username
+      var author_name = '';
 
       var hs_full_date = moment(hs_datetime);
       var now_full_date = moment();
@@ -42,10 +43,6 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
 
       var hs_message_source = hs_sn_source + " message sent via Hootsuite";
 
-      // // Build message with all components
-      // var full_hs_message = "@" + hs_username + "\n"
-      //                     + hs_message_time + "\n"
-      //                     + hs_message;
       
       $.ajax({  // GET current user info
         method: "GET",
@@ -98,7 +95,13 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       .done(function(){
 
         $('#hs-sn-source').text(hs_message_source);
-        $('#hs-post-username').text("@" + hs_username);
+        if(hs_sn_source == 'twitter'){
+          $('#hs-post-username').text("@" + hs_username);
+          author_name = "@" + hs_username;
+        }else{
+          $('#hs-post-username').text(hs_username);
+          author_name = hs_username;
+        }
         $('#hs-post-timestamp').text(hs_message_time);
         $('#hs-post-message').text(hs_message);
         if(hs_attachment_image_url != ''){
@@ -129,11 +132,11 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
           var pretext = $('#message-pretext').text(); // Added user comment
           var full_message = hs_message_time + "\n" // Message as it looks in HS dashboard
                            + hs_message;
-          var author_name = hs_username;
+          
           var author_link = "https://twitter.com/" + hs_username;
           var author_icon = hs_profile_image_url;                
           var message_attachments = '[{"pretext":"' + pretext
-                                  + '","author_name":"@' + author_name
+                                  + '","author_name":"' + author_name
                                   + '","author_icon":"' + author_icon
                                   + '","author_link":"' + author_link 
                                   + '","image_url":"' + hs_attachment_image_url 
