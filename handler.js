@@ -40,6 +40,8 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       var hs_message_time = hs_full_date.format("h:mm A");
       var now_message_date = now_full_date.format("h:mm A");
 
+      var hs_message_source = hs_sn_source + " message sent via Hootsuite";
+
       // // Build message with all components
       // var full_hs_message = "@" + hs_username + "\n"
       //                     + hs_message_time + "\n"
@@ -95,6 +97,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       
       .done(function(){
 
+        $('#hs-sn-source').text(hs_message_source);
         $('#hs-post-username').text("@" + hs_username);
         $('#hs-post-timestamp').text(hs_message_time);
         $('#hs-post-message').text(hs_message);
@@ -123,7 +126,6 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
 
         $('#postToSlack').on('click', function(event) {
 
-          var hs_message_source = hs_sn_source + " message sent via Hootsuite"
           var pretext = $('#message-pretext').text(); // Added user comment
           var full_message = hs_message_time + "\n" // Message as it looks in HS dashboard
                            + hs_message;
