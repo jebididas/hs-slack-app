@@ -18,6 +18,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       var hs_profile_image_url = localStorage.getItem('hs_profile_image_url');
       var hs_attachment_image_url = localStorage.getItem('hs_attachment_image_url');
       var hs_sn_source = localStorage.getItem('hs_sn_source');
+      var hs_post_url = localStorage.getItem('hs_post_url');
       // Clear message from storage
       localStorage.removeItem('hs_message_id');
       localStorage.removeItem('hs_datetime');
@@ -26,6 +27,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       localStorage.removeItem('hs_profile_image_url');
       localStorage.removeItem('hs_attachment_image_url');
       localStorage.removeItem('hs_sn_source');
+      localStorage.removeItem('hs_post_url');
 
       var slack_access_token = localStorage.getItem('slack_access_token');
       var slack_team_name = localStorage.getItem('slack_team_name');
@@ -34,6 +36,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       var user_id = 'No User ID';
       var username = 'No Username'; // Initialize username
       var author_name = '';
+      var author_link = '';
 
       var hs_full_date = moment(hs_datetime);
       var now_full_date = moment();
@@ -53,7 +56,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
           user_id = response.user_id;
           $('#profile-username').text(username);
           $('#profile-team-name').html(slack_team_name +  ' <span class="caret"></span>');
-          $('.message-title').text(username);
+          $('#message-username').text(username);
         }
       })
       .done(function(){
@@ -132,8 +135,11 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
           var pretext = $('#message-pretext').text(); // Added user comment
           var full_message = hs_message_time + "\n" // Message as it looks in HS dashboard
                            + hs_message;
-          
-          var author_link = "https://twitter.com/" + hs_username;
+          if(hs_sn_source == 'twitter'){
+            author_link = "https://twitter.com/" + hs_username;
+          }else if(hs_sn_source == 'facebook'){
+            author_link = hs_post_url;
+          }
           var author_icon = hs_profile_image_url;                
           var message_attachments = '[{"pretext":"' + pretext
                                   + '","author_name":"' + author_name
@@ -165,7 +171,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
               $('#top-menu-cont').remove();
               $('#slack-message').append('div').addClass('message-sent').text('Message sent!');
               localStorage.removeItem('pid');
-              setTimeout(function(){ hsp.closeCustomPopup(apiKey,pid); }, 3000);
+              // setTimeout(function(){ hsp.closeCustomPopup(apiKey,pid); }, 3000);
             }
           });  
         });
