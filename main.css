@@ -74,7 +74,9 @@
 	margin:3px 0;
 }
 
+
 #slack-message{
+	height:300px;
 	overflow:auto;
 	margin:20px;
 	padding:10px;

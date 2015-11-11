@@ -278,9 +278,9 @@
             success: function(response) {
               console.log("CHANNEL: " + channel);
               $('#postToSlack').remove();
-              $('.slack-message').empty();
+              $('#slack-message').empty();
               $('#top-menu-cont').remove();
-              $('.slack-message').append('div').addClass('message-sent').text('Message sent!').fadeIn();
+              $('#slack-message').append('div').addClass('message-sent').text('Message sent!').fadeIn();
             }
           });  
         });
