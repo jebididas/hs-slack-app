@@ -52,7 +52,7 @@
 
     </div>
 
-  <div class="slack-message">
+  <div id="slack-message">
     <div class="left">
       <img id="messageAvatar" class="message-img" src="slack-30.png">
     </div>
@@ -193,9 +193,9 @@
             error: function(response, err){ console.log('POST To slack error: ' + err) }, 
             success: function(response) {
               $('#postToSlack').remove();
-              $('.slack-message').empty();
+              $('#slack-message').empty();
               $('#top-menu-cont').remove();
-              $('.slack-message').append('div').addClass('message-sent').text('Message sent!');
+              $('#slack-message').append('div').addClass('message-sent').text('Message sent!');
               localStorage.removeItem('pid');
               setTimeout(function(){ hsp.closeCustomPopup(apiKey,pid); }, 3000);
             }

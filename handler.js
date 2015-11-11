@@ -158,9 +158,9 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
             error: function(response, err){ console.log('POST To slack error: ' + err) }, 
             success: function(response) {
               $('#postToSlack').remove();
-              $('.slack-message').empty();
+              $('#slack-message').empty();
               $('#top-menu-cont').remove();
-              $('.slack-message').append('div').addClass('message-sent').text('Message sent!');
+              $('#slack-message').append('div').addClass('message-sent').text('Message sent!');
               localStorage.removeItem('pid');
               setTimeout(function(){ hsp.closeCustomPopup(apiKey,pid); }, 3000);
             }
