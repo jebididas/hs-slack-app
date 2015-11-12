@@ -169,7 +169,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
               $('#post-to-slack').remove();
               $('#slack-message').empty();
               $('#top-menu-cont').remove();
-              $('#slack-message').append('div').addClass('message-sent').text('Message sent!');
+              $('#slack-message').append('div').attr('id','message-sent').text('Message sent!');
               localStorage.removeItem('pid');
               // setTimeout(function(){ hsp.closeCustomPopup(apiKey,pid); }, 3000);
             }

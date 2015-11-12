@@ -155,12 +155,14 @@
 .clear{
 	clear:both;
 }
-.message-sent{
+#message-sent{
+	margin-top:20%;
+	padding:10px;
+	text-align:center;
+	height:inherit;
 	font-size:16px;
 	font-weight:bold;
 	color:black;
-	text-align:center;
-
 }
 .post-btn{
 	margin-left:20px;
