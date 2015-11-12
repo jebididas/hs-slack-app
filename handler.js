@@ -44,7 +44,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       var hs_message_time = hs_full_date.format("h:mm A");
       var now_message_date = now_full_date.format("h:mm A");
 
-      var hs_message_source = "*" + hs_sn_source + " message sent via Hootsuite*"; // Asterix is for bold in slack
+      var hs_message_source = hs_sn_source + " message sent via Hootsuite";
 
       
       $.ajax({  // GET current user info
@@ -132,6 +132,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
 
         $('#post-to-slack').on('click', function(event) {
 
+          hs_message_source = "*" + hs_sn_source + " message sent via Hootsuite*"; // Asterix is for bold in slack
           var pretext = $('#slack-message-pretext').text(); // Added user comment
           var full_message = hs_message_time + "\n" // Message as it looks in HS dashboard
                            + hs_message;
