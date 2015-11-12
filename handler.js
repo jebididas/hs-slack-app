@@ -44,7 +44,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       var hs_message_time = hs_full_date.format("h:mm A");
       var now_message_date = now_full_date.format("h:mm A");
 
-      var hs_message_source = hs_sn_source + " message sent via Hootsuite";
+      var hs_message_source = "*" + hs_sn_source + " message sent via Hootsuite*"; // Asterix is for bold in slack
 
       
       $.ajax({  // GET current user info
