@@ -56,7 +56,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
           user_id = response.user_id;
           $('#profile-username').text(username);
           $('#profile-team-name').html(slack_team_name +  ' <span class="caret"></span>');
-          $('#message-username').text(username);
+          $('#slack-message-username').text(username);
         }
       })
       .done(function(){
@@ -67,7 +67,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
             + "&user=" + user_id,
           error: function(response, err){ console.log('GET User info error: ' + err) }, 
           success: function(response) {
-            $('#messageAvatar').attr('src', response.user.profile.image_32);
+            $('#slack-message-avatar').attr('src', response.user.profile.image_32);
           }
         });
       });
@@ -80,9 +80,9 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
         success: function(response) {
           channel = response.channels[0].id; // Set channel to General
           $('#channel-item').html(response.channels[0].name +  ' <span class="caret"></span>'); // Sets the channel dropdown to General
-          $('#postToSlack').text('Post to ' + response.channels[0].name + ' channel');
-          $('#postToSlack').removeClass('btn-default');
-          $('#postToSlack').addClass('btn-warning');
+          $('#post-to-slack').text('Post to ' + response.channels[0].name + ' channel');
+          $('#post-to-slack').removeClass('btn-default');
+          $('#post-to-slack').addClass('btn-warning');
           $('#dropdown-channel-menu').empty();
           
           response.channels.forEach(function(channel) {
@@ -111,7 +111,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
           $('#hs-post-attachment-img').attr('src', hs_attachment_image_url).show();
         }
 
-        $('#message-time').text(now_message_date);
+        $('#slack-message-time').text(now_message_date);
 
 
       })
@@ -122,17 +122,17 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
 
           $('#channel-item').text($(this).text());
           $('#channel-item').append(' <span class="caret"></span>');
-          $('#postToSlack').text('Post to ' + $(this).text() + ' channel');
+          $('#post-to-slack').text('Post to ' + $(this).text() + ' channel');
           $('.selectedChannel').removeClass('selectedChannel');
           $(this).addClass('selectedChannel');
-          $('#postToSlack').removeClass('btn-default');
-          $('#postToSlack').addClass('btn-warning');
+          $('#post-to-slack').removeClass('btn-default');
+          $('#post-to-slack').addClass('btn-warning');
           channel = $('.selectedChannel').attr('id'); // Update channel
         });
 
-        $('#postToSlack').on('click', function(event) {
+        $('#post-to-slack').on('click', function(event) {
 
-          var pretext = $('#message-pretext').text(); // Added user comment
+          var pretext = $('#slack-message-pretext').text(); // Added user comment
           var full_message = hs_message_time + "\n" // Message as it looks in HS dashboard
                            + hs_message;
           if(hs_sn_source == 'twitter'){
@@ -166,7 +166,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
             url: url,
             error: function(response, err){ console.log('POST To slack error: ' + err) }, 
             success: function(response) {
-              $('#postToSlack').remove();
+              $('#post-to-slack').remove();
               $('#slack-message').empty();
               $('#top-menu-cont').remove();
               $('#slack-message').append('div').addClass('message-sent').text('Message sent!');

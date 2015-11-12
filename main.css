@@ -94,28 +94,30 @@
 	display:inline;
 	width:75%;
 }
-.img{
+
+
+#slack-message-avatar{
 	width:30px;
 	height:30px;
 }
-#message-username-cont{
+#slack-message-username-cont{
 
 }
-#message-username{
+#slack-message-username{
 	display:inline;
 	float:left;
 	font:bold 14px Lato,arial;
 	font-size:14px;
 	margin:2px;
 }
-#message-time{
+#slack-message-time{
 	display:inline;
 	float:left;
 	font-size:14px;
 	color:grey;
 	margin:2px;
 }
-#message-pretext{
+#slack-message-pretext{
 	margin:5px 0;
 	padding:5px;
 	border:1px dashed lightgrey;
