@@ -37,6 +37,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       var username = 'No Username'; // Initialize username
       var author_name = '';
       var author_link = '';
+      var slack_attachment_color = '#3b5998';
 
       var hs_full_date = moment(hs_datetime);
       var now_full_date = moment();
@@ -138,8 +139,10 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
                            + hs_message;
           if(hs_sn_source == 'twitter'){
             author_link = "https://twitter.com/" + hs_username;
+            slack_attachment_color = '#55acee';
           }else if(hs_sn_source == 'facebook'){
             author_link = hs_post_url;
+            slack_attachment_color = '#3b5998';
           }
           var author_icon = hs_profile_image_url;                
           var message_attachments = '[{"pretext":"' + pretext
@@ -148,7 +151,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
                                   + '","author_link":"' + author_link 
                                   + '","image_url":"' + hs_attachment_image_url 
                                   + '","text":"' + full_message 
-                                  + '","color":"' + '#2a80b9'
+                                  + '","color":"' + slack_attachment_color
                                   + '","fallback":"' + hs_message + '"}]';
     
 
