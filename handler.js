@@ -98,6 +98,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
       
       .done(function(){
 
+        $('#hs-post-author-img').attr('src', hs_profile_image_url);
         $('#hs-sn-source').text(hs_message_source);
         if(hs_sn_source == 'twitter'){
           $('#hs-post-username').text("@" + hs_username);

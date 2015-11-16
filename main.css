@@ -131,7 +131,17 @@
 	margin:5px 0;
 	padding:5px;
 }
+#hs-post-author-img{
+	float:left;
+	display:inline;
+	width:16px;
+	height:16px;
+	border:none;
+	border-radius:2px;
+}
 #hs-post-username{
+	float:left;
+	display:inline;
 	margin:0 0 2px;
 	font:bold 14px Lato,arial;
 }
@@ -180,8 +190,10 @@
 	margin:2px;
 }
 
-#oAuthLogin{
-	font:bold 12px Lato,arial,sans-serif;
+#oauth-login{
+	font:24px Lato,arial,sans-serif;
+
+	text-shadow:0 1px 1px rgba(0,0,0,.1);
 }
 
 #login-cont{
@@ -198,7 +210,7 @@
 
 #login-btn-link{
 	text-decoration:none;
-	font-size:20px;
+	font-size:24px;
 }
 
 #register-text{

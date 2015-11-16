@@ -12,9 +12,9 @@
   <body>
     <script type="text/javascript">
       // Check if user has been authed
-      if (localStorage.getItem('slack_access_token') == undefined){
-          window.location.replace('login.html');
-      }
+      // if (localStorage.getItem('slack_access_token') == undefined){
+      //     window.location.replace('login.html');
+      // }
     </script>
     <div id="top-menu-cont">
 
@@ -64,7 +64,11 @@
       <p id="hs-sn-source"></p>
       <p id="slack-message-pretext" contenteditable="true"></p>
       <div id="hs-post">
-        <p id="hs-post-username"></p>
+        <div id="hs-post-author-cont">
+          <img id="hs-post-author-img">
+          <p id="hs-post-username"></p>
+        </div>
+        <div class="clear"></div>
         <p id="hs-post-timestamp"></p>
         <p id="hs-post-message"></p>
         <img id="hs-post-attachment-img">
