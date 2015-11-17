@@ -10,6 +10,8 @@ $(document).ready(function() {
   var apiKey = '2mrz5a2rqf0g8ks04gkkwowos3icn258498';
   var pid = localStorage.getItem('pid');
 
+  debugger
+  
   hsp.getData(function(data){
     console.log(data);
   });

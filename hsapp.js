@@ -32,16 +32,17 @@ function sendToAppHandler(message) {
 
     hsp.saveData(
     {
-    message_id: hs_message_id,
-    datetime: hs_datetime,
-    message: hs_message,
-    username: hs_username,
-    profile_image_url: hs_profile_image_url
+    s_message_id: hs_message_id,
+    s_datetime: hs_datetime,
+    s_message: hs_message,
+    s_username: hs_username,
+    s_profile_image_url: hs_profile_image_url
     },
     function(data){
     console.log('saved', data);
     });
 
+    debugger
 
     // Check if message has been stored already
     if (localStorage.getItem('hs_message_id') == undefined){
