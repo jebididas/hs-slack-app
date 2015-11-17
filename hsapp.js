@@ -30,6 +30,19 @@ function sendToAppHandler(message) {
 
     var handler = 'https://hs-slack.herokuapp.com/handler.html?' + messageId + message + username + profile_image_url + attachment_image_url + sn_source + post_url + datetime;
 
+    hsp.saveData(
+    {
+    message_id: hs_message_id,
+    datetime: hs_datetime,
+    message: hs_message,
+    username: hs_username,
+    profile_image_url: hs_profile_image_url
+    },
+    function(data){
+    console.log('saved', data);
+    });
+
+
     // Check if message has been stored already
     if (localStorage.getItem('hs_message_id') == undefined){
         // Store message details in storage before auth check
