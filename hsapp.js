@@ -42,7 +42,7 @@ function sendToAppHandler(message) {
     console.log('saved', data);
     });
 
-    debugger
+    
 
     // Check if message has been stored already
     if (localStorage.getItem('hs_message_id') == undefined){
@@ -74,6 +74,8 @@ $(document).ready(function() {
     hsp.init({
         useTheme: true
     });
+
+    
 
     // Send message to plugin modal window
     hsp.bind('sendtoapp', function(message){

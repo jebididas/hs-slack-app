@@ -3,12 +3,10 @@
 }
 
 .channel-cont{
-	display:inline;
 	float:left;
 	width:15%;
 }
 #channel-dropdown{
-	display:inline;
 	margin-left:20px;
 }
 #channel-desc{
@@ -18,12 +16,10 @@
 }
 
 #post-to-user-cont{
-	display:inline;
 	float:left;
 	width:15%;
 }
 #post-to-user-dropdown{
-	display:inline;
 	margin-left:10px;
 }
 #post-to-user-desc{
@@ -33,12 +29,10 @@
 }
 
 #post-to-group-cont{
-	display:inline;
 	float:left;
 	width:15%;
 }
 #post-to-group-dropdown{
-	display:inline;
 	margin-left:20px;
 }
 #post-to-group-desc{
@@ -48,20 +42,17 @@
 }
 
 #profile-cont{
-	display:inline;
 	float:right;
 	width:55%;
 }
 
 #profile-dropdown-btn{
-	display:inline;
 	float:right;
 	margin-right:20px;
 }
 
 
 #profile-dropdown-avatar{
-	display:inline;
 	float:left;
 	width:20px;
 	height:20px;
@@ -69,7 +60,6 @@
 }
 
 #profile-username{
-	display:inline;
 	float:left;
 	margin:3px 0;
 }
@@ -86,12 +76,10 @@
 }
 .left{
 	float:left;
-	display:inline;
 }
 .center{
 	margin:0 10px;
 	float:left;
-	display:inline;
 	width:75%;
 }
 
@@ -104,14 +92,12 @@
 
 }
 #slack-message-username{
-	display:inline;
 	float:left;
 	font:bold 14px Lato,arial;
 	font-size:14px;
 	margin:2px;
 }
 #slack-message-time{
-	display:inline;
 	float:left;
 	font-size:14px;
 	color:grey;
@@ -133,7 +119,6 @@
 }
 #hs-post-author-img{
 	float:left;
-	display:inline;
 	width:16px;
 	height:16px;
 	margin-right:5px;
@@ -142,7 +127,6 @@
 }
 #hs-post-username{
 	float:left;
-	display:inline;
 	margin:0 0 2px;
 	font:bold 14px Lato,arial;
 }
@@ -187,7 +171,6 @@
 }
 
 #slack-team-name{
-	display:inline;
 	margin:2px;
 }
 

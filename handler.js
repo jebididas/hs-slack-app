@@ -1,25 +1,16 @@
-$(document).ready(function() {
+function dataHandler(data) {
+  console.log('CP2', data);
+  var hs_message = data.s_message;
 
-  function getParameterByName(name) {  // This decodes and separates the URI into pieces
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-  }
 
-  var apiKey = '2mrz5a2rqf0g8ks04gkkwowos3icn258498';
-  var pid = localStorage.getItem('pid');
 
-  debugger
-  
-  hsp.getData(function(data){
-    console.log(data);
-  });
+
+
 
   // Retrieve and set message components 
   var hs_message_id = localStorage.getItem('hs_message_id');
   var hs_datetime = localStorage.getItem('hs_datetime');
-  var hs_message = localStorage.getItem('hs_message');
+  // var hs_message = localStorage.getItem('hs_message');
   var hs_username = localStorage.getItem('hs_username');
   var hs_profile_image_url = localStorage.getItem('hs_profile_image_url');
   var hs_attachment_image_url = localStorage.getItem('hs_attachment_image_url');
@@ -38,7 +29,6 @@ $(document).ready(function() {
   var slack_access_token = localStorage.getItem('slack_access_token');
   var slack_team_name = localStorage.getItem('slack_team_name');
   var channel = 'No Channel'; // Initialize Channel
-  var postToUser = 'No postToUser'; // Initialize postToUser
   var user_id = 'No User ID';
   var username = 'No Username'; // Initialize username
   var author_name = '';
@@ -57,7 +47,7 @@ $(document).ready(function() {
   $.ajax({  // GET current user info
     method: "GET",
     url: "https://slack.com/api/auth.test?token=" + localStorage.getItem('slack_access_token'),
-    error: function(response, err){ console.log('GET Current user info error: ' + err) }, 
+    error: function(response, err){ console.log('GET Current user info error: ' + err); }, 
     success: function(response) {
       username = response.user;
       user_id = response.user_id;
@@ -70,9 +60,8 @@ $(document).ready(function() {
 
     $.ajax({
       method: "GET",
-      url: "https://slack.com/api/users.info?token=" + localStorage.getItem('slack_access_token')
-        + "&user=" + user_id,
-      error: function(response, err){ console.log('GET User info error: ' + err) }, 
+      url: "https://slack.com/api/users.info?token=" + localStorage.getItem('slack_access_token') + "&user=" + user_id,
+      error: function(response, err){ console.log('GET User info error: ' + err); }, 
       success: function(response) {
         $('#slack-message-avatar').attr('src', response.user.profile.image_32);
       }
@@ -83,7 +72,7 @@ $(document).ready(function() {
   $.ajax({
     method: "GET",
     url: "https://slack.com/api/channels.list?token=" + localStorage.getItem('slack_access_token'),
-    error: function(response, err){ console.log('GET Channels list error: ' + err) }, 
+    error: function(response, err){ console.log('GET Channels list error: ' + err); }, 
     success: function(response) {
       channel = response.channels[0].id; // Set channel to General
       $('#channel-item').html(response.channels[0].name +  ' <span class="caret"></span>'); // Sets the channel dropdown to General
@@ -175,7 +164,7 @@ $(document).ready(function() {
       $.ajax({
         method: "POST",
         url: url,
-        error: function(response, err){ console.log('POST To slack error: ' + err) }, 
+        error: function(response, err){ console.log('POST To slack error: ' + err); }, 
         success: function(response) {
           $('#post-to-slack').remove();
           $('#slack-message').empty();
@@ -193,6 +182,21 @@ $(document).ready(function() {
       window.location.replace('login.html');
     });
   }); // End of Listeners    
+}
+
+
+$(document).ready(function() {
+
+  var apiKey = '2mrz5a2rqf0g8ks04gkkwowos3icn258498';
+  var pid = localStorage.getItem('pid');
+
+
+  parent.frames[apiKey + '_' + pid].hsp.getData(function(data){
+      console.log('CP1', data);
+      parent.frames['appdirectorypopup_' + pid].dataHandler(data);
+  });
+
+
 
 }); 
  
