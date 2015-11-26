@@ -1,11 +1,14 @@
 function dataHandler(data) {
   console.log('CP2', data);
+
+  var apiKey = '2mrz5a2rqf0g8ks04gkkwowos3icn258498';
+
   var hs_message_id = data.s_message_id;
   var hs_datetime = data.s_datetime;
   var hs_message = data.s_message;
   var hs_username = data.s_username;
   var hs_profile_image_url = data.s_profile_image_url;
-  var hs_attachment_image_url = data.s_attachment_image_url;
+  var hs_attachment_image_urls = data.s_attachment_image_urls;
   var hs_sn_source = data.s_sn_source;
   var hs_post_url = data.s_post_url;
 
@@ -104,8 +107,25 @@ function dataHandler(data) {
     }
     $('#hs-post-timestamp').text(hs_message_time);
     $('#hs-post-message').text(hs_message);
-    if(hs_attachment_image_url != ''){
-      $('#hs-post-attachment-img').attr('src', hs_attachment_image_url).show();
+    if(hs_attachment_image_urls[0] != ''){
+      console.log("in image attaching forEach");
+      var img_id_ctr = 0;
+      hs_attachment_image_urls.forEach(function(img_src){
+        console.log("in image building forEach");
+        var img_id_name = 'attached-img-' + img_id_ctr;
+        console.log('img id:',img_id_name);
+        var hs_img = $('<img>');
+        hs_img.addClass('hs-post-attachment-img');
+        hs_img.attr({
+          src: img_src, 
+          id: img_id_name
+        });
+        console.log(hs_img);
+        hs_img.appendTo($('#hs-post-attachment-img-cont'));
+        c
+        img_id_ctr++;
+      });
+      
     }
 
     $('#slack-message-time').text(now_message_date);

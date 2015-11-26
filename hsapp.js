@@ -11,12 +11,14 @@ function sendToAppHandler(message) {
     var hs_message = message.post.content.body; // Not sure if we need the other variables below to be sent to handler
     var hs_username = message.post.user.username;
     var hs_profile_image_url = message.profile.profile_image_url_https;
-    var hs_attachment_image_url = '';
+    var hs_attachment_image_urls = [];
     // var attachment_image_url = '';
+    var img_ctr = 0;
     message.post.attachments.forEach(function(hs_attachment){
         console.log('attachment:',hs_attachment);
         if(hs_attachment != undefined && hs_attachment.type == "image"){
-            hs_attachment_image_url = hs_attachment.thumbnail;
+            hs_attachment_image_urls[img_ctr] = hs_attachment.thumbnail;
+            img_ctr++;
             // attachment_image_url = "&attachement_image_url=" + encodeURIComponent(hs_attachment_image_url);
         }
     })
@@ -41,7 +43,7 @@ function sendToAppHandler(message) {
     s_message: hs_message,
     s_username: hs_username,
     s_profile_image_url: hs_profile_image_url,
-    s_attachment_image_url: hs_attachment_image_url,
+    s_attachment_image_urls: hs_attachment_image_urls,
     s_sn_source: hs_sn_source,
     s_post_url: hs_post_url
     },
@@ -81,8 +83,6 @@ $(document).ready(function() {
     hsp.init({
         useTheme: true
     });
-
-    
 
     // Send message to plugin modal window
     hsp.bind('sendtoapp', function(message){
