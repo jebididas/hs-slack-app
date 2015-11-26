@@ -13,10 +13,14 @@ function sendToAppHandler(message) {
     var hs_profile_image_url = message.profile.profile_image_url_https;
     var hs_attachment_image_url = '';
     // var attachment_image_url = '';
-    if(message.post.attachments[0] != undefined && message.post.attachments[0].type == "image"){
-        hs_attachment_image_url = message.post.attachments[0].thumbnail;
-        // attachment_image_url = "&attachement_image_url=" + encodeURIComponent(hs_attachment_image_url);
-    }
+    message.post.attachments.forEach(function(hs_attachment){
+        console.log('attachment:',hs_attachment);
+        if(hs_attachment != undefined && hs_attachment.type == "image"){
+            hs_attachment_image_url = hs_attachment.thumbnail;
+            // attachment_image_url = "&attachement_image_url=" + encodeURIComponent(hs_attachment_image_url);
+        }
+    })
+
     var hs_sn_source = message.post.network;
     var hs_post_url = message.post.href;
    
