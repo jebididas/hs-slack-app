@@ -12,23 +12,23 @@ function sendToAppHandler(message) {
     var hs_username = message.post.user.username;
     var hs_profile_image_url = message.profile.profile_image_url_https;
     var hs_attachment_image_url = '';
-    var attachment_image_url = '';
+    // var attachment_image_url = '';
     if(message.post.attachments[0] != undefined && message.post.attachments[0].type == "image"){
         hs_attachment_image_url = message.post.attachments[0].thumbnail;
-        attachment_image_url = "&attachement_image_url=" + encodeURIComponent(hs_attachment_image_url);
+        // attachment_image_url = "&attachement_image_url=" + encodeURIComponent(hs_attachment_image_url);
     }
     var hs_sn_source = message.post.network;
     var hs_post_url = message.post.href;
    
-    var messageId = "messageId=" + encodeURIComponent(hs_message_id);         
-    var datetime = "&datetime=" + encodeURIComponent(hs_datetime);
-    var message = "&message=" + encodeURIComponent(hs_message);
-    var username = "&username=" + encodeURIComponent(hs_username);
-    var profile_image_url = "&profile_image_url=" + encodeURIComponent(hs_profile_image_url);
-    var sn_source = "&sn_source=" + encodeURIComponent(hs_sn_source);
-    var post_url = "&post_url=" + encodeURIComponent(hs_post_url);
+    // var messageId = "messageId=" + encodeURIComponent(hs_message_id);         
+    // var datetime = "&datetime=" + encodeURIComponent(hs_datetime);
+    // var message = "&message=" + encodeURIComponent(hs_message);
+    // var username = "&username=" + encodeURIComponent(hs_username);
+    // var profile_image_url = "&profile_image_url=" + encodeURIComponent(hs_profile_image_url);
+    // var sn_source = "&sn_source=" + encodeURIComponent(hs_sn_source);
+    // var post_url = "&post_url=" + encodeURIComponent(hs_post_url);
 
-    var handler = 'https://hs-slack.herokuapp.com/handler.html?' + messageId + message + username + profile_image_url + attachment_image_url + sn_source + post_url + datetime;
+    var handler = 'https://hs-slack.herokuapp.com/handler.html?';
 
     hsp.saveData(
     {
@@ -36,7 +36,10 @@ function sendToAppHandler(message) {
     s_datetime: hs_datetime,
     s_message: hs_message,
     s_username: hs_username,
-    s_profile_image_url: hs_profile_image_url
+    s_profile_image_url: hs_profile_image_url,
+    s_attachment_image_url: hs_attachment_image_url,
+    s_sn_source: hs_sn_source,
+    s_post_url: hs_post_url
     },
     function(data){
     console.log('saved', data);
@@ -44,27 +47,27 @@ function sendToAppHandler(message) {
 
     
 
-    // Check if message has been stored already
-    if (localStorage.getItem('hs_message_id') == undefined){
-        // Store message details in storage before auth check
-        localStorage.setItem('hs_message_id', hs_message_id);
-        localStorage.setItem('hs_datetime', hs_datetime);
-        localStorage.setItem('hs_message', hs_message);
-        localStorage.setItem('hs_username', hs_username);
-        localStorage.setItem('hs_profile_image_url', hs_profile_image_url);
-        localStorage.setItem('hs_attachment_image_url', hs_attachment_image_url);
-        localStorage.setItem('hs_sn_source', hs_sn_source);
-        localStorage.setItem('hs_post_url', hs_post_url);
-    }else{
-        hs_message_id = localStorage.getItem('hs_message_id');
-        hs_datetime = localStorage.getItem('hs_datetime');
-        hs_message = localStorage.getItem('hs_message');
-        hs_username = localStorage.getItem('hs_username');
-        hs_profile_image_url = localStorage.getItem('hs_profile_image_url');
-        hs_attachment_image_url = localStorage.getItem('hs_attachment_image_url');
-        hs_sn_source = localStorage.getItem('hs_sn_source');
-        hs_post_url = localStorage.getItem('hs_post_url');
-    }
+    // // Check if message has been stored already
+    // if (localStorage.getItem('hs_message_id') == undefined){
+    //     // Store message details in storage before auth check
+    //     localStorage.setItem('hs_message_id', hs_message_id);
+    //     localStorage.setItem('hs_datetime', hs_datetime);
+    //     localStorage.setItem('hs_message', hs_message);
+    //     localStorage.setItem('hs_username', hs_username);
+    //     localStorage.setItem('hs_profile_image_url', hs_profile_image_url);
+    //     localStorage.setItem('hs_attachment_image_url', hs_attachment_image_url);
+    //     localStorage.setItem('hs_sn_source', hs_sn_source);
+    //     localStorage.setItem('hs_post_url', hs_post_url);
+    // }else{
+    //     hs_message_id = localStorage.getItem('hs_message_id');
+    //     hs_datetime = localStorage.getItem('hs_datetime');
+    //     hs_message = localStorage.getItem('hs_message');
+    //     hs_username = localStorage.getItem('hs_username');
+    //     hs_profile_image_url = localStorage.getItem('hs_profile_image_url');
+    //     hs_attachment_image_url = localStorage.getItem('hs_attachment_image_url');
+    //     hs_sn_source = localStorage.getItem('hs_sn_source');
+    //     hs_post_url = localStorage.getItem('hs_post_url');
+    // }
 
     hsp.showCustomPopup(handler, 'Send to Slack'); 
 }

@@ -1,33 +1,30 @@
 function dataHandler(data) {
   console.log('CP2', data);
-  var hs_message_id = data.s_message_id;
-  var hs_datetime = data.s_datetime;
   var hs_message = data.s_message;
-  var hs_username = data.s_username;
-  var hs_profile_image_url = data.s_profile_image_url;
-  var hs_attachment_image_url = data.s_attachment_image_url;
-  var hs_sn_source = data.s_sn_source;
-  var hs_post_url = data.s_post_url;
 
 
-  // // Retrieve and set message components 
-  // var hs_message_id = localStorage.getItem('hs_message_id');
-  // var hs_datetime = localStorage.getItem('hs_datetime');
+
+
+
+
+  // Retrieve and set message components 
+  var hs_message_id = localStorage.getItem('hs_message_id');
+  var hs_datetime = localStorage.getItem('hs_datetime');
   // var hs_message = localStorage.getItem('hs_message');
-  // var hs_username = localStorage.getItem('hs_username');
-  // var hs_profile_image_url = localStorage.getItem('hs_profile_image_url');
-  // var hs_attachment_image_url = localStorage.getItem('hs_attachment_image_url');
-  // var hs_sn_source = localStorage.getItem('hs_sn_source');
-  // var hs_post_url = localStorage.getItem('hs_post_url');
-  // // Clear message from storage
-  // localStorage.removeItem('hs_message_id');
-  // localStorage.removeItem('hs_datetime');
-  // localStorage.removeItem('hs_message');
-  // localStorage.removeItem('hs_username');
-  // localStorage.removeItem('hs_profile_image_url');
-  // localStorage.removeItem('hs_attachment_image_url');
-  // localStorage.removeItem('hs_sn_source');
-  // localStorage.removeItem('hs_post_url');
+  var hs_username = localStorage.getItem('hs_username');
+  var hs_profile_image_url = localStorage.getItem('hs_profile_image_url');
+  var hs_attachment_image_url = localStorage.getItem('hs_attachment_image_url');
+  var hs_sn_source = localStorage.getItem('hs_sn_source');
+  var hs_post_url = localStorage.getItem('hs_post_url');
+  // Clear message from storage
+  localStorage.removeItem('hs_message_id');
+  localStorage.removeItem('hs_datetime');
+  localStorage.removeItem('hs_message');
+  localStorage.removeItem('hs_username');
+  localStorage.removeItem('hs_profile_image_url');
+  localStorage.removeItem('hs_attachment_image_url');
+  localStorage.removeItem('hs_sn_source');
+  localStorage.removeItem('hs_post_url');
 
   var slack_access_token = localStorage.getItem('slack_access_token');
   var slack_team_name = localStorage.getItem('slack_team_name');
