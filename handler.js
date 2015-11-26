@@ -31,19 +31,16 @@ function dataHandler(data) {
 
   var slack_access_token = localStorage.getItem('slack_access_token');
   var slack_team_name = localStorage.getItem('slack_team_name');
-  var channel = 'No Channel'; // Initialize Channel
-  var user_id = 'No User ID';
-  var username = 'No Username'; // Initialize username
+  var channel = ''; // Initialize Channel
+  var user_id = '';
+  var username = '';
   var author_name = '';
   var author_link = '';
   var slack_attachment_color = '#3b5998';
-
   var hs_full_date = moment(hs_datetime);
   var now_full_date = moment();
-
   var hs_message_time = hs_full_date.format("h:mm A");
   var now_message_date = now_full_date.format("h:mm A");
-
   var hs_message_source = hs_sn_source + " message sent via Hootsuite";
 
   
