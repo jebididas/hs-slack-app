@@ -2,6 +2,7 @@ function dataHandler(data) {
   console.log('CP2', data);
 
   var apiKey = '2mrz5a2rqf0g8ks04gkkwowos3icn258498';
+  var pid = localStorage.getItem('pid');
 
   var hs_message_id = data.s_message_id;
   var hs_datetime = data.s_datetime;
@@ -122,7 +123,6 @@ function dataHandler(data) {
         });
         console.log(hs_img);
         hs_img.appendTo($('#hs-post-attachment-img-cont'));
-        c
         img_id_ctr++;
       });
       
@@ -160,15 +160,44 @@ function dataHandler(data) {
         author_link = hs_post_url;
         slack_attachment_color = '#3b5998';
       }
-      var author_icon = hs_profile_image_url;                
-      var message_attachments = '[{"pretext":"' + pretext
-                              + '","author_name":"' + author_name
-                              + '","author_icon":"' + author_icon
-                              + '","author_link":"' + author_link 
-                              + '","image_url":"' + hs_attachment_image_url 
-                              + '","text":"' + full_message 
-                              + '","color":"' + slack_attachment_color
-                              + '","fallback":"' + hs_message + '"}]';
+      var author_icon = hs_profile_image_url; 
+
+      if(hs_attachment_image_urls[1] === undefined){ // One attached img
+        var message_attachments = '[{"pretext":"' + pretext
+                                + '","author_name":"' + author_name
+                                + '","author_icon":"' + author_icon
+                                + '","author_link":"' + author_link 
+                                + '","image_url":"' + hs_attachment_image_url 
+                                + '","text":"' + full_message 
+                                + '","color":"' + slack_attachment_color
+                                + '","fallback":"' + hs_message + '"}]';
+      } else if(hs_attachment_image_urls[1] !== undefined) { // More than one attached img
+        var message_attachments = '[{"pretext":"' + pretext
+                                + '","author_name":"' + author_name
+                                + '","author_icon":"' + author_icon
+                                + '","author_link":"' + author_link
+                                + '","text":"' + full_message 
+                                + '","color":"' + slack_attachment_color
+                                + '","fallback":"' + hs_message + '"},';
+        var img_src_ctr = 0;
+        hs_attachment_image_urls.forEach(function(img_src){
+          message_attachments += '{"image_url":"' + hs_attachment_image_urls[img_src_ctr] 
+                                  + '","color":"' + slack_attachment_color
+                                  + '","fallback":"' + hs_message + '"}';
+          console.log(img_src_ctr);
+          img_src_ctr++;
+
+          if(img_src_ctr <= (hs_attachment_image_urls.length - 1)){
+            message_attachments += ',';
+          }                         
+                                
+        })
+        message_attachments += ']';
+
+      }              
+
+
+                             
 
 
       console.log(message_attachments);
