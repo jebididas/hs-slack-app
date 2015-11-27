@@ -1,3 +1,6 @@
+body{
+	display:none;
+}
 #top-menu-cont{
 
 }
@@ -142,7 +145,6 @@
 
 }
 .hs-post-attachment-img{
-	display:none;
 	width:130px;
 	border:1px solid lightgrey;
 	border-radius:5px;

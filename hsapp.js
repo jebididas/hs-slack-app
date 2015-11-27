@@ -1,7 +1,7 @@
 function getParameterByName(name) {  // This decodes and separates the URI into pieces
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
+    results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
@@ -15,7 +15,6 @@ function sendToAppHandler(message) {
     // var attachment_image_url = '';
     var img_ctr = 0;
     message.post.attachments.forEach(function(hs_attachment){
-        console.log('attachment:',hs_attachment);
         if(hs_attachment != undefined && hs_attachment.type == "image"){
             hs_attachment_image_urls[img_ctr] = hs_attachment.thumbnail;
             img_ctr++;
@@ -25,7 +24,7 @@ function sendToAppHandler(message) {
 
     var hs_sn_source = message.post.network;
     var hs_post_url = message.post.href;
-   
+
     // var messageId = "messageId=" + encodeURIComponent(hs_message_id);         
     // var datetime = "&datetime=" + encodeURIComponent(hs_datetime);
     // var message = "&message=" + encodeURIComponent(hs_message);
@@ -34,21 +33,20 @@ function sendToAppHandler(message) {
     // var sn_source = "&sn_source=" + encodeURIComponent(hs_sn_source);
     // var post_url = "&post_url=" + encodeURIComponent(hs_post_url);
 
-    var handler = 'https://hs-slack.herokuapp.com/handler.html?';
+    var handler = 'https://hs-slack.herokuapp.com/handler.html';
 
     hsp.saveData(
     {
-    s_message_id: hs_message_id,
-    s_datetime: hs_datetime,
-    s_message: hs_message,
-    s_username: hs_username,
-    s_profile_image_url: hs_profile_image_url,
-    s_attachment_image_urls: hs_attachment_image_urls,
-    s_sn_source: hs_sn_source,
-    s_post_url: hs_post_url
+        s_message_id: hs_message_id,
+        s_datetime: hs_datetime,
+        s_message: hs_message,
+        s_username: hs_username,
+        s_profile_image_url: hs_profile_image_url,
+        s_attachment_image_urls: hs_attachment_image_urls,
+        s_sn_source: hs_sn_source,
+        s_post_url: hs_post_url
     },
     function(data){
-    console.log('saved', data);
     });
 
     
