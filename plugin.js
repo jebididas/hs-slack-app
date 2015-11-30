@@ -35,6 +35,8 @@ function sendToAppHandler(message) {
 
     var handler = 'https://hs-slack.herokuapp.com/handler.html';
 
+    console.log("CP1");
+
     hsp.saveData(
     {
         s_message_id: hs_message_id,

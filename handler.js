@@ -218,18 +218,18 @@ function dataHandler(data) {
       });  
     });
 
-$('#logout-btn').on('click', function(event){
-  localStorage.removeItem('slack_access_token');
-  localStorage.removeItem('slack_team_name');
-  window.location.replace('login.html');
-});
+    $('#logout-btn').on('click', function(event){
+      localStorage.removeItem('slack_access_token');
+      localStorage.removeItem('slack_team_name');
+      window.location.replace('login.html');
+    });
   }); // End of Listeners    
 }
 
 
 $(document).ready(function() {
 
-  $('#post-to-slack').button('loading');
+  console.log("CP2");
 
   var apiKey = '2mrz5a2rqf0g8ks04gkkwowos3icn258498';
   var pid = localStorage.getItem('pid');
@@ -237,7 +237,6 @@ $(document).ready(function() {
 
   parent.frames[apiKey + '_' + pid].hsp.getData(function(data){
   });
-
 
 
 }); 
