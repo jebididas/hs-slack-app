@@ -8,10 +8,29 @@ function dataHandler(data) {
   var hs_message = data.s_message;
   var hs_username = data.s_username;
   var hs_profile_image_url = data.s_profile_image_url;
-  var hs_attachment_image_urls = [];
-  hs_attachment_image_urls = data.s_attachment_image_urls;
+  var hs_attachment_image_urls = data.s_attachment_image_urls;
   var hs_sn_source = data.s_sn_source;
   var hs_post_url = data.s_post_url;
+
+
+  // // Retrieve and set message components 
+  // var hs_message_id = localStorage.getItem('hs_message_id');
+  // var hs_datetime = localStorage.getItem('hs_datetime');
+  // var hs_message = localStorage.getItem('hs_message');
+  // var hs_username = localStorage.getItem('hs_username');
+  // var hs_profile_image_url = localStorage.getItem('hs_profile_image_url');
+  // var hs_attachment_image_url = localStorage.getItem('hs_attachment_image_url');
+  // var hs_sn_source = localStorage.getItem('hs_sn_source');
+  // var hs_post_url = localStorage.getItem('hs_post_url');
+  // // Clear message from storage
+  // localStorage.removeItem('hs_message_id');
+  // localStorage.removeItem('hs_datetime');
+  // localStorage.removeItem('hs_message');
+  // localStorage.removeItem('hs_username');
+  // localStorage.removeItem('hs_profile_image_url');
+  // localStorage.removeItem('hs_attachment_image_url');
+  // localStorage.removeItem('hs_sn_source');
+  // localStorage.removeItem('hs_post_url');
 
   var slack_access_token = localStorage.getItem('slack_access_token');
   var slack_team_name = localStorage.getItem('slack_team_name');
@@ -90,7 +109,6 @@ function dataHandler(data) {
     }
     $('#hs-post-timestamp').text(hs_message_time);
     $('#hs-post-message').text(hs_message);
-
     if(hs_attachment_image_urls[0] != ''){
       var img_id_ctr = 0;
       hs_attachment_image_urls.forEach(function(img_src){
@@ -108,22 +126,24 @@ function dataHandler(data) {
     }
 
     $('#slack-message-time').text(now_message_date);
+    $('body').show();
+    $('#post-to-slack').button('reset');
+
 
   })
 
 .done(function(){
 
-  $('.channel-selector').on('click', function() {
-    console.log('select channel click');
+  $('.channelSelector').on('click', function() {
 
     $('#channel-item').text($(this).text());
     $('#channel-item').append(' <span class="caret"></span>');
     $('#post-to-slack').text('Post to ' + $(this).text() + ' channel');
-    $('.selected-channel').removeClass('channel-selector');
-    $(this).addClass('selected-channel');
+    $('.selectedChannel').removeClass('selectedChannel');
+    $(this).addClass('selectedChannel');
     $('#post-to-slack').removeClass('btn-default');
     $('#post-to-slack').addClass('btn-warning');
-      channel = $('.selected-channel').attr('id'); // Update channel
+      channel = $('.selectedChannel').attr('id'); // Update channel
     });
 
   $('#post-to-slack').on('click', function(event) {
@@ -193,7 +213,7 @@ function dataHandler(data) {
           $('#top-menu-cont').remove();
           $('#slack-message').append('div').attr('id','message-sent').text('Message sent!');
           localStorage.removeItem('pid');
-          setTimeout(function(){ hsp.closeCustomPopup(apiKey,pid); }, 2000);
+          setTimeout(function(){ hsp.closeCustomPopup(apiKey,pid); }, 3000);
         }
       });  
     });
@@ -209,13 +229,14 @@ function dataHandler(data) {
 
 $(document).ready(function() {
 
+  console.log("CP2");
+
   var apiKey = '2mrz5a2rqf0g8ks04gkkwowos3icn258498';
   var pid = localStorage.getItem('pid');
 
 
   parent.frames[apiKey + '_' + pid].hsp.getData(function(data){
-      console.log('CP1', data);
-      parent.frames['appdirectorypopup_' + pid].dataHandler(data);
   });
+
 
 }); 
