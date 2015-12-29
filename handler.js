@@ -22,7 +22,7 @@ function dataHandler(data) {
   var slack_attachment_color = '#3b5998';
   var hs_full_date = moment(hs_datetime);
   var now_full_date = moment();
-  var hs_message_time = hs_full_date.format("h:mm A");
+  var hs_message_time = hs_full_date.format("MMM D h:mm A");
   var now_message_date = now_full_date.format("h:mm A");
   var hs_message_source = hs_sn_source + " message sent via Hootsuite";
 
@@ -47,6 +47,7 @@ function dataHandler(data) {
       error: function(response, err){ console.log('GET User info error: ' + err); }, 
       success: function(response) {
         $('#slack-message-avatar').attr('src', response.user.profile.image_32);
+        $('#profile-dropdown-avatar').attr('src', response.user.profile.image_32);
       }
     });
   });
@@ -66,7 +67,7 @@ function dataHandler(data) {
       
       response.channels.forEach(function(channel) {
         $listItem = $('<li>');
-        $listItem.append('<a id="' + channel.id + '" class="channelSelector" href="#">' + channel.name + '</a>');
+        $listItem.append('<a id="' + channel.id + '" class="channel-selector" href="#">' + channel.name + '</a>');
         $($listItem).appendTo('#dropdown-channel-menu');
       });
 
@@ -75,12 +76,12 @@ function dataHandler(data) {
   }) // End of GET Channel list
   
   .done(function(){
-
-    if(hs_sn_source === 'twitter'){
+    console.log(hs_sn_source);
+    if(hs_sn_source === 'twitter' || hs_sn_source === 'TWITTER'){
       $('#hs-post-author-img').attr('src', hs_profile_image_url);
     }
     $('#hs-sn-source').text(hs_message_source);
-    if(hs_sn_source == 'twitter'){
+    if(hs_sn_source == 'twitter' || hs_sn_source === 'TWITTER'){
       $('#hs-post-username').text("@" + hs_username);
       author_name = "@" + hs_username;
     }else{
@@ -90,7 +91,7 @@ function dataHandler(data) {
     $('#hs-post-timestamp').text(hs_message_time);
     $('#hs-post-message').text(hs_message);
 
-    if(hs_attachment_image_urls[0] != ''){
+    if(typeof hs_attachment_image_urls !== 'undefined' && hs_attachment_image_urls.length > 0){
       var img_id_ctr = 0;
       hs_attachment_image_urls.forEach(function(img_src){
         var img_id_name = 'attached-img-' + img_id_ctr;
@@ -113,7 +114,6 @@ function dataHandler(data) {
 .done(function(){
 
   $('.channel-selector').on('click', function() {
-    console.log('select channel click');
 
     $('#channel-item').text($(this).text());
     $('#channel-item').append(' <span class="caret"></span>');
@@ -128,19 +128,28 @@ function dataHandler(data) {
   $('#post-to-slack').on('click', function(event) {
 
       hs_message_source = "*" + hs_sn_source + " message sent via Hootsuite*"; // Asterix is for bold in slack
-      var pretext = $('#slack-message-pretext').text(); // Added user comment
+      var pretext = $('#slack-message-pretext').text();
       var full_message = hs_message_time + "\n" // Message as it looks in HS dashboard
       + hs_message;
-      if(hs_sn_source == 'twitter'){
+      if(hs_sn_source == 'twitter' || hs_sn_source === 'TWITTER'){
         author_link = "https://twitter.com/" + hs_username;
         slack_attachment_color = '#55acee';
-      }else if(hs_sn_source == 'facebook'){
+      }else if(hs_sn_source == 'facebook' || hs_sn_source === 'FACEBOOK'){
         author_link = hs_post_url;
         slack_attachment_color = '#3b5998';
       }
       var author_icon = hs_profile_image_url; 
 
-      if(hs_attachment_image_urls[1] === undefined){ // One attached img
+      if(typeof hs_attachment_image_urls && !hs_attachment_image_urls){ // No attached img
+        var message_attachments = '[{"pretext":"' + pretext
+        + '","author_name":"' + author_name
+        + '","author_icon":"' + author_icon
+        + '","author_link":"' + author_link
+        + '","text":"' + full_message 
+        + '","color":"' + slack_attachment_color
+        + '","fallback":"' + hs_message + '"}]';
+      } 
+      else if(typeof hs_attachment_image_urls && hs_attachment_image_urls.length === 1){ // One attached img
         var message_attachments = '[{"pretext":"' + pretext
         + '","author_name":"' + author_name
         + '","author_icon":"' + author_icon
@@ -149,7 +158,7 @@ function dataHandler(data) {
         + '","text":"' + full_message 
         + '","color":"' + slack_attachment_color
         + '","fallback":"' + hs_message + '"}]';
-      } else if(hs_attachment_image_urls[1] !== undefined) { // More than one attached img
+      } else if(typeof hs_attachment_image_urls && hs_attachment_image_urls.length > 1) { // More than one attached img
         var message_attachments = '[{"pretext":"' + pretext
         + '","author_name":"' + author_name
         + '","author_icon":"' + author_icon
@@ -187,6 +196,7 @@ function dataHandler(data) {
         url: url,
         error: function(response, err){ console.log('POST To slack error: ' + err); }, 
         success: function(response) {
+          console.log('POST TO SLACK: ',response);
           $('#post-to-slack').remove();
           $('#slack-message').empty();
           $('#top-menu-cont').remove();

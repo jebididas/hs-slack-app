@@ -22,8 +22,8 @@
  		var pid = localStorage.getItem('pid');
 
  		$('#login-btn-link').on('click', function(event){
- 			window.open('https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=client&redirect_uri=https://hs-slack.herokuapp.com/auth.html', '_blank');
- 			hsp.closeCustomPopup(apiKey, pid);
+ 			window.open('https://slack.com/oauth/authorize?client_id=10392449395.10392827204&scope=channels:read%20chat:write:user%20users:read%20identify&redirect_uri=https://hs-slack.herokuapp.com/auth.html?complete=1', '_blank');
+ 			// hsp.closeCustomPopup(apiKey, pid);
  		});
  	});
  	</script>
