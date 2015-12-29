@@ -8,8 +8,7 @@ function dataHandler(data) {
   var hs_message = data.s_message;
   var hs_username = data.s_username;
   var hs_profile_image_url = data.s_profile_image_url;
-  var hs_attachment_image_urls = [];
-  hs_attachment_image_urls = data.s_attachment_image_urls;
+  var hs_attachment_image_urls = data.s_attachment_image_urls;
   var hs_sn_source = data.s_sn_source;
   var hs_post_url = data.s_post_url;
 
