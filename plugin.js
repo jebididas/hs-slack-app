@@ -10,7 +10,15 @@ function sendToAppHandler(message) {
     var hs_datetime = message.post.datetime;
     var hs_message = message.post.content.body; // Not sure if we need the other variables below to be sent to handler
     var hs_username = message.post.user.username;
-    var hs_profile_image_url = message.profile.profile_image_url_https;
+    var hs_sn_source = message.post.network;
+    var hs_profile_image_url = '';
+
+    if(hs_sn_source === 'TWITTER'){
+        hs_profile_image_url = message.profile.profile_image_url_https;
+    }else if(hs_sn_source === 'FACEBOOK'){
+        hs_profile_image_url = message.profile.picture;
+    }
+    
     console.log(hs_profile_image_url);
     var hs_attachment_image_urls = [];
     var img_ctr = 0;
@@ -21,7 +29,7 @@ function sendToAppHandler(message) {
         }
     })
 
-    var hs_sn_source = message.post.network;
+    
     var hs_post_url = message.post.href;
 
     var handler = 'https://hs-slack.herokuapp.com/handler.html';
@@ -50,7 +58,7 @@ $(document).ready(function() {
     });
 
     // Send message to plugin modal window
-    hsp.bind('sendtoapp', function(message,pid){
+    hsp.bind('sendtoapp', function(message){
         localStorage.setItem('pid', getParameterByName('pid'));
         console.log(message);
         sendToAppHandler(message);
