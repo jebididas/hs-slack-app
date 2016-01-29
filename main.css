@@ -10,6 +10,11 @@
 #channel-dropdown{
 	margin-left:20px;
 }
+.scrollable-menu{
+	height:auto;
+	max-height:200px;
+	overflow-x:hidden;
+}
 #channel-desc{
 	margin:0 20px;
 	font:bold 12px Lato,arial,sans-serif;
