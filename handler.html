@@ -55,35 +55,40 @@
       <div class="clear"></div>
 
     </div>
-  <div id="slack-message">
-    <div class="left">
-      <img id="slack-message-avatar">
-    </div>
-    <div class="center">
-      <div id="slack-message-username-cont">
-        <p id="slack-message-username"></p>
-        <p id="slack-message-time"></p>
-        <div class="clear"></div>
-      </div>
-      <p id="hs-sn-source"></p>
-      <p id="slack-message-pretext" contenteditable="true"></p>
-      <div id="hs-post">
-        <div id="hs-post-author-cont">
-          <img id="hs-post-author-img">
-          <p id="hs-post-username"></p>
+    <form class="slack-message-pretext-form">
+      
+      <div id="slack-message">
+        <div class="left">
+          <img id="slack-message-avatar">
+        </div>
+        <div class="center">
+          <div id="slack-message-username-cont">
+            <p id="slack-message-username"></p>
+            <p id="slack-message-time"></p>
+            <div class="clear"></div>
+          </div>
+          <p id="hs-sn-source"></p>
+          <!-- <p id="slack-message-pretext" contenteditable="true"></p> -->
+          <textarea class="form-control" rows="1" id="slack-message-pretext" placeholder="Write a message..."></textarea>
+          <div id="hs-post">
+            <div id="hs-post-author-cont">
+              <img id="hs-post-author-img">
+              <p id="hs-post-username"></p>
+            </div>
+            <div class="clear"></div>
+            <p id="hs-post-timestamp"></p>
+            <p id="hs-post-message"></p>
+            <div id="hs-post-attachment-img-cont"></div>
+          </div>
         </div>
         <div class="clear"></div>
-        <p id="hs-post-timestamp"></p>
-        <p id="hs-post-message"></p>
-        <div id="hs-post-attachment-img-cont"></div>
       </div>
-    </div>
-    <div class="clear"></div>
-  </div>
 
-  <button id="post-to-slack" class="btn btn-default post-btn">Post to Channel</button>
+      <button id="post-to-slack" class="btn btn-default post-btn" type="submit">Post to Channel</button>
 
-  <script type="text/javascript" src="handler.js"></script>
-    
+    </form>
+
+    <script type="text/javascript" src="handler.js"></script>
+    <script type="text/javascript" src="textarea-auto-grow.js"></script>
   </body>
 </html>

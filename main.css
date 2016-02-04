@@ -114,12 +114,18 @@
 }
 
 #slack-message-pretext{
-/*	height:2em;*/ /* Firefox */
+	width:100%;
 	margin:5px 0;
 	padding:5px;
 	border:1px dashed lightgrey;
 	border-radius:5px;
+	font-weight:lighter;
+	resize:none;
+	overflow:auto;
 	outline:none;
+	-webkit-box-shadow:none;
+	-moz-box-shadow:none;
+	box-shadow:none;
 }
 #hs-post{
 	margin:5px 0;
