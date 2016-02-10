@@ -31,3 +31,19 @@
 	// close connection
 	pg_close($dbc);
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript" src="js/sha512.js"></script>
+  <script src="https://d2l6uygi1pgnys.cloudfront.net/jsapi/2-0/hsp.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		localStorage.removeItem('slack_access_token');
+		localStorage.removeItem('slack_team_name');
+		localStorage.removeItem('pid');
+	</script>
+</body>
+</html>
