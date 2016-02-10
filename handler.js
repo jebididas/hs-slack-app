@@ -30,7 +30,10 @@ function dataHandler(data) {
   $.ajax({  // GET current user info
     method: "GET",
     url: "https://slack.com/api/auth.test?token=" + localStorage.getItem('slack_access_token'),
-    error: function(response, err){ console.log('GET Current user info error: ' + err); }, 
+    error: function(response, err){ 
+      console.log('GET Current user info error: ' + err); 
+      hsp.showStatusMessage('Failed Slack authentication', 'error') 
+    }, 
     success: function(response) {
       username = response.user;
       user_id = response.user_id;
@@ -38,25 +41,31 @@ function dataHandler(data) {
       $('#profile-team-name').html(slack_team_name +  ' <span class="caret"></span>');
       $('#slack-message-username').text(username);
     }
-  })
+  }) // End of GET auth.test
+
   .done(function(){
 
     $.ajax({
       method: "GET",
       url: "https://slack.com/api/users.info?token=" + localStorage.getItem('slack_access_token') + "&user=" + user_id,
-      error: function(response, err){ console.log('GET User info error: ' + err); }, 
+      error: function(response, err){ 
+        console.log('GET User info error: ' + err); 
+        hsp.showStatusMessage('Could not retrieve Slack user info', 'error'); 
+      }, 
       success: function(response) {
         $('#slack-message-avatar').attr('src', response.user.profile.image_32);
         $('#profile-dropdown-avatar').attr('src', response.user.profile.image_32);
       }
     });
-  });
-
+  }); // End of GET users.info
 
   $.ajax({
     method: "GET",
     url: "https://slack.com/api/channels.list?token=" + localStorage.getItem('slack_access_token'),
-    error: function(response, err){ console.log('GET Channels list error: ' + err); }, 
+    error: function(response, err){ 
+      console.log('GET Channels list error: ' + err);
+      hsp.showStatusMessage('Could not retrieve Slack channels', 'error'); 
+    },
     success: function(response) {
       channel = response.channels[0].id; // Set channel to General
       $('#channel-item').html(response.channels[0].name +  ' <span class="caret"></span>'); // Sets the channel dropdown to General
@@ -70,15 +79,13 @@ function dataHandler(data) {
         $listItem.append('<a id="' + channel.id + '" class="channel-selector" href="#">' + channel.name + '</a>');
         $($listItem).appendTo('#dropdown-channel-menu');
       });
-
     }
-
   }) // End of GET Channel list
   
   .done(function(){
-    console.log(hs_sn_source);
     $('#hs-post-author-img').attr('src', hs_profile_image_url);
     $('#hs-sn-source').text(hs_message_source);
+    
     if(hs_sn_source == 'twitter' || hs_sn_source === 'TWITTER'){
       $('#hs-post-username').text("@" + hs_username);
       author_name = "@" + hs_username;
@@ -86,6 +93,7 @@ function dataHandler(data) {
       $('#hs-post-username').text(hs_username);
       author_name = hs_username;
     }
+
     $('#hs-post-timestamp').text(hs_message_time);
     $('#hs-post-message').text(hs_message);
 
@@ -102,17 +110,14 @@ function dataHandler(data) {
         hs_img.appendTo($('#hs-post-attachment-img-cont'));
         img_id_ctr++;
       });
-      
     }
 
     $('#slack-message-time').text(now_message_date);
-
   })
 
 .done(function(){
 
   $('.channel-selector').on('click', function() {
-
     $('#channel-item').text($(this).text());
     $('#channel-item').append(' <span class="caret"></span>');
     $('#post-to-slack').text('Post to ' + $(this).text() + ' channel');
@@ -120,23 +125,22 @@ function dataHandler(data) {
     $(this).addClass('selected-channel');
     $('#post-to-slack').removeClass('btn-default');
     $('#post-to-slack').addClass('btn-warning');
-      channel = $('.selected-channel').attr('id'); // Update channel
-    });
+    channel = $('.selected-channel').attr('id'); // Update channel
+  });
 
   $('#post-to-slack').on('click', function(event) {
-
       hs_message_source = "*" + hs_sn_source + " message sent via Hootsuite*"; // Asterix is for bold in slack
       var pretext = $('#slack-message-pretext').val();
-      var full_message = hs_message_time + "\n" // Message as it looks in HS dashboard
-      + hs_message;
+      var full_message = hs_message_time + "\n" + hs_message;// Message as it looks in HS dashboard
+      var author_icon = hs_profile_image_url;
+      
       if(hs_sn_source == 'twitter' || hs_sn_source === 'TWITTER'){
         author_link = "https://twitter.com/" + hs_username;
         slack_attachment_color = '#55acee';
       }else if(hs_sn_source == 'facebook' || hs_sn_source === 'FACEBOOK'){
         author_link = hs_post_url;
         slack_attachment_color = '#3b5998';
-      }
-      var author_icon = hs_profile_image_url; 
+      } 
 
       if(typeof hs_attachment_image_urls && !hs_attachment_image_urls){ // No attached img
         var message_attachments = '[{"pretext":"' + pretext
@@ -164,6 +168,7 @@ function dataHandler(data) {
         + '","text":"' + full_message 
         + '","color":"' + slack_attachment_color
         + '","fallback":"' + hs_message + '"},';
+
         var img_src_ctr = 0;
         hs_attachment_image_urls.forEach(function(img_src){
           message_attachments += '{"image_url":"' + hs_attachment_image_urls[img_src_ctr] 
@@ -174,27 +179,26 @@ function dataHandler(data) {
           if(img_src_ctr <= (hs_attachment_image_urls.length - 1)){
             message_attachments += ',';
           }                         
+        });
 
-        })
         message_attachments += ']';
-
-      }              
-
+      } // End of multiple attachments            
 
       var url = "https://slack.com/api/chat.postMessage?token=" + localStorage.getItem('slack_access_token') 
-      + "&channel=" + channel
-      + "&text=" + encodeURIComponent(hs_message_source)
-      + "&attachments=" + encodeURIComponent(message_attachments)
-      + "&as_user=true";              
+        + "&channel=" + channel
+        + "&text=" + encodeURIComponent(hs_message_source)
+        + "&attachments=" + encodeURIComponent(message_attachments)
+        + "&as_user=true";              
       event.preventDefault();
-
 
       $.ajax({
         method: "POST",
         url: url,
-        error: function(response, err){ console.log('POST To slack error: ' + err); }, 
+        error: function(response, err){ 
+          console.log('POST To slack error: ' + err);
+          hsp.showStatusMessage('Could not post message to Slack', 'error'); 
+        }, 
         success: function(response) {
-          console.log('POST TO SLACK: ',response);
           $('#post-to-slack').remove();
           $('#slack-message').empty();
           $('#top-menu-cont').remove();
@@ -211,7 +215,7 @@ function dataHandler(data) {
       window.location.replace('login.html');
     });
   }); // End of Listeners    
-}
+} // End of dataHandler
 
 
 $(document).ready(function() {
@@ -219,10 +223,8 @@ $(document).ready(function() {
   var apiKey = '2mrz5a2rqf0g8ks04gkkwowos3icn258498';
   var pid = localStorage.getItem('pid');
 
-
   parent.frames[apiKey + '_' + pid].hsp.getData(function(data){
-      console.log('CP1', data);
-      parent.frames['appdirectorypopup_' + pid].dataHandler(data);
+    parent.frames['appdirectorypopup_' + pid].dataHandler(data);
   });
 
 }); 

@@ -11,13 +11,11 @@
   </head>
   <body>
     <script type="text/javascript">
-      // Check if user has been authed
-      if (localStorage.getItem('slack_access_token') == undefined){
-          window.location.replace('login.html');
+      if (localStorage.getItem('slack_access_token') == undefined){ // Check if user has been authed
+        window.location.replace('login.html');
       }
     </script>
     <div id="top-menu-cont">
-
       <div class="channel-cont">
         <div id="channel-desc">Channel</div>
         <div id="channel-dropdown" class="dropdown">
@@ -30,7 +28,6 @@
           </ul>
         </div>
       </div> 
-
       <div id="profile-cont">
         <div id="profile-dropdown-btn" class="btn-group">
           <button id="profile-team-name" type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,18 +42,15 @@
             <li role="separator" class="divider"></li>
             <li><a href="https://hootsuite.com/help" target="_blank">Help</a></li>
             <li><a href="https://feedback.hootsuite.com/forums/125623-hootsuite-app-directory" target="_blank">Feedback</a></li>
-            <li><a href="#" target="_blank">Developer</a></li>
+            <li><a href="https://hs-slack.herokuapp.com/user-guide/index.html" target="_blank">Developer</a></li>
             <li role="separator" class="divider"></li>
             <li><a id="logout-btn" href="#">Logout</a></li>
           </ul>
         </div>
       </div>
-      
       <div class="clear"></div>
-
     </div>
     <form class="slack-message-pretext-form">
-      
       <div id="slack-message">
         <div class="left">
           <img id="slack-message-avatar">
@@ -68,7 +62,6 @@
             <div class="clear"></div>
           </div>
           <p id="hs-sn-source"></p>
-          <!-- <p id="slack-message-pretext" contenteditable="true"></p> -->
           <textarea class="form-control" rows="1" id="slack-message-pretext" placeholder="Write a message..."></textarea>
           <div id="hs-post">
             <div id="hs-post-author-cont">
@@ -83,11 +76,8 @@
         </div>
         <div class="clear"></div>
       </div>
-
       <button id="post-to-slack" class="btn btn-default post-btn" type="submit">Post to Channel</button>
-
     </form>
-
     <script type="text/javascript" src="handler.js"></script>
     <script type="text/javascript" src="textarea-auto-grow.js"></script>
   </body>
