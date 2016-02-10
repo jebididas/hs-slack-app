@@ -1,3 +1,7 @@
+<?php
+define("CLIENT_ID", "10392449395.10392827204");
+define("CLIENT_SECRET", "1a081084c53d5acd8737c8e1427bb958");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,13 +24,14 @@
   }
 
   var code = getParameterByName('code');
-
+  var client_id = <?php echo json_encode(CLIENT_ID); ?>;
+  var client_secret = <?php echo json_encode(CLIENT_SECRET); ?>;
+  console.log('client_id: ',client_id);
+  console.log('client_secret: ',client_secret);
 
   $.ajax({
-    method: "POST",
-    url: "https://slack.com/api/oauth.access?client_id=10392449395.10392827204&client_secret=1a081084c53d5acd8737c8e1427bb958&code="
-    		+ code 
-    		+ "&pretty=1",
+    method: 'POST',
+    url: 'https://slack.com/api/oauth.access?client_id=' + client_id + '&client_secret=' + client_secret + '&code=' + code,
     error: function(response, err){ console.log('Auth Post Request: ' + err) }, 
     success: function(response) { 
     	localStorage.setItem('slack_access_token', response.access_token);

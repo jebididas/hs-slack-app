@@ -6,7 +6,6 @@
 	$ts = $_POST['ts'];
 	$token = $_POST['token'];
 
-
 	// Connect to db
 	$dbc = pg_connect("host=" . $dbhost . " dbname=" . $dbname . " user=" . $dbuser . " password=" . $dbpassword);
 

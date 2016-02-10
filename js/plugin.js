@@ -13,13 +13,12 @@ function sendToAppHandler(message) {
     var hs_sn_source = message.post.network;
     var hs_profile_image_url = '';
 
-    if(hs_sn_source === 'TWITTER'){
+    if(hs_sn_source === 'twitter' || hs_sn_source === 'TWITTER'){
         hs_profile_image_url = message.profile.profile_image_url_https;
-    }else if(hs_sn_source === 'FACEBOOK'){
+    }else if(hs_sn_source === 'facebook' || hs_sn_source === 'FACEBOOK'){
         hs_profile_image_url = message.profile.picture;
     }
     
-    console.log(hs_profile_image_url);
     var hs_attachment_image_urls = [];
     var img_ctr = 0;
     message.post.attachments.forEach(function(hs_attachment){
@@ -31,7 +30,6 @@ function sendToAppHandler(message) {
 
     
     var hs_post_url = message.post.href;
-
     var handler = 'https://hs-slack.herokuapp.com/handler.html';
 
     hsp.saveData(
@@ -60,7 +58,6 @@ $(document).ready(function() {
     // Send message to plugin modal window
     hsp.bind('sendtoapp', function(message){
         localStorage.setItem('pid', getParameterByName('pid'));
-        console.log(message);
         sendToAppHandler(message);
     });
 
