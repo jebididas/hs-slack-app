@@ -8,7 +8,7 @@ function getParameterByName(name) {  // This decodes and separates the URI into 
 function sendToAppHandler(message) {
     var hs_message_id = message.post.id;
     var hs_datetime = message.post.datetime;
-    var hs_message = message.post.content.body; // Not sure if we need the other variables below to be sent to handler
+    var hs_message = message.post.content.body;
     var hs_username = message.post.user.username;
     var hs_sn_source = message.post.network;
     var hs_profile_image_url = '';

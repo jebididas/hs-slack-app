@@ -14,7 +14,7 @@ function dataHandler(data) {
 
   var slack_access_token = localStorage.getItem('slack_access_token');
   var slack_team_name = localStorage.getItem('slack_team_name');
-  var channel = ''; // Initialize Channel
+  var channel = '';
   var user_id = '';
   var username = '';
   var author_name = '';
@@ -27,7 +27,7 @@ function dataHandler(data) {
   var hs_message_source = hs_sn_source + " message sent via Hootsuite";
 
   
-  $.ajax({  // GET current user info
+  $.ajax({ 
     method: "GET",
     url: "https://slack.com/api/auth.test?token=" + localStorage.getItem('slack_access_token'),
     error: function(response, err){ 
@@ -41,11 +41,11 @@ function dataHandler(data) {
       $('#profile-team-name').html(slack_team_name +  ' <span class="caret"></span>');
       $('#slack-message-username').text(username);
     }
-  }) // End of GET auth.test
+  })
 
   .done(function(){
 
-    $.ajax({
+    $.ajax({ 
       method: "GET",
       url: "https://slack.com/api/users.info?token=" + localStorage.getItem('slack_access_token') + "&user=" + user_id,
       error: function(response, err){ 
@@ -57,9 +57,9 @@ function dataHandler(data) {
         $('#profile-dropdown-avatar').attr('src', response.user.profile.image_32);
       }
     });
-  }); // End of GET users.info
+  }); 
 
-  $.ajax({
+  $.ajax({ 
     method: "GET",
     url: "https://slack.com/api/channels.list?token=" + localStorage.getItem('slack_access_token'),
     error: function(response, err){ 
@@ -80,7 +80,7 @@ function dataHandler(data) {
         $($listItem).appendTo('#dropdown-channel-menu');
       });
     }
-  }) // End of GET Channel list
+  })
   
   .done(function(){
     $('#hs-post-author-img').attr('src', hs_profile_image_url);
@@ -129,7 +129,7 @@ function dataHandler(data) {
   });
 
   $('#post-to-slack').on('click', function(event) {
-      hs_message_source = "*" + hs_sn_source + " message sent via Hootsuite*"; // Asterix is for bold in slack
+      hs_message_source = "*" + hs_sn_source + " message sent via Hootsuite*"; // Asterix is for bold in Slack
       var pretext = $('#slack-message-pretext').val();
       var full_message = hs_message_time + "\n" + hs_message;// Message as it looks in HS dashboard
       var author_icon = hs_profile_image_url;
