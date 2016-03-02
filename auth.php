@@ -8,6 +8,9 @@ define("CLIENT_SECRET", "1a081084c53d5acd8737c8e1427bb958");
   <script type="text/javascript" src="js/jquery-2.2.1.min.js"></script>
 </head>
 <body>
+
+<?php include_once("analyticstracking.php") ?>
+
 <script type="text/javascript">
   function getParameterByName(name) {  // This decodes and separates the URI into pieces
       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");

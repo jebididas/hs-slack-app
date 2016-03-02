@@ -13,6 +13,9 @@
 		<link href="css/styles.css" rel="stylesheet">
 	</head>
 	<body>
+
+  <?php include_once("analyticstracking.php") ?>
+  
 <nav class="navbar navbar-default navbar-fixed-top" role="banner">
   <div class="container nav-cont">
     <div class="navbar-header">

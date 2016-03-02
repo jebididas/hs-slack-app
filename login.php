@@ -8,10 +8,13 @@
   <script src="https://d2l6uygi1pgnys.cloudfront.net/jsapi/2-0/hsp.js"></script>
  </head>
  <body>
+
+ 	<?php include_once("analyticstracking.php") ?>
+
  	<script type="text/javascript">
  		// Check if authed
  		if(localStorage.getItem('slack_access_token') != undefined){
- 			window.location.replace('handler.html');
+ 			window.location.replace('handler.php');
  		}
 
  		$(document).ready(function(){

@@ -9,9 +9,12 @@
   <script type="text/javascript" src="js/moment.min.js"></script>
   </head>
   <body>
+
+    <?php include_once("analyticstracking.php") ?>
+
     <script type="text/javascript">
       if (localStorage.getItem('slack_access_token') == undefined){ // Check if user has been authed
-        window.location.replace('login.html');
+        window.location.replace('login.php');
       }
     </script>
     <div id="top-menu-cont">

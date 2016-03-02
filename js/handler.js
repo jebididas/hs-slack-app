@@ -212,7 +212,7 @@ function dataHandler(data) {
     $('#logout-btn').on('click', function(event){
       localStorage.removeItem('slack_access_token');
       localStorage.removeItem('slack_team_name');
-      window.location.replace('login.html');
+      window.location.replace('login.php');
     });
   }); // End of Listeners    
 } // End of dataHandler

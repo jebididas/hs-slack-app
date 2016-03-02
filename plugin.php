@@ -6,6 +6,9 @@
   <script src="https://d2l6uygi1pgnys.cloudfront.net/jsapi/2-0/hsp.js"></script>
 </head>
 <body>
+
+	<?php include_once("analyticstracking.php") ?>
+	
 	<script type="text/javascript" src="js/plugin.js"></script>
 </body>
 </html>
