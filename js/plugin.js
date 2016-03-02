@@ -30,7 +30,7 @@ function sendToAppHandler(message) {
 
     
     var hs_post_url = message.post.href;
-    var handler = 'https://hs-slack.herokuapp.com/handler.html';
+    var handler = 'https://hs-slack-app.herokuapp.com/handler.html';
 
     hsp.saveData(
     {
