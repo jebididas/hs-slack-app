@@ -7,6 +7,7 @@
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/favicon.ico">
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -15,7 +16,7 @@
 	<body>
 
   <?php include_once("analyticstracking.php") ?>
-  
+
 <nav class="navbar navbar-default navbar-fixed-top" role="banner">
   <div class="container nav-cont">
     <div class="navbar-header">
@@ -45,8 +46,11 @@
         <div class="col-md-5">
             <div class="well well-lg"> 
               <div class="row">
-                <div class="col-sm-6">
-        	      	<img src="../img/slack-logo.png" class="img-responsive">
+                <div class="col-lg-12 col-sm-6 center-text">
+                  <p class="add-to-slack-text lead">Install the Slack app for Hootsuite now!</p>
+                  <p class="add-to-slack-button">
+                    <a href="https://slack.com/oauth/authorize?scope=incoming-webhook&client_id=10392449395.10392827204"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" class="img-responsive" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
+                  </p>
                 </div>
               </div>
             </div>
@@ -64,8 +68,10 @@
           <li><a href="#sec0">Overview</a></li>
           <li><a href="#sec1">What you need</a></li>
           <li><a href="#sec2">Installing Slack for Hootsuite</a></li>
-          <li><a href="#sec3">FAQ</a></li>
-          <li><a href="#sec4">Uninstalling the app</a></li>
+          <li><a href="#sec3">Using the app</a></li>
+          <li><a href="#sec4">FAQ</a></li>
+          <li><a href="#sec5">Uninstalling the app</a></li>
+          <li><a href="#sec6">Help</a></li>
         </ul>
       </div><!--/left-->
       
@@ -73,22 +79,12 @@
       <div class="col-md-9">
         <h2 id="sec0">Overview</h2>
         <p>
-          Slack for Hootsuite allows you to select a social media post, add a comment and send the post directly to a Slack Channel within your team.
+          The Slack app for Hootsuite allows you to select a social media post, add a comment and send the post directly to a Slack Channel within your team.
+        </p>
+        <p class="center-text">
+          <img src="../slack-screenshot3.png" class="img-responsive overview-img" alt="Hootsuite Slack App" title="Hootsuite Slack App">
         </p>
         <hr>
-        <p>
-          Rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae 
-          dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia cor magni dolores 
-          eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, 
-          sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-          Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut.              
-          Rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae 
-          dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia cor magni dolores 
-          eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, 
-          sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-          Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut!
-        </p>
-        
         <h2 id="sec1">What you need</h2>
         <p>
 
@@ -96,16 +92,24 @@
         <div class="row">
           <div class="col-md-6">
             <div class="panel panel-default">
-              <div class="panel-heading"><h3>Slack account</h3></div>
+              <div class="panel-heading">
+                <img class="img-responsive account-img" src="img/slack-256.png">
+                <h3>Slack account</h3>
+                <div class="clear"></div></div>
               <div class="panel-body">Sign in with your existing Slack team or create one for free now!
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="panel panel-default">
-              <div class="panel-heading"><h3>Hootsuite account</h3></div>
+              <div class="panel-heading">
+                <img class="img-responsive account-img" src="img/hootsuite-logo-square.png">
+                <h3>Hootsuite account</h3>
+                <div class="clear"></div>
+              </div>
               <div class="panel-body">Use the Slack for Hootsuite app with a Free, Pro, or Enterprise Hootsuite account.
               </div>
+              
             </div>
           </div>  
         </div>
@@ -117,50 +121,86 @@
           From your Hootsuite dashboard, click on the App Directory side menu item.  Once the modal opens search for Slack in All Apps and click Install.
         </p>
         <img class="img-responsive" src="img/hs-slack-install-1.png" title="Open App Directory from Hootsuite Dashboard" alt="Hootsuite App Directory">
+        <p></p>
         <p>
-          After clicking “Install”, a new window will open where you can select to add a
-          ScribbleLive stream to a new tab within your Hootsuite dashboard or add a ScribbleLive
-          stream to an existing tab.
-        </p>
-        <img src="img/hs-slack-install-2" title="" alt="">
-          Rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae 
-          dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia cor magni dolores 
-          eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, 
-          sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-          Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut!
+          After clicking <strong>Install</strong>, a new window will open where you can select to add a
+          Slack plugin within to an existing Hootsuite tab.
         </p>
         <div class="row">
-          <div class="col-md-4"><img src="//placehold.it/300x300" class="img-responsive"></div>
-          <div class="col-md-4"><img src="//placehold.it/300x300" class="img-responsive"></div>
-          <div class="col-md-4"><img src="//placehold.it/300x300" class="img-responsive"></div>
+          <div class="col-md-4"><img src="img/hs-slack-install-2.png" class="img-responsive"></div>
+          <div class="col-md-4"><img src="img/hs-slack-install-3.png" class="img-responsive"></div>
+          <div class="col-md-4"><img src="img/hs-slack-install-4.png" class="img-responsive"></div>
         </div>
-        
+        <p>
+          Now that the app is installed, you can navigate to an existing Hootsuite stream, click the ellipsis on a post and select <strong>Send to Slack</strong>
+        </p>
+        <div class="row">
+          <img src="img/hs-slack-install-5.png" class="img-responsive">
+        </div>
+        <p>
+          This will trigger a modal window to display with a link to login to the app. Follow the authorization process.
+        </p>
+        <div class="row">
+          <div class="col-md-4"><img src="img/hs-slack-install-6.png" class="img-responsive"></div>
+          <div class="col-md-4"><img src="img/hs-slack-install-7.png" class="img-responsive"></div>
+          <div class="col-md-4"><img src="img/hs-slack-install-8.png" class="img-responsive"></div>
+        </div>
         <hr>
         
-        <h2 id="sec3">FAQ</h2>
+        <h2 id="sec3">Using the app</h2>
         <p>
-          Images are responsive sed @mdo but sum are more fun peratis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
-          totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae 
-          dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia cor magni dolores 
-          eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, 
-          sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-          Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut..</p>
+          Once you have the app installed, it's time to send some Hootsuite messages to Slack!
+        </p>
+        
+        <h3>Select the Slack Channel</h3>
         <p>
-          Fos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, 
-          sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-          Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut..</p>
-        
-        
-        <h2 id="sec4">Uninstalling the app</h2>
-        <p>
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
-          totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae 
-          dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia cor magni dolores 
-          eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, 
-          sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-          Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut.</p>
-        
+          Click the dropdown to select the Slack Channel you want to send to.
+        </p>
+        <img src="img/hs-slack-install-9-x.png" class="img-responsive">
+
         <hr>
+        <h3>Write a comment along with the post</h3>
+        <p>
+          Easily add a quick comment describing the post.
+        </p>
+        <img src="img/hs-slack-install-10-x.png" class="img-responsive">
+
+        <hr>
+        <h3>Send it!</h3>
+        <p>
+          Hit the <strong>Post to Channel</strong> button! Boom! Sent! Done!
+        </p>
+        <img src="img/hs-slack-install-11-x.png" class="img-responsive">
+
+        <hr>
+        <h2 id="sec4">FAQ</h2>
+        <h3>Are multiple images supported?</h3>
+        <p>
+          Yes!
+        </p>
+        <h3>Can I send a message directly to a user?</h3>
+        <p>
+          No, only to a channel.
+        </p>
+        
+        <hr>        
+        <h2 id="sec5">Uninstalling the app</h2>
+        <p>
+          Not that you would ever want to uninstall the Slack app for Hootsuite....but if for some reason someone forced you to uninstall it, here are the steps.
+        </p>
+
+        <h3>Open the App Directory</h3>
+        <p>
+          Navigate to the Slack app in <strong>Installed Apps</strong> and click the garbage can icon to remove the app.
+        </p>
+        <img src="img/hs-slack-install-12.png" class="img-responsive">
+        <hr>
+
+        <h2 id="sec6">Help</h2>
+        <p>
+          Still not getting what you need? <a href="https://hootsuite.com/help" target="_blank"> Contact the Hootsuite support team! </a>
+        </p>
+        <a href="https://hootsuite.com/help" target="_blank"><img src="img/hootsuite-logo-square.png" class="img-responsive"></a>
 
         </div><!--/right-->
   	</div><!--/row-->

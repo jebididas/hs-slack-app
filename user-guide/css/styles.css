@@ -13,6 +13,12 @@ body {
  padding-top:50px;
 }
 
+p{
+  font-size: 1.5em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 #masthead { 
   margin-top:30px;
   min-height:200px;
@@ -72,4 +78,33 @@ body {
 
 .panel-heading{
   text-align: center;
+}
+
+.center-text{
+  text-align: center;
+}
+
+.overview-img{
+  border-bottom: 1px solid lightgrey;
+  border-radius: 5px;
+}
+
+.account-heading{
+  display: inline;
+}
+.account-img{
+  float:left;
+  height: 60px;
+}
+
+.clear{
+  clear: both;
+}
+
+.add-to-slack-text{
+  margin: 0 0 15px 0;
+}
+
+.add-to-slack-button{
+  margin: 0 35%;
 }
