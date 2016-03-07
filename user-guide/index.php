@@ -49,7 +49,7 @@
                 <div class="col-lg-12 col-sm-6 center-text">
                   <p class="add-to-slack-text lead">Install the Slack app for Hootsuite now!</p>
                   <p class="add-to-slack-button">
-                    <a href="https://slack.com/oauth/authorize?scope=incoming-webhook&client_id=10392449395.10392827204"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" class="img-responsive" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
+                    <a href="https://slack.com/oauth/authorize?scope=incoming-webhook&client_id=10392449395.10392827204"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" class="img-responsive" redirect_uri="http://appdirectory.hootsuite.com/240/slack" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
                   </p>
                 </div>
               </div>
