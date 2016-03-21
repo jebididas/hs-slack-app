@@ -39,9 +39,7 @@
   <div class="container">
       <div class="row">
         <div class="col-md-7">
-          <h1>Slack for Hootsuite
-            <p class="lead">Email Killer meets Social Media Master</p>
-          </h1>
+          <h1>Slack for Hootsuite</h1>
         </div>
         <div class="col-md-5">
             <div class="well well-lg"> 
