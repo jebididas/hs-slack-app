@@ -1,6 +1,5 @@
 <?php
-define("CLIENT_ID", "10392449395.10392827204");
-define("CLIENT_SECRET", "1a081084c53d5acd8737c8e1427bb958");
+include_once("auth-creds.php");
 ?>
 <!DOCTYPE html>
 <html>
